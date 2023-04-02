@@ -1,9 +1,9 @@
 <?php
 
-namespace MaskShop;
+namespace Kylan1940\MaskShopUI;
 
 use pocketmine\Server;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 
@@ -28,7 +28,7 @@ use pocketmine\utils\Config;
 
 use onebone\economyapi\EconomyAPI;
 
-use MaskShop\Task\EffectTask;
+use Kylan1940\MaskShopUI\Task\EffectTask;
 
 use Kylan1940\MaskShopUI\Form\{Form, SimpleForm, FormAPI};
 

@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Kylan1940\MaskShopUI\Form;
 
 use pocketmine\form\Form as IForm;
-use pocketmine\Player;
+use pocketmine\player\Player;
 
 abstract class Form implements IForm{
 

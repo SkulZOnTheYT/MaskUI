@@ -73,16 +73,15 @@ class Main extends PluginBase implements Listener {
 	}
 	
 	public function MaskShopForm($sender){
-		$form = new SimpleForm(function (Player $sender, $data){
+		$form = new SimpleForm(function (Player $sender, int $data = null){
 			$result = $data;
 			if($result === null){
+			  return true;
 			}
 			switch($result){
-								
 				case 0:
 				       $sender->getLevel()->addSound(new AnvilFallSound($sender));
 				       $sender->sendMessage($this->getConfig()->get("quit.message"));
-									
 					break;
 				case 1:
 				       $this->FeatureMenu($sender);
@@ -90,7 +89,6 @@ class Main extends PluginBase implements Listener {
 				case 2:
 					$zombie = $this->getConfig()->get("zombie.price");
 					if($this->eco->myMoney($sender) >= $zombie){
-										
                        $this->eco->reduceMoney($sender, $zombie);
                        $name = $sender->getName();
                        $e = Enchantment::getEnchantment(0);
@@ -105,12 +103,10 @@ class Main extends PluginBase implements Listener {
                        $sender->getLevel()->addSound(new AnvilFallSound($sender));
                        $sender->sendMessage($this->getConfig()->get("msg.no-money"));
                     }
-									
 					break;
 				case 3:
 					$creeper = $this->getConfig()->get("creeper.price");
 					if($this->eco->myMoney($sender) >= $creeper){
-										
                        $this->eco->reduceMoney($sender, $creeper);
                        $name = $sender->getName();
                        $e = Enchantment::getEnchantment(0);
@@ -125,12 +121,10 @@ class Main extends PluginBase implements Listener {
                        $sender->getLevel()->addSound(new AnvilFallSound($sender));
                        $sender->sendMessage($this->getConfig()->get("msg.no-money"));
                     }
-									
 					break;
 				case 4:
 					$wither = $this->getConfig()->get("wither.price");
 					if($this->eco->myMoney($sender) >= $wither){
-										
                        $this->eco->reduceMoney($sender, $wither);
                        $name = $sender->getName();
                        $e = Enchantment::getEnchantment(0);
@@ -145,12 +139,10 @@ class Main extends PluginBase implements Listener {
                        $sender->getLevel()->addSound(new AnvilFallSound($sender));
                        $sender->sendMessage($this->getConfig()->get("msg.no-money"));
                     }
-									
 					break;
 				case 5:
 					$dragon = $this->getConfig()->get("dragon.price");
 					if($this->eco->myMoney($sender) >= $dragon){
-										
                        $this->eco->reduceMoney($sender, $dragon);
                        $name = $sender->getName();
                        $e = Enchantment::getEnchantment(0);
@@ -165,12 +157,10 @@ class Main extends PluginBase implements Listener {
                        $sender->getLevel()->addSound(new AnvilFallSound($sender));
                        $sender->sendMessage($this->getConfig()->get("msg.no-money"));
                     }
-									
 					break;
 				case 6:	
 					$steve = $this->getConfig()->get("steve.price");
 					if($this->eco->myMoney($sender) >= $steve){
-										
                        $this->eco->reduceMoney($sender, $steve);
                        $name = $sender->getName();
                        $e = Enchantment::getEnchantment(0);
@@ -185,12 +175,10 @@ class Main extends PluginBase implements Listener {
                        $sender->getLevel()->addSound(new AnvilFallSound($sender));
                        $sender->sendMessage($this->getConfig()->get("msg.no-money"));
                     }
-									
 					break;
 				case 7:
 					$skeleton = $this->getConfig()->get("skeleton.price");
 					if($this->eco->myMoney($sender) >= $skeleton){
-										
                        $this->eco->reduceMoney($sender, $skeleton);
                        $name = $sender->getName();
                        $e = Enchantment::getEnchantment(0);
@@ -209,11 +197,8 @@ class Main extends PluginBase implements Listener {
                        $sender->getLevel()->addSound(new AnvilFallSound($sender));
                        $sender->sendMessage($this->getConfig()->get("msg.no-money"));
                     }
-									
 					break;
-								
 					}
-					
 			});
 			
 			$money = $this->eco->myMoney($sender);
@@ -241,24 +226,20 @@ class Main extends PluginBase implements Listener {
     }
     
     public function FeatureMenu($sender){
-        $form = new SimpleForm(function (Player $sender, $data){
+        $form = new SimpleForm(function (Player $sender, int $data = null){
 			$result = $data;
 			if($result === null){
+			  return true;
 			}
 			switch($result){
-								
 				case 0:
 				       $this->MaskShopForm($sender);
-									
 					break;
 				case 1:
 				       $sender->getLevel()->addSound(new AnvilFallSound($sender));
 				       $sender->sendMessage($this->getConfig()->get("quit.message"));
-				       
 				    break;
-				    
 			        }
-			        
 		        });
 		        
 		    $zombie = $this->getConfig()->get("zombie.price");
@@ -275,3 +256,46 @@ class Main extends PluginBase implements Listener {
             $form->sendToPlayer($sender);
 	}
 }
+
+/*
+public function HealFeed($sender){
+        $form = new SimpleForm(function (Player $sender, int $data = null){
+            $result = $data;
+            if ($result === null) {
+                return true;
+            }
+            switch ($result) {
+                case 0:
+                  //$economy = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
+                  //$money = $economy->myMoney($sender); 
+                  //$moneyheal = ($this->getConfig()->get("money-heal"));
+                  //if($money >= $moneyheal){
+                    //$economy->reduceMoney($sender, $moneyheal);
+                    $sender->setHealth($sender->getMaxHealth());
+                    $sender->sendMessage($this->getConfig()->get("message-heal"));
+                  //} else {
+                    //$sender->sendMessage($this->getConfig()->get("not-enough-money-heal"));
+                  //}
+                  break;
+                case 1:
+                  //$economy = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
+                  //$money = $economy->myMoney($sender);
+                  //$moneyfeed = ($this->getConfig()->get("money-feed"));
+                    //if($money >= $moneyfeed){
+                    //$economy->reduceMoney($sender, $moneyfeed);
+                    $sender->getHungerManager()->setFood(20);
+                    $sender->getHungerManager()->setSaturation(20);
+                    $sender->sendMessage($this->getConfig()->get("message-feed"));
+                  //} else {
+                    //$sender->sendMessage($this->getConfig()->get("not-enough-money-feed"));
+                  //}
+                  break;
+            }
+        });
+            $form->setTitle($this->getConfig()->get("title"));
+            $form->addButton($this->getConfig()->get("button-heal"));
+            $form->addButton($this->getConfig()->get("button-feed"));
+            $form->sendToPlayer($sender);
+            return $form;
+    }
+*/

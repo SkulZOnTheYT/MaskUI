@@ -1,7 +1,9 @@
 name: MaskShopUI
 version: 1.0
-main: Kylan1940\MaskShopUI\main
+main: Kylan1940\MaskShopUI\Main
 api: 4.0.0
+author: Kylan1940
+
 commands:
   mask:
    description: open mask shop in ui

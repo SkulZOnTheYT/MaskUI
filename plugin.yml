@@ -1,0 +1,13 @@
+name: MaskShopUI
+version: 1.0
+main: Kylan1940\MaskShopUI\main
+api: 4.0.0
+commands:
+  mask:
+   description: open mask shop in ui
+   usage: "/mask"
+   permission: mask.shop
+permissions:
+  mask.shop:
+   default: true
+   description: allow user open mask shop 

@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Kylan1940\MaskShopUI\Form;
+namespace SkulZOnTheYT\MaskShopUI\Form;
 
 use pocketmine\form\Form as IForm;
 use pocketmine\player\Player;

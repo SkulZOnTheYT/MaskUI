@@ -1,8 +1,8 @@
 name: MaskShopUI
 version: 1.0
-main: Kylan1940\MaskShopUI\Main
+main: SkulZOnTheYT\MaskShopUI\Main
 api: 4.0.0
-author: Kylan1940
+author: SkulZOnTheYT, Kylan1940
 
 commands:
   mask:
@@ -12,4 +12,4 @@ commands:
 permissions:
   mask.shop:
    default: true
-   description: allow user open mask shop 
+   description: allow user open mask shop

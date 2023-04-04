@@ -12,7 +12,7 @@ use pocketmine\entity\EffectInstance;
 
 class EffectTask extends Task{
     
-    public function onEnable(int $tick) : void{
+    public function onRun(int $tick) {
         foreach(Main::getInstance()->getServer()->getOnlinePlayers() as $players){
             $inv = $players->getArmorInventory();
             $helmet = $inv->getHelmet();

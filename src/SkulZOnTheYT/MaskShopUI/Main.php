@@ -80,7 +80,7 @@ class Main extends PluginBase implements Listener {
           $zombie = $this->getConfig()->get("zombie.price");
           if (haha) {
             $name = $sender->getName();
-             $item1 = Item::getName(zombie_head);
+             $item1 = Item::getNamedTag();
              $item1->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
              $sender->getInventory()->addItem($item1);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
@@ -94,7 +94,7 @@ class Main extends PluginBase implements Listener {
           $zombie = $this->getConfig()->get("creeper.price");
           if (haha) {
             $name = $sender->getName();
-             $item2 = Item::getName(creeper_head);
+             $item2 = Item::getNamedTag();
              $item2->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
              $sender->getInventory()->addItem($item2);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
@@ -170,7 +170,7 @@ class Main extends PluginBase implements Listener {
 			$steve = $this->getConfig()->get("steve.price");
 					
 			$form->setTitle("§eMask §bShop");
-			$form->setContent(str_replace(["{name}"], [$sender->getName()], "§fHello §b{name}, §fYour Money: §6{$money}§a$ \n\n§fFor know the price and the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"));
+			$form->setContent(str_replace(["{name}"], [$sender->getName()], "§fHello §b{name}\n§fFor know the price and the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"));
 					
 			$form->addButton("§cExit", 0);
 			$form->addButton("§l§eMask §dFeatures", 1);
@@ -209,9 +209,32 @@ class Main extends PluginBase implements Listener {
 			$steve = $this->getConfig()->get("steve.price"); 
 			
 		    $form->setTitle("§d§lEffects §bList");
-            $form->setContent("§6This plugin made by §fmisael38 \n\n§fSkeleton §eMask \n§fPrice: §6$skeleton \n§dEffects: \n§e-§dHaste §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dNight Vision §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dSpeed §7(§bI§7) §c*Only For 18 Minutes \n§e-§dJump Boost §7(§bII§7) §c*Only For 18 Minutes \n\n§2Zombie §eMask \n§fPrice: §6$zombie \n§dEffects: \n§e-§dStrength §7(§bI§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dJump Boost  §7(§bI§7) \n§e-§dRegeneration §7(§bI§7) \n§e-§dFire Resistance §7(§bI§7) \n\n§aCreeper §eMask \n§fPrice: §6$creeper \n§dEffects: \n§e-§dJump Boost §7(§bII§7) \n§e-§dStrength §7(§bII§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dRegeneration §7(§bII§7) \n§e-§dFire Resistance §7(§bI§7) \n§e-§dSpeed §7(§bI§7) \n\n§7Wither Skeleton §eMask \n§fPrice: §6$wither \n§dEffects: \n§e-§dSpeed §7(§bI§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dRegeneration \n§7(§bI§7) \n§e-§dHealth Boost §7(§bI§7) \n§e-§dFire Resistance §7(§bII§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n\n§3Steve §eMask \n§fPrice: §6$steve \n§dEffects: \n§e-§dStrength §7(§bIII§7) \n§e-§dSpeed §7(§bII§7) \n§e-§dRegeneration §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n\n§cDragon §eMask \n§fPrice: §6$dragon \n§dEffects: \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dSpeed §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dAbsorption §7(§bIII§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dSaturation §7(§bIII§7) \n§e-§dRegeneration §7(§bIII§7)"); 
+            $form->setContent("§6This plugin made by §fSkulZOnTheYT and Kylan1940\n\n§fSkeleton §eMask \n§fPrice: §6$skeleton \n§dEffects: \n§e-§dHaste §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dNight Vision §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dSpeed §7(§bI§7) §c*Only For 18 Minutes \n§e-§dJump Boost §7(§bII§7) §c*Only For 18 Minutes \n\n§2Zombie §eMask \n§fPrice: §6$zombie \n§dEffects: \n§e-§dStrength §7(§bI§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dJump Boost  §7(§bI§7) \n§e-§dRegeneration §7(§bI§7) \n§e-§dFire Resistance §7(§bI§7) \n\n§aCreeper §eMask \n§fPrice: §6$creeper \n§dEffects: \n§e-§dJump Boost §7(§bII§7) \n§e-§dStrength §7(§bII§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dRegeneration §7(§bII§7) \n§e-§dFire Resistance §7(§bI§7) \n§e-§dSpeed §7(§bI§7) \n\n§7Wither Skeleton §eMask \n§fPrice: §6$wither \n§dEffects: \n§e-§dSpeed §7(§bI§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dRegeneration \n§7(§bI§7) \n§e-§dHealth Boost §7(§bI§7) \n§e-§dFire Resistance §7(§bII§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n\n§3Steve §eMask \n§fPrice: §6$steve \n§dEffects: \n§e-§dStrength §7(§bIII§7) \n§e-§dSpeed §7(§bII§7) \n§e-§dRegeneration §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n\n§cDragon §eMask \n§fPrice: §6$dragon \n§dEffects: \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dSpeed §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dAbsorption §7(§bIII§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dSaturation §7(§bIII§7) \n§e-§dRegeneration §7(§bIII§7)"); 
             $form->addButton("§l§aBACK", 1);
             $form->addButton("§l§cEXIT", 2);
             $form->sendToPlayer($sender);
 	}
 }
+
+/*
+libEco::reduceMoney($sender, $price, static function(bool $success) use ($sender, $price): void {
+                    if($success){
+						if (is_null($sender)){
+                             libEco::addMoney($sender, $price);
+						} else{
+							$name = $args[0];
+							$item = $sender->getInventory()->getItemInHand();
+							$item->setCustomName($name);
+							$sender->getInventory()->setItemInHand($item);
+							libEco::myMoney($player, static function(float $money) use($sender) : void {
+							$sender->sendMessage($this->getMessage("rename-success", ["{name}", "{cost}"], [$sender->getName(), $money]));
+								});
+                        }
+                    } elseif(!is_null($sender)){
+						$name = $sender->getName();
+						libEco::myMoney($sender, static function(float $money) use($sender) : void {
+						$sender->sendMessage($this->getMessage("no-money", ["{name}", "{cost}"], [$name, $money]));
+							});
+					}
+                });
+                return true; 

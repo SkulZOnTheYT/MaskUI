@@ -73,7 +73,7 @@ class Main extends PluginBase implements Listener {
                        $sender->getInventory()->addItem($item1);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
                       return true;
-                    }else{
+                   }else{
                        $sender->sendMessage($this->getConfig()->get("msg.no-money"));
                     }
 					break;

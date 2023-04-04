@@ -97,16 +97,6 @@ class EffectTask extends Task{
 	/** @var array $fronteffect */
 	private $fronteffect = ["effectname" => [], "realname" => []];
     
-    public function onEnable(): void{
-    	$index = 0;
-    	foreach(self::effectsData as $name => $data){
-    		$this->fronteffect["effectname"][$index] = $data["name"];
-    		$this->fronteffect["realname"][$index] = $name;
-    		$index++;
-    	}
-        $this->getServer()->getCommandMap()->register("EffectSee", new EffectSeeCommands($this));
-    }
-    
     public static function getEffectNameByName(string $name): string{
     	if(!isset(self::effectsData[$name]["name"])){
     		return "";

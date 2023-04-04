@@ -24,27 +24,37 @@ class Main extends PluginBase implements Listener {
     
     /** @var Main $instance */
     private static $instance;
-
-    public $eco;
 	
 	public $plugin;
 
 	public function onEnable() : void{
 	    self::$instance = $this;
 	    $this->getScheduler()->scheduleRepeatingTask(new EffectTask(), 20);
-        $this->getLogger()->info(TextFormat::GREEN . "§7[MaskShop§7]§a Plugin Enable");
-        $this->checkDepends();
+      $this->getServer()->getPluginManager()->registerEvents($this, $this);
+      $this->saveDefaultConfig();
+      $this->getResource("config.yml");
+      
+      // Check libEco
+        $libEco = new libEco();
+        if (!$libEco->isInstall()) {
+          $this->getLogger()->notice('You need to download an economy plugin like: EconomyAPI or BedrockEconomy to use it!');
+	       	$this->getServer()->getPluginManager()->disablePlugin($this);
+        }
+        
+        // Check config
+        if($this->getConfig()->get("config-ver") != 2)
+        {
+            $this->getLogger()->info("MaskShopUI's config is NOT up to date. Please delete the config.yml and restart the server or the plugin may not work properly.");
+        }
     }
 	
 	public static function getInstance() : self{
 	    return self::$instance;
 	}
      
-     
     public function onCommand(CommandSender $sender, Command $cmd, string $label,array $args) : bool {
 		
 		switch($cmd->getName()){
-		
 			case "mask":			    
 			$this->MaskShopForm($sender);
 			return true;
@@ -66,82 +76,92 @@ class Main extends PluginBase implements Listener {
 				       $this->FeatureMenu($sender);
 				    break;
 				case 2:
-					$zombie = $this->getConfig()->get("zombie.price");
-                       $name = $sender->getName();
-                       $item1 = Item::getName(zombie_head);
-                       $item1->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
-                       $sender->getInventory()->addItem($item1);
+				  $libEco = new libEco();
+          $zombie = $this->getConfig()->get("zombie.price");
+          if (haha) {
+            $name = $sender->getName();
+             $item1 = Item::getName(zombie_head);
+             $item1->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
+             $sender->getInventory()->addItem($item1);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
-                      return true;
-                   }else{
-                       $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-                    }
+             return true;
+          } else {
+            $sender->sendMessage($this->getConfig()->get("msg.no-money"));
+          }
 					break;
 				case 3:
-					$creeper = $this->getConfig()->get("creeper.price");
-                       $name = $sender->getName();
-                       $item2 = Item::getName(creeper_head);
-                       $item2->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
-                       $sender->getInventory()->addItem($item2);
+				  $libEco = new libEco();
+          $zombie = $this->getConfig()->get("creeper.price");
+          if (haha) {
+            $name = $sender->getName();
+             $item2 = Item::getName(creeper_head);
+             $item2->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
+             $sender->getInventory()->addItem($item2);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
-                      return true;
-                    }else{
-                       $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-                    }
+             return true;
+          } else {
+            $sender->sendMessage($this->getConfig()->get("msg.no-money"));
+          }
 					break;
 				case 4:
-					$wither = $this->getConfig()->get("wither.price");
-                       $name = $sender->getName();
-                       $item3 = Item::getNamedTag();
-                       $item3->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
-                       $sender->getInventory()->addItem($item3);
+				  $libEco = new libEco();
+          $zombie = $this->getConfig()->get("wither.price");
+          if (haha) {
+            $name = $sender->getName();
+             $item3 = Item::getNamedTag();
+             $item3->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
+             $sender->getInventory()->addItem($item3);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
-                      return true;
-                    }else{
-                       $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-                    }
+             return true;
+          } else {
+            $sender->sendMessage($this->getConfig()->get("msg.no-money"));
+          }
 					break;
 				case 5:
-					$dragon = $this->getConfig()->get("dragon.price");
-                       $name = $sender->getName();
-                       $item5 = Item::getNamedTag();
-                       $item5->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
-                       $sender->getInventory()->addItem($item5);
+				  $libEco = new libEco();
+          $zombie = $this->getConfig()->get("dragon.price");
+          if (haha) {
+            $name = $sender->getName();
+             $item4 = Item::getNamedTag();
+             $item4->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
+             $sender->getInventory()->addItem($item4);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
-                      return true;
-                    }else{
-                       $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-                    }
+             return true;
+          } else {
+            $sender->sendMessage($this->getConfig()->get("msg.no-money"));
+          }
 					break;
 				case 6:	
-					$steve = $this->getConfig()->get("steve.price");
-                       $name = $sender->getName();
-                       $e = Enchantment::getName(0);
-                       $item4 = Item::getNamedTag();
-                       $item4->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
-                       $sender->getInventory()->addItem($item4);
+				  $libEco = new libEco();
+          $zombie = $this->getConfig()->get("steve.price");
+          if (haha) {
+            $name = $sender->getName();
+             $item5 = Item::getNamedTag();
+             $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
+             $sender->getInventory()->addItem($item5);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
-                      return true;
-                    }else{
-                       $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-                    }
+             return true;
+          } else {
+            $sender->sendMessage($this->getConfig()->get("msg.no-money"));
+          }
 					break;
 				case 7:
-					$skeleton = $this->getConfig()->get("skeleton.price");
-                       $name = $sender->getName();
-                       $item6 = Item::getNamedTag();
-                       $item6->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
-                       $sender->getInventory()->addItem($item6);
+				  $libEco = new libEco();
+          $zombie = $this->getConfig()->get("skeleton.price");
+          if (haha) {
+            $name = $sender->getName();
+             $item6 = Item::getNamedTag();
+             $item6->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
+             $sender->getInventory()->addItem($item6);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
-                      return true;
-                    }else{
-                       $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-                    }
+             return true;
+          } else {
+            $sender->sendMessage($this->getConfig()->get("msg.no-money"));
+          }
 					break;
 					}
 			});
 			
-			$money = $this->eco->myMoney($sender);
 			$zombie = $this->getConfig()->get("zombie.price");
 			$wither = $this->getConfig()->get("wither.price");
 			$dragon = $this->getConfig()->get("dragon.price");

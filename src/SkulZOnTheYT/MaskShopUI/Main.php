@@ -215,26 +215,3 @@ class Main extends PluginBase implements Listener {
             $form->sendToPlayer($sender);
 	}
 }
-
-/*
-libEco::reduceMoney($sender, $price, static function(bool $success) use ($sender, $price): void {
-                    if($success){
-						if (is_null($sender)){
-                             libEco::addMoney($sender, $price);
-						} else{
-							$name = $args[0];
-							$item = $sender->getInventory()->getItemInHand();
-							$item->setCustomName($name);
-							$sender->getInventory()->setItemInHand($item);
-							libEco::myMoney($player, static function(float $money) use($sender) : void {
-							$sender->sendMessage($this->getMessage("rename-success", ["{name}", "{cost}"], [$sender->getName(), $money]));
-								});
-                        }
-                    } elseif(!is_null($sender)){
-						$name = $sender->getName();
-						libEco::myMoney($sender, static function(float $money) use($sender) : void {
-						$sender->sendMessage($this->getMessage("no-money", ["{name}", "{cost}"], [$name, $money]));
-							});
-					}
-                });
-                return true; 

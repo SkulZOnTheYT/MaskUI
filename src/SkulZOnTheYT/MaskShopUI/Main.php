@@ -6,8 +6,6 @@ use pocketmine\Server;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
-use pocketmine\entity\Effect;
-use pocketmine\entity\EffectInstance;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;

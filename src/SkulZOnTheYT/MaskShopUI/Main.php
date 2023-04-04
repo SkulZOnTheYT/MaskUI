@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SkulZOnTheYT\MaskShopUI;
 
 use pocketmine\Server;
@@ -32,14 +34,6 @@ class Main extends PluginBase implements Listener {
 	    $this->getScheduler()->scheduleRepeatingTask(new EffectTask(), 20);
         $this->getLogger()->info(TextFormat::GREEN . "§7[MaskShop§7]§a Plugin Enable");
         $this->checkDepends();
-    }
-
-    public function checkDepends(){
-        $this->eco = $this->getServer()->getPluginManager()->getPlugin("BedrockEconomy");
-        if(is_null($this->eco)){
-            $this->getLogger()->info("§7[§eMaskShop§7] §cPlease install Bedrock Economy Plugin, §4disabling plugin...");
-            $this->getServer()->getPluginManager()->disablePlugin($this);
-        }
     }
 	
 	public static function getInstance() : self{

@@ -13,6 +13,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\item\Item;
+use pocketmine\item\ItemFactory;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\Config;
 use pocketmine\scheduler\Task;
@@ -84,8 +85,8 @@ class Main extends PluginBase implements Listener {
           $zombie = $this->getConfig()->get("zombie.price");
           if (haha) {
             $name = $sender->getName();
-             $item1 = Item::getNamedTag();
-             $item1->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
+             $item1 = ItemFactory->get(397, 2, 1);
+             $item1->customName("§2Zombie §eMask \n§bOwner: §c$name");
              $sender->getInventory()->addItem($item1);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
              return true;
@@ -98,8 +99,8 @@ class Main extends PluginBase implements Listener {
           $zombie = $this->getConfig()->get("creeper.price");
           if (haha) {
             $name = $sender->getName();
-             $item2 = Item::getNamedTag();
-             $item2->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
+             $item2 = ItemFactory->get(397, 4, 1);
+             $item2->customName("§aCreeper §eMask \n§bOwner: §c$name");
              $sender->getInventory()->addItem($item2);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
              return true;
@@ -112,8 +113,8 @@ class Main extends PluginBase implements Listener {
           $zombie = $this->getConfig()->get("wither.price");
           if (haha) {
             $name = $sender->getName();
-             $item3 = Item::getNamedTag();
-             $item3->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
+             $item3 = ItemFactory->get(397, 1, 1);
+             $item3->customName("§7Wither §eMask \n§bOwner: §c$name");
              $sender->getInventory()->addItem($item3);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
              return true;
@@ -126,8 +127,8 @@ class Main extends PluginBase implements Listener {
           $zombie = $this->getConfig()->get("dragon.price");
           if (haha) {
             $name = $sender->getName();
-             $item4 = Item::getNamedTag();
-             $item4->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
+             $item4 = ItemFactory->get(397, 5, 1);
+             $item4->customName("§cDragon §eMask \n§bOwner: §c$name");
              $sender->getInventory()->addItem($item4);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
              return true;
@@ -140,8 +141,8 @@ class Main extends PluginBase implements Listener {
           $zombie = $this->getConfig()->get("steve.price");
           if (haha) {
             $name = $sender->getName();
-             $item5 = Item::getNamedTag();
-             $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
+             $item5 = ItemFactory->get(397, 3, 1);
+             $item5->customName("§3Steve §eMask \n§bOwner: §c$name");
              $sender->getInventory()->addItem($item5);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
              return true;
@@ -154,7 +155,7 @@ class Main extends PluginBase implements Listener {
           $zombie = $this->getConfig()->get("skeleton.price");
           if (haha) {
             $name = $sender->getName();
-             $item6 = Item::getNamedTag();
+             $item6 = ItemFactory->get(397, 0, 1);
              $item6->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
              $sender->getInventory()->addItem($item6);
 					   $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));

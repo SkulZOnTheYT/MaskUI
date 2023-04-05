@@ -13,7 +13,6 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\item\Item;
-use pocketmine\item\ItemFactory;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\Config;
 use pocketmine\scheduler\Task;
@@ -21,8 +20,6 @@ use pocketmine\entity\effect\Effect;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
-use SkulZOnTheYT\MaskShopUI\libs\libEco\Utils\Utils;
-use SkulZOnTheYT\MaskShopUI\libs\libEco\libEco;
 use SkulZOnTheYT\MaskShopUI\Form\{Form, SimpleForm};
 
 class Main extends PluginBase implements Listener {
@@ -34,17 +31,9 @@ class Main extends PluginBase implements Listener {
 
 	public function onEnable() : void{
 	    self::$instance = $this;
-	    $this->getScheduler()->scheduleRepeatingTask(new EffectTask(), 20);
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
-      
-      // Check libEco
-        $libEco = new libEco();
-        if (!$libEco->isInstall()) {
-          $this->getLogger()->notice('You need to download an economy plugin like: EconomyAPI or BedrockEconomy to use it!');
-	       	$this->getServer()->getPluginManager()->disablePlugin($this);
-        }
         
         // Check config
         if($this->getConfig()->get("config-ver") != 2)
@@ -66,108 +55,87 @@ class Main extends PluginBase implements Listener {
 		}
 		return true;
 	}
-	
-	public function MaskShopForm($sender){
-		$form = new SimpleForm(function (Player $sender, int $data = null){
-			$result = $data;
-			if($result === null){
-			  return true;
-			}
-			switch($result){
-				case 0:
-				       $sender->sendMessage($this->getConfig()->get("quit.message"));
-					break;
-				case 1:
-				       $this->FeatureMenu($sender);
-				    break;
-				case 2:
-				  $libEco = new libEco();
-          $zombie = $this->getConfig()->get("zombie.price");
-          if (haha) {
-            $name = $sender->getName();
-             $item1 = ItemFactory->get(397, 2, 1);
-             $item1->customName("§2Zombie §eMask \n§bOwner: §c$name");
-             $sender->getInventory()->addItem($item1);
-					   $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
-             return true;
-          } else {
-            $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-          }
-					break;
-				case 3:
-				  $libEco = new libEco();
-          $zombie = $this->getConfig()->get("creeper.price");
-          if (haha) {
-            $name = $sender->getName();
-             $item2 = ItemFactory->get(397, 4, 1);
-             $item2->customName("§aCreeper §eMask \n§bOwner: §c$name");
-             $sender->getInventory()->addItem($item2);
-					   $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
-             return true;
-          } else {
-            $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-          }
-					break;
-				case 4:
-				  $libEco = new libEco();
-          $zombie = $this->getConfig()->get("wither.price");
-          if (haha) {
-            $name = $sender->getName();
-             $item3 = ItemFactory->get(397, 1, 1);
-             $item3->customName("§7Wither §eMask \n§bOwner: §c$name");
-             $sender->getInventory()->addItem($item3);
-					   $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
-             return true;
-          } else {
-            $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-          }
-					break;
-				case 5:
-				  $libEco = new libEco();
-          $zombie = $this->getConfig()->get("dragon.price");
-          if (haha) {
-            $name = $sender->getName();
-             $item4 = ItemFactory->get(397, 5, 1);
-             $item4->customName("§cDragon §eMask \n§bOwner: §c$name");
-             $sender->getInventory()->addItem($item4);
-					   $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
-             return true;
-          } else {
-            $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-          }
-					break;
-				case 6:	
-				  $libEco = new libEco();
-          $zombie = $this->getConfig()->get("steve.price");
-          if (haha) {
-            $name = $sender->getName();
-             $item5 = ItemFactory->get(397, 3, 1);
-             $item5->customName("§3Steve §eMask \n§bOwner: §c$name");
-             $sender->getInventory()->addItem($item5);
-					   $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
-             return true;
-          } else {
-            $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-          }
-					break;
-				case 7:
-				  $libEco = new libEco();
-          $zombie = $this->getConfig()->get("skeleton.price");
-          if (haha) {
-            $name = $sender->getName();
-             $item6 = ItemFactory->get(397, 0, 1);
-             $item6->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
-             $sender->getInventory()->addItem($item6);
-					   $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
-             return true;
-          } else {
-            $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-          }
-					break;
-					}
-			});
-			
-			$zombie = $this->getConfig()->get("zombie.price");
+    
+  public function MarkShopForm($sender){
+      BedrockEconomyAPI::legacy()->getPlayerBalance(
+			$sender->getName(),
+			ClosureContext::create(
+				function (?int $balance) use ($sender): void {
+				  $form = new SimpleForm(function (Player $sender, int $data = null){
+            $result = $data;
+            if ($result === null) {
+                return;
+            }
+            switch ($result) {
+                case 0:
+				          $sender->sendMessage($this->getConfig()->get("quit.message"));
+		    	   		break;
+			         	case 1:
+				          $this->FeatureMenu($sender);
+  				      break;
+                case 2:
+                  $zombie = $this->getConfig()->get("zombie.price");
+                  $name = $sender->getName();
+                  $item1 = Item::getNamedTag();
+                  $item1->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
+                  $sender->getInventory()->addItem($item1);
+                  BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $zombie);
+					        $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
+                  return true;
+                  break;
+                case 3:
+                  $creeper = $this->getConfig()->get("creeper.price");
+                  $name = $sender->getName();
+                  $item2 = Item::getNamedTag();
+                  $item2->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
+                  $sender->getInventory()->addItem($item2);
+                  BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $creeper);
+					        $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
+                  return true;
+                  break;
+                case 4:
+                  $wither = $this->getConfig()->get("wither.price");
+                  $name = $sender->getName();
+                  $item3 = Item::getNamedTag();
+                  $item3->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
+                  $sender->getInventory()->addItem($item3);
+                  BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $wither);
+					        $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
+                  return true; 
+                  break;
+                case 5:
+                  $dragon = $this->getConfig()->get("dragon.price");
+                  $name = $sender->getName();
+                  $item4 = Item::getNamedTag();
+                  $item4->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
+                  $sender->getInventory()->addItem($item4);
+                  BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $dragon);
+					        $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
+                  return true; 
+                  break;
+                case 6:
+                  $steve = $this->getConfig()->get("steve.price");
+                  $name = $sender->getName();
+                  $item5 = Item::getNamedTag();
+                  $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
+                  $sender->getInventory()->addItem($item5);
+                  BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $steve);
+					        $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
+                  return true; 
+                  break;
+                case 7:
+                  $skeleton = $this->getConfig()->get("skeleton.price");
+                  $name = $sender->getName();
+                  $item6 = Item::getNamedTag();
+                  $item6->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
+                  $sender->getInventory()->addItem($item6);
+                  BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $skeleton);
+					        $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
+                  return true;
+                  break;
+            }
+        });
+      $zombie = $this->getConfig()->get("zombie.price");
 			$wither = $this->getConfig()->get("wither.price");
 			$dragon = $this->getConfig()->get("dragon.price");
 			$skeleton = $this->getConfig()->get("skeleton.price");
@@ -185,9 +153,10 @@ class Main extends PluginBase implements Listener {
 			$form->addButton("§c§lDragon", 1, "https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/b/b6/Dragon_Head.png/150px-Dragon_Head.png?version=0687499d687de1761e5c0319c0ef6e86");
 			$form->addButton("§3§lSteve", 1);
 			$form->addButton("§f§lSkeleton", 1);
-					
 			$form->sendToPlayer($sender);
-            return $form;
+				},
+			)
+		);
     }
     
     public function FeatureMenu($sender){
@@ -206,18 +175,18 @@ class Main extends PluginBase implements Listener {
 			        }
 		        });
 		        
-		    $zombie = $this->getConfig()->get("zombie.price");
+		  $zombie = $this->getConfig()->get("zombie.price");
 			$wither = $this->getConfig()->get("wither.price");
 			$dragon = $this->getConfig()->get("dragon.price");
 			$skeleton = $this->getConfig()->get("skeleton.price");
 			$creeper = $this->getConfig()->get("creeper.price");
 			$steve = $this->getConfig()->get("steve.price"); 
 			
-		    $form->setTitle("§d§lEffects §bList");
-            $form->setContent("§6This plugin made by §fSkulZOnTheYT and Kylan1940\n\n§fSkeleton §eMask \n§fPrice: §6$skeleton \n§dEffects: \n§e-§dHaste §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dNight Vision §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dSpeed §7(§bI§7) §c*Only For 18 Minutes \n§e-§dJump Boost §7(§bII§7) §c*Only For 18 Minutes \n\n§2Zombie §eMask \n§fPrice: §6$zombie \n§dEffects: \n§e-§dStrength §7(§bI§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dJump Boost  §7(§bI§7) \n§e-§dRegeneration §7(§bI§7) \n§e-§dFire Resistance §7(§bI§7) \n\n§aCreeper §eMask \n§fPrice: §6$creeper \n§dEffects: \n§e-§dJump Boost §7(§bII§7) \n§e-§dStrength §7(§bII§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dRegeneration §7(§bII§7) \n§e-§dFire Resistance §7(§bI§7) \n§e-§dSpeed §7(§bI§7) \n\n§7Wither Skeleton §eMask \n§fPrice: §6$wither \n§dEffects: \n§e-§dSpeed §7(§bI§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dRegeneration \n§7(§bI§7) \n§e-§dHealth Boost §7(§bI§7) \n§e-§dFire Resistance §7(§bII§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n\n§3Steve §eMask \n§fPrice: §6$steve \n§dEffects: \n§e-§dStrength §7(§bIII§7) \n§e-§dSpeed §7(§bII§7) \n§e-§dRegeneration §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n\n§cDragon §eMask \n§fPrice: §6$dragon \n§dEffects: \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dSpeed §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dAbsorption §7(§bIII§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dSaturation §7(§bIII§7) \n§e-§dRegeneration §7(§bIII§7)"); 
-            $form->addButton("§l§aBACK", 1);
-            $form->addButton("§l§cEXIT", 2);
-            $form->sendToPlayer($sender);
+      $form->setTitle("§d§lEffects §bList");
+      $form->setContent("§6This plugin made by §fSkulZOnTheYT and Kylan1940\n\n§fSkeleton §eMask \n§fPrice: §6$skeleton \n§dEffects: \n§e-§dHaste §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dNight Vision §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dSpeed §7(§bI§7) §c*Only For 18 Minutes \n§e-§dJump Boost §7(§bII§7) §c*Only For 18 Minutes \n\n§2Zombie §eMask \n§fPrice: §6$zombie \n§dEffects: \n§e-§dStrength §7(§bI§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dJump Boost  §7(§bI§7) \n§e-§dRegeneration §7(§bI§7) \n§e-§dFire Resistance §7(§bI§7) \n\n§aCreeper §eMask \n§fPrice: §6$creeper \n§dEffects: \n§e-§dJump Boost §7(§bII§7) \n§e-§dStrength §7(§bII§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dRegeneration §7(§bII§7) \n§e-§dFire Resistance §7(§bI§7) \n§e-§dSpeed §7(§bI§7) \n\n§7Wither Skeleton §eMask \n§fPrice: §6$wither \n§dEffects: \n§e-§dSpeed §7(§bI§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dRegeneration \n§7(§bI§7) \n§e-§dHealth Boost §7(§bI§7) \n§e-§dFire Resistance §7(§bII§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n\n§3Steve §eMask \n§fPrice: §6$steve \n§dEffects: \n§e-§dStrength §7(§bIII§7) \n§e-§dSpeed §7(§bII§7) \n§e-§dRegeneration §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n\n§cDragon §eMask \n§fPrice: §6$dragon \n§dEffects: \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dSpeed §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dAbsorption §7(§bIII§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dSaturation §7(§bIII§7) \n§e-§dRegeneration §7(§bIII§7)"); 
+      $form->addButton("§l§aBACK", 1);
+      $form->addButton("§l§cEXIT", 2);
+      $form->sendToPlayer($sender);
 	}
 	
 	public function Effects(int $tick) {

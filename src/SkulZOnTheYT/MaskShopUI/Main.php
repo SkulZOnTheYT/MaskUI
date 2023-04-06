@@ -60,7 +60,7 @@ class Main extends PluginBase implements Listener {
         return true;
     }
     
-  public function MarkShopForm($sender){
+  public function MaskShopForm($sender){
       BedrockEconomyAPI::legacy()->getPlayerBalance(
 			$sender->getName(),
 			ClosureContext::create(

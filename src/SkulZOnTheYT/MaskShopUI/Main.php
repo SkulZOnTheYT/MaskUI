@@ -49,15 +49,16 @@ class Main extends PluginBase implements Listener {
 	    return self::$instance;
 	}
      
-    public function onCommand(CommandSender $sender, Command $cmd, string $label,array $args) : bool {
-		
-		switch($cmd->getName()){
-			case "mask":			    
-			$this->MaskShopForm($sender);
-			return true;
-		}
-		return true;
-	}
+  public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
+        if($sender instanceof Player){
+          if($cmd->getName() == "mask"){
+            $this->MaskShopForm($sender);
+          }
+        } else {
+          $sender->sendMessage($this->getConfig()->get("only-ingame"));
+        }
+        return true;
+    }
     
   public function MarkShopForm($sender){
       BedrockEconomyAPI::legacy()->getPlayerBalance(

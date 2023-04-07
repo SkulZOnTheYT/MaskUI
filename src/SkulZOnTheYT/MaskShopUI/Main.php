@@ -81,7 +81,7 @@ class Main extends PluginBase implements Listener {
                   $zombie = $this->getConfig()->get("zombie.price");
                   $name = $sender->getName();
                   $item1 = ItemFactory::getInstance()->get(397, 2, 1);
-                  $item1->customName("§2Zombie §eMask \n§bOwner: §c$name");
+                  $item1->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item1);
                   BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $zombie);
 					        $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
@@ -91,7 +91,7 @@ class Main extends PluginBase implements Listener {
                   $creeper = $this->getConfig()->get("creeper.price");
                   $name = $sender->getName();
                   $item2 = ItemFactory::getInstance()->get(397, 4, 1);
-                  $item2->customName("§aCreeper §eMask \n§bOwner: §c$name");
+                  $item2->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item2);
                   BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $creeper);
 					        $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
@@ -101,7 +101,7 @@ class Main extends PluginBase implements Listener {
                   $wither = $this->getConfig()->get("wither.price");
                   $name = $sender->getName();
                   $item3 = ItemFactory::getInstance()->get(397, 1, 1);
-                  $item3->customName("§7Wither §eMask \n§bOwner: §c$name");
+                  $item3->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item3);
                   BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $wither);
 					        $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
@@ -111,7 +111,7 @@ class Main extends PluginBase implements Listener {
                   $dragon = $this->getConfig()->get("dragon.price");
                   $name = $sender->getName();
                   $item4 = ItemFactory::getInstance()->get(397, 5, 1);
-                  $item4->customName("§cDragon §eMask \n§bOwner: §c$name");
+                  $item4->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item4);
                   BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $dragon);
 					        $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
@@ -121,7 +121,7 @@ class Main extends PluginBase implements Listener {
                   $steve = $this->getConfig()->get("steve.price");
                   $name = $sender->getName();
                   $item5 = ItemFactory::getInstance()->get(397, 3, 1);
-                  $item5->customName("§3Steve §eMask \n§bOwner: §c$name");
+                  $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item5);
                   BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $steve);
 					        $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
@@ -131,7 +131,7 @@ class Main extends PluginBase implements Listener {
                   $skeleton = $this->getConfig()->get("skeleton.price");
                   $name = $sender->getName();
                   $item6 = ItemFactory::getInstance()->get(397, 0, 1);
-                  $item6->customName("§fSkeleton §eMask \n§bOwner: §c$name");
+                  $item6->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item6);
                   BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $skeleton);
 					        $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
@@ -197,7 +197,7 @@ class Main extends PluginBase implements Listener {
         foreach(Main::getInstance()->getServer()->getOnlinePlayers() as $players){
             $inv = $players->getArmorInventory();
             $helmet = $inv->getHelmet();
-            if(!$helmet->getId() == Item::mob_head) return;
+            if(!$helmet->getId() == Item::MOB_HEAD) return;
             switch($helmet->getMeta()){
                 case 0:
                     $players->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));

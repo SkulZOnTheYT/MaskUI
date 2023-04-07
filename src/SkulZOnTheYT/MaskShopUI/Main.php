@@ -41,6 +41,7 @@ class Main extends PluginBase implements Listener {
                 $this->plugin = $plugin;
 	    }
       }
+						   
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
         

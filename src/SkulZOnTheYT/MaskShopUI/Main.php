@@ -44,11 +44,11 @@ class Main extends PluginBase implements Listener {
             $this->getLogger()->info("MaskShopUI's config is NOT up to date. Please delete the config.yml and restart the server or the plugin may not work properly.");
         }
       
-      $this->getScheduler()->scheduleRepeatingTask(new class($this) extends Task {
+        $this->getScheduler()->scheduleRepeatingTask(new class($this) extends Task) {
             public function __construct(HeadArmorPlugin $plugin) {
                 $this->plugin = $plugin;
 	    }
-      }
+        }
     }
 	
 	public static function getInstance() : self{

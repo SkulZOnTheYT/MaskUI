@@ -48,13 +48,6 @@ class Main extends PluginBase implements Listener {
 	public static function getInstance() : self{
 	    return self::$instance;
 	}
-	
-	const ZOMBIE_HEAD = Item::ZOMBIE_HEAD;
-	const CREEPER_HEAD = Item::CREEPER_HEAD;
-	const WITHER_SKELETON_SKULL = Item::WITHER_SKELETON_SKULL;
-	const DRAGON_HEAD = Item::DRAGON_HEAD;
-	const STEVE_HEAD = Item::STEVE_HEAD;
-	const SKELETON_SKULL = Item::SKELETPN_SKULL;
      
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         if($sender instanceof Player){
@@ -240,7 +233,7 @@ class Main extends PluginBase implements Listener {
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+                                $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
                                 break;
 			    case Item::ZOMBIE_HEAD:
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
@@ -248,7 +241,7 @@ class Main extends PluginBase implements Listener {
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 1, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-                                $playerr->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
+                                $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
                                 break;
 		     }
                }

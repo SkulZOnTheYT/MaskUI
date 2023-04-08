@@ -49,12 +49,12 @@ class Main extends PluginBase implements Listener {
 	    return self::$instance;
 	}
 	
-	const ZOMBIE_HEAD = 397,2;
-	const CREEPER_HEAD = 397,4;
-	const WITHER_SKELETON_SKULL = 397,1;
-	const DRAGON_HEAD = 397,5;
-	const STEVE_HEAD = 397,3;
-	const SKELETON_SKULL = 397,0;
+	const ZOMBIE_HEAD = Item::ZOMBIE_HEAD;
+	const CREEPER_HEAD = Item::CREEPER_HEAD;
+	const WITHER_SKELETON_SKULL = Item::WITHER_SKELETON_SKULL;
+	const DRAGON_HEAD = Item::DRAGON_HEAD;
+	const STEVE_HEAD = Item::STEVE_HEAD;
+	const SKELETON_SKULL = Item::SKELETPN_SKULL;
      
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         if($sender instanceof Player){

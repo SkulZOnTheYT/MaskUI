@@ -45,10 +45,6 @@ class Main extends PluginBase implements Listener {
         }
     }
 	
-	public function __construct(HeadArmorPlugin $plugin) {
-                $this->plugin = $plugin;
-	}
-	
 	public static function getInstance() : self{
 	    return self::$instance;
 	}
@@ -203,49 +199,49 @@ class Main extends PluginBase implements Listener {
               if($helmet !== null && in_array($helmet->getId(), [Item::DRAGON_HEAD, Item::CREEPER_HEAD, Item::SKELETON_SKULL, Item::WITHER_SKELETON_SKULL, Item::PLAYER_HEAD, Item::ZOMBIE_HEAD])) {
                      switch($helmet->getId()) {
                             case Item::DRAGON_HEAD:
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 2, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 2, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
                                 break;
                             case Item::CREEPER_HEAD:
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
                                 break;
                             case Item::SKELETON_SKULL:
                             case Item::WITHER_SKELETON_SKULL:
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
                                 break;
                             case Item::PLAYER_HEAD:
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
                                 break;
 			    case Item::ZOMBIE_HEAD:
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 1, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-                                $players->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 1, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
+                                $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
                                 break;
 		     }
                }

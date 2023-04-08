@@ -36,20 +36,19 @@ class Main extends PluginBase implements Listener {
 	public function onEnable() : void{
 	    self::$instance = $this;
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
+      $this->saveDefaultConfig();
+      $this->getResource("config.yml");
+		
+      if($this->getConfig()->get("config-ver") != 2)
+        {
+            $this->getLogger()->info("MaskShopUI's config is NOT up to date. Please delete the config.yml and restart the server or the plugin may not work properly.");
+        }
+      
       $this->getScheduler()->scheduleRepeatingTask(new class($this) extends Task {
             public function __construct(HeadArmorPlugin $plugin) {
                 $this->plugin = $plugin;
 	    }
       }
-						   
-      $this->saveDefaultConfig();
-      $this->getResource("config.yml");
-        
-        // Check config
-        if($this->getConfig()->get("config-ver") != 2)
-        {
-            $this->getLogger()->info("MaskShopUI's config is NOT up to date. Please delete the config.yml and restart the server or the plugin may not work properly.");
-        }
     }
 	
 	public static function getInstance() : self{

@@ -8,7 +8,7 @@ use pocketmine\Server;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerArmorEquipEvent;
+use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
@@ -248,12 +248,11 @@ class Main extends PluginBase implements Listener {
             }
         }
 	
-     public function onPlayerArmorEquip(PlayerArmorEquipEvent $event) {
+     public functiononItemHeld(PlayerItemHeldEvent $event) {
          $player = $event->getPlayer();
          $item = $event->getItem();
-         $slot = $event->getSlot();
 
-         if($slot === 0 && in_array($item->getId(), [Item::DRAGON_HEAD, Item::CREEPER_HEAD, Item::SKELETON_SKULL, Item::WITHER_SKELETON_SKULL, Item::PLAYER_HEAD, Item::ZOMBIE_HEAD])) {
+         if($item === 0 && in_array($item->getId(), [Item::DRAGON_HEAD, Item::CREEPER_HEAD, Item::SKELETON_SKULL, Item::WITHER_SKELETON_SKULL, Item::STEVE_HEAD, Item::ZOMBIE_HEAD])) {
             $player->sendMessage(TF::GREEN . "Mask effect is working!!!");
         }
     }

@@ -48,6 +48,19 @@ class Main extends PluginBase implements Listener {
 	public static function getInstance() : self{
 	    return self::$instance;
 	}
+	
+        public const DRAGON_HEAD = 397:5;
+        public const CREEPER_HEAD = 397:4;
+        public const WITHER_SKELETON_SKULL = 397:1;
+        public const PLAYER_HEAD = 397:3;
+        public const SKELETON_SKULL = 397:0;
+        public const ZOMBIE_HEAD = 397:2;
+
+        public function __construct(int $id, int $meta = 0, string $name = "Unknown", string $lore = ""){
+           parent::__construct($id, $meta, $name);
+           $this->setCustomName($name);
+           $this->setLore([$lore]);
+        }
      
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         if($sender instanceof Player){
@@ -139,7 +152,7 @@ class Main extends PluginBase implements Listener {
                   break;
             }
         });
-      $zombie = $this->getConfig()->get("zombie.price");
+                        $zombie = $this->getConfig()->get("zombie.price");
 			$wither = $this->getConfig()->get("wither.price");
 			$dragon = $this->getConfig()->get("dragon.price");
 			$skeleton = $this->getConfig()->get("skeleton.price");
@@ -251,8 +264,9 @@ class Main extends PluginBase implements Listener {
      public function onItemHeld(PlayerItemHeldEvent $event) {
          $player = $event->getPlayer();
          $item = $event->getItem();
+	 $slot = $event->getSlot();
 
-         if($item === 0 && in_array($item->getId(), [Item::DRAGON_HEAD, Item::CREEPER_HEAD, Item::SKELETON_SKULL, Item::WITHER_SKELETON_SKULL, Item::STEVE_HEAD, Item::ZOMBIE_HEAD])) {
+         if($slot === 0 && in_array($item->getId(), [Item::DRAGON_HEAD, Item::CREEPER_HEAD, Item::SKELETON_SKULL, Item::WITHER_SKELETON_SKULL, Item::STEVE_HEAD, Item::ZOMBIE_HEAD])) {
             $player->sendMessage(TF::GREEN . "Mask effect is working!!!");
         }
     }

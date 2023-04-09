@@ -248,7 +248,7 @@ class Main extends PluginBase implements Listener {
             }
         }
 	
-     public functiononItemHeld(PlayerItemHeldEvent $event) {
+     public function onItemHeld(PlayerItemHeldEvent $event) {
          $player = $event->getPlayer();
          $item = $event->getItem();
 

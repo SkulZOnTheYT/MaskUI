@@ -49,12 +49,12 @@ class Main extends PluginBase implements Listener {
 	    return self::$instance;
 	}
 	
-        public const DRAGON_HEAD = 397:5;
-        public const CREEPER_HEAD = 397:4;
-        public const WITHER_SKELETON_SKULL = 397:1;
-        public const PLAYER_HEAD = 397:3;
-        public const SKELETON_SKULL = 397:0;
-        public const ZOMBIE_HEAD = 397:2;
+        public const DRAGON_HEAD = 397;
+        public const CREEPER_HEAD = 397;
+        public const WITHER_SKELETON_SKULL = 397;
+        public const PLAYER_HEAD = 397;
+        public const SKELETON_SKULL = 397;
+        public const ZOMBIE_HEAD = 397;
 
         public function __construct(int $id, int $meta = 0, string $name = "Unknown", string $lore = ""){
            parent::__construct($id, $meta, $name);

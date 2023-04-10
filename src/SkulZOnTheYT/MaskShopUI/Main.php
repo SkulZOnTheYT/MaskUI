@@ -24,8 +24,6 @@ use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
 use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
 use cooldogedev\BedrockEconomy\libs\cooldogedev\libSQL\context\ClosureContext;
-use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
-use cooldogedev\BedrockEconomy\libs\cooldogedev\libSQL\context\ClosureContext;
 use SkulZOnTheYT\MaskShopUI\Form\{Form, SimpleForm};
 
 class Main extends PluginBase implements Listener {

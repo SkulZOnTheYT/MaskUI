@@ -55,12 +55,6 @@ class Main extends PluginBase implements Listener {
         public const PLAYER_HEAD = 397;
         public const SKELETON_SKULL = 397;
         public const ZOMBIE_HEAD = 397;
-
-        public function __construct(int $id, int $meta = 0, string $name = "Unknown", string $lore = ""){
-           parent::__construct($id, $meta, $name);
-           $this->setCustomName($name);
-           $this->setLore([$lore]);
-        }
      
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         if($sender instanceof Player){
@@ -209,9 +203,9 @@ class Main extends PluginBase implements Listener {
           public function onRun(int $currentTick) {
           foreach($this->plugin->getServer()->getOnlinePlayers() as $player) {
               $helmet = $player->getArmorInventory()->getHelmet();
-              if($helmet !== null && in_array($helmet->getId(), [Item::DRAGON_HEAD, Item::CREEPER_HEAD, Item::SKELETON_SKULL, Item::WITHER_SKELETON_SKULL, Item::PLAYER_HEAD, Item::ZOMBIE_HEAD])) {
+              if($helmet !== null && in_array($helmet->getId(), [DRAGON_HEAD, CREEPER_HEAD, SKELETON_SKULL, WITHER_SKELETON_SKULL, STEVE_HEAD, ZOMBIE_HEAD])) {
                      switch($helmet->getId()) {
-                            case Item::DRAGON_HEAD:
+                            case DRAGON_HEAD:
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
@@ -222,7 +216,7 @@ class Main extends PluginBase implements Listener {
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
                                 break;
-                            case Item::CREEPER_HEAD:
+                            case CREEPER_HEAD:
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
@@ -231,15 +225,15 @@ class Main extends PluginBase implements Listener {
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
                                 break;
-                            case Item::SKELETON_SKULL:
-                            case Item::WITHER_SKELETON_SKULL:
+                            case SKELETON_SKULL:
+                            case WITHER_SKELETON_SKULL:
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
                                 break;
-                            case Item::STEVE_HEAD:
+                            case STEVE_HEAD:
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
@@ -248,7 +242,7 @@ class Main extends PluginBase implements Listener {
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
                                 break;
-			    case Item::ZOMBIE_HEAD:
+			    case ZOMBIE_HEAD:
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
                                 $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
@@ -266,7 +260,7 @@ class Main extends PluginBase implements Listener {
          $item = $event->getItem();
 	 $slot = $event->getSlot();
 
-         if($slot === 0 && in_array($item->getId(), [Item::DRAGON_HEAD, Item::CREEPER_HEAD, Item::SKELETON_SKULL, Item::WITHER_SKELETON_SKULL, Item::STEVE_HEAD, Item::ZOMBIE_HEAD])) {
+         if($slot = in_array($item->getId(), [DRAGON_HEAD, CREEPER_HEAD, SKELETON_SKULL, WITHER_SKELETON_SKULL, STEVE_HEAD, ZOMBIE_HEAD])) {
             $player->sendMessage(TF::GREEN . "Mask effect is working!!!");
         }
     }

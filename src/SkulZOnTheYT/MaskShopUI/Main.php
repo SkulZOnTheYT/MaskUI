@@ -52,7 +52,7 @@ class Main extends PluginBase implements Listener {
         public const DRAGON_HEAD = 397;
         public const CREEPER_HEAD = 397;
         public const WITHER_SKELETON_SKULL = 397;
-        public const PLAYER_HEAD = 397;
+        public const STEVE_HEAD = 397;
         public const SKELETON_SKULL = 397;
         public const ZOMBIE_HEAD = 397;
      
@@ -94,6 +94,7 @@ class Main extends PluginBase implements Listener {
 					        $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
                   return true;
                   break;
+			    
                 case 3:
                   $creeper = $this->getConfig()->get("creeper.price");
                   $name = $sender->getName();
@@ -104,6 +105,7 @@ class Main extends PluginBase implements Listener {
 					        $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
                   return true;
                   break;
+			    
                 case 4:
                   $wither = $this->getConfig()->get("wither.price");
                   $name = $sender->getName();
@@ -114,6 +116,7 @@ class Main extends PluginBase implements Listener {
 					        $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
                   return true; 
                   break;
+			    
                 case 5:
                   $dragon = $this->getConfig()->get("dragon.price");
                   $name = $sender->getName();
@@ -124,6 +127,7 @@ class Main extends PluginBase implements Listener {
 					        $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
                   return true; 
                   break;
+			    
                 case 6:
                   $steve = $this->getConfig()->get("steve.price");
                   $name = $sender->getName();
@@ -134,6 +138,7 @@ class Main extends PluginBase implements Listener {
 					        $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
                   return true; 
                   break;
+			    
                 case 7:
                   $skeleton = $this->getConfig()->get("skeleton.price");
                   $name = $sender->getName();

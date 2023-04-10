@@ -22,8 +22,6 @@ use pocketmine\entity\effect\Effect;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
-use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
-use cooldogedev\BedrockEconomy\libs\cooldogedev\libSQL\context\ClosureContext;
 use SkulZOnTheYT\MaskShopUI\Form\{Form, SimpleForm};
 
 class Main extends PluginBase implements Listener {
@@ -68,11 +66,7 @@ class Main extends PluginBase implements Listener {
     }
     
   public function MaskShopForm($sender){
-      BedrockEconomyAPI::legacy()->getPlayerBalance(
-			$sender->getName(),
-			ClosureContext::create(
-				function (?int $balance) use ($sender): void {
-				  $form = new SimpleForm(function (Player $sender, int $data = null){
+      $form = new SimpleForm(function (Player $sender, int $data = null){
             $result = $data;
             if ($result === null) {
                 return;
@@ -90,8 +84,7 @@ class Main extends PluginBase implements Listener {
                   $item1 = ItemFactory::getInstance()->get(397, 2, 1);
                   $item1->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item1);
-                  $result = BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $zombie);
-					        $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
+		  $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
                   return true;
 			    
                 case 3:
@@ -100,8 +93,7 @@ class Main extends PluginBase implements Listener {
                   $item2 = ItemFactory::getInstance()->get(397, 4, 1);
                   $item2->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item2);
-                  $result = BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $creeper);
-					        $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
+		  $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
                   return true;
 			    
                 case 4:
@@ -110,8 +102,7 @@ class Main extends PluginBase implements Listener {
                   $item3 = ItemFactory::getInstance()->get(397, 1, 1);
                   $item3->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item3);
-                  $result = BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $wither);
-					        $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
+		  $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
                   return true;
 			    
                 case 5:
@@ -120,8 +111,7 @@ class Main extends PluginBase implements Listener {
                   $item4 = ItemFactory::getInstance()->get(397, 5, 1);
                   $item4->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item4);
-                  $result = BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $dragon);
-					        $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
+		  $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
                   return true;
 			    
                 case 6:
@@ -130,8 +120,7 @@ class Main extends PluginBase implements Listener {
                   $item5 = ItemFactory::getInstance()->get(397, 3, 1);
                   $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item5);
-                  $result = BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $steve);
-					        $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
+                  $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
                   return true;
 			    
                 case 7:
@@ -140,11 +129,9 @@ class Main extends PluginBase implements Listener {
                   $item6 = ItemFactory::getInstance()->get(397, 0, 1);
                   $item6->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item6);
-                  $result = BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), (int) $skeleton);
-					        $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
+                  $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
                   return true;
             }
-        });
                         $zombie = $this->getConfig()->get("zombie.price");
 			$wither = $this->getConfig()->get("wither.price");
 			$dragon = $this->getConfig()->get("dragon.price");
@@ -164,9 +151,6 @@ class Main extends PluginBase implements Listener {
 			$form->addButton("§3§lSteve", 1);
 			$form->addButton("§f§lSkeleton", 1);
 			$form->sendToPlayer($sender);
-				},
-			)
-		);
     }
     
     public function FeatureMenu($sender){

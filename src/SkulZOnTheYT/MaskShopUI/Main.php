@@ -152,6 +152,8 @@ class Main extends PluginBase implements Listener {
 			$form->addButton("§f§lSkeleton", 1);
 			$form->sendToPlayer($sender);
     }
+   );
+  }
     
     public function FeatureMenu($sender){
         $form = new SimpleForm(function (Player $sender, int $data = null){

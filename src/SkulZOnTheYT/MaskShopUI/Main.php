@@ -68,8 +68,7 @@ class Main extends PluginBase implements Listener {
     }
     
   public function MaskShopForm($sender){
-      $api = new BedrockEconomyAPI();
-      $result = BedrockEconomyAPI::legacy()->getPlayerBalance(
+      BedrockEconomyAPI::legacy()->getPlayerBalance(
 			$sender->getName(),
 			ClosureContext::create(
 				function (?int $balance) use ($sender): void {

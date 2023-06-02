@@ -50,7 +50,7 @@ class Main extends PluginBase implements Listener {
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         if($sender instanceof Player){
           if($cmd->getName() == "mask"){
-            $this->MaskShopForm($player);
+            $this->MaskShopForm($sender);
           }
         } else {
           $sender->sendMessage($this->getConfig()->get("only-ingame"));
@@ -58,13 +58,13 @@ class Main extends PluginBase implements Listener {
         return true;
     }
     
-  public function MaskShopForm($player)
+  public function MaskShopForm($sender)
   {
-      $form = new SimpleForm(function(Player $player, $data) {
+      $form = new SimpleForm(function(Player $sender, $data) {
         if($data === null){
             return true;
             }
-            switch ($result) {
+            switch ($data) {
                 case 0:
 	          $sender->sendMessage($this->getConfig()->get("quit.message"));
 		    break;
@@ -142,7 +142,7 @@ class Main extends PluginBase implements Listener {
    );
   }
     
-    public function FeatureMenu($player){
+    public function FeatureMenu($sender){
         $form = new SimpleForm(function (Player $sender, int $data = null){
 			$result = $data;
 			if($result === null){

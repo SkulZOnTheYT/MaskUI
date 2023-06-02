@@ -22,7 +22,7 @@ use pocketmine\entity\effect\Effect;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
-use SkulZOnTheYT\MaskShopUI\Form\{Form, SimpleForm};
+use jojoe77777\FormAPI\SimpleForm;
 
 class Main extends PluginBase implements Listener {
     
@@ -46,18 +46,11 @@ class Main extends PluginBase implements Listener {
 	public static function getInstance() : self{
 	    return self::$instance;
 	}
-	
-        public const DRAGON_HEAD = 397;
-        public const CREEPER_HEAD = 397;
-        public const WITHER_SKELETON_SKULL = 397;
-        public const STEVE_HEAD = 397;
-        public const SKELETON_SKULL = 397;
-        public const ZOMBIE_HEAD = 397;
      
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         if($sender instanceof Player){
           if($cmd->getName() == "mask"){
-            $this->MaskShopForm($sender);
+            $this->MaskShopForm($player);
           }
         } else {
           $sender->sendMessage($this->getConfig()->get("only-ingame"));
@@ -65,19 +58,19 @@ class Main extends PluginBase implements Listener {
         return true;
     }
     
-  public function MaskShopForm($sender){
-      $form = new SimpleForm(function (Player $sender, int $data = null){
-            $result = $data;
-            if ($result === null) {
-                return;
+  public function MaskShopForm($player)
+  {
+      $form = new SimpleForm(function(Player $player, $data) {
+        if($data === null){
+            return true;
             }
             switch ($result) {
                 case 0:
-				          $sender->sendMessage($this->getConfig()->get("quit.message"));
-		    	   		break;
-			         	case 1:
-				          $this->FeatureMenu($sender);
-  				      break;
+	          $sender->sendMessage($this->getConfig()->get("quit.message"));
+		    break;
+		case 1:
+		   $this->FeatureMenu($sender);
+  		    break;
                 case 2:
                   $zombie = $this->getConfig()->get("zombie.price");
                   $name = $sender->getName();
@@ -132,30 +125,24 @@ class Main extends PluginBase implements Listener {
                   $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
                   return true;
             }
-                        $zombie = $this->getConfig()->get("zombie.price");
-			$wither = $this->getConfig()->get("wither.price");
-			$dragon = $this->getConfig()->get("dragon.price");
-			$skeleton = $this->getConfig()->get("skeleton.price");
-			$creeper = $this->getConfig()->get("creeper.price");
-			$steve = $this->getConfig()->get("steve.price");
-					
+	
 			$form->setTitle("§eMask §bShop");
 			$form->setContent(str_replace(["{name}"], [$sender->getName()], "§fHello §b{name}\n§fFor know the price and the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"));
 					
 			$form->addButton("§cExit", 0);
 			$form->addButton("§l§eMask §dFeatures", 1);
-			$form->addButton("§l§2Zombie", 1, "https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/f/f8/Zombie_Head.png/150px-Zombie_Head.png?version=8a15fc74edd30aa4d804eb08247859a7");
-			$form->addButton("§a§lCreeper", 1, "https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/9/97/Creeper_Head.png/150px-Creeper_Head.png?version=94a13fb9d962554106e25c5a777fc9fd");
-			$form->addButton("§7§lWither Skeleton", 1, "https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/a/ac/Wither_Skeleton_Skull.png/150px-Wither_Skeleton_Skull.png?version=72391cd2dd387f87838d8e5af634a22f");
-			$form->addButton("§c§lDragon", 1, "https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/b/b6/Dragon_Head.png/150px-Dragon_Head.png?version=0687499d687de1761e5c0319c0ef6e86");
-			$form->addButton("§3§lSteve", 1);
-			$form->addButton("§f§lSkeleton", 1);
-			$form->sendToPlayer($sender);
+			$form->addButton("§l§2Zombie", 1, "textures/items/zombie_head");
+			$form->addButton("§a§lCreeper", 1, "textures/items/creeper_head");
+			$form->addButton("§7§lWither Skeleton", 1, "textures/items/wither_skeleton_skull");
+			$form->addButton("§c§lDragon", 1, "textures/items/dragon_head");
+			$form->addButton("§3§lSteve", 1, "textures/items/player_head");
+			$form->addButton("§f§lSkeleton", 1 "textures/items/skeleton_skull");
+			$player->sendToPlayer($form);
     }
    );
   }
     
-    public function FeatureMenu($sender){
+    public function FeatureMenu($player){
         $form = new SimpleForm(function (Player $sender, int $data = null){
 			$result = $data;
 			if($result === null){
@@ -171,82 +158,17 @@ class Main extends PluginBase implements Listener {
 			        }
 		        });
 		        
-		  $zombie = $this->getConfig()->get("zombie.price");
+		        $zombie = $this->getConfig()->get("zombie.price");
 			$wither = $this->getConfig()->get("wither.price");
 			$dragon = $this->getConfig()->get("dragon.price");
 			$skeleton = $this->getConfig()->get("skeleton.price");
 			$creeper = $this->getConfig()->get("creeper.price");
 			$steve = $this->getConfig()->get("steve.price"); 
 			
-      $form->setTitle("§d§lEffects §bList");
-      $form->setContent("§6This plugin made by §fSkulZOnTheYT and Kylan1940\n\n§fSkeleton §eMask \n§fPrice: §6$skeleton \n§dEffects: \n§e-§dHaste §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dNight Vision §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dSpeed §7(§bI§7) §c*Only For 18 Minutes \n§e-§dJump Boost §7(§bII§7) §c*Only For 18 Minutes \n\n§2Zombie §eMask \n§fPrice: §6$zombie \n§dEffects: \n§e-§dStrength §7(§bI§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dJump Boost  §7(§bI§7) \n§e-§dRegeneration §7(§bI§7) \n§e-§dFire Resistance §7(§bI§7) \n\n§aCreeper §eMask \n§fPrice: §6$creeper \n§dEffects: \n§e-§dJump Boost §7(§bII§7) \n§e-§dStrength §7(§bII§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dRegeneration §7(§bII§7) \n§e-§dFire Resistance §7(§bI§7) \n§e-§dSpeed §7(§bI§7) \n\n§7Wither Skeleton §eMask \n§fPrice: §6$wither \n§dEffects: \n§e-§dSpeed §7(§bI§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dRegeneration \n§7(§bI§7) \n§e-§dHealth Boost §7(§bI§7) \n§e-§dFire Resistance §7(§bII§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n\n§3Steve §eMask \n§fPrice: §6$steve \n§dEffects: \n§e-§dStrength §7(§bIII§7) \n§e-§dSpeed §7(§bII§7) \n§e-§dRegeneration §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n\n§cDragon §eMask \n§fPrice: §6$dragon \n§dEffects: \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dSpeed §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dAbsorption §7(§bIII§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dSaturation §7(§bIII§7) \n§e-§dRegeneration §7(§bIII§7)"); 
-      $form->addButton("§l§aBACK", 1);
-      $form->addButton("§l§cEXIT", 2);
-      $form->sendToPlayer($sender);
-	}
-	
-          public function onRun(int $currentTick) {
-          foreach($this->plugin->getServer()->getOnlinePlayers() as $player) {
-              $helmet = $player->getArmorInventory()->getHelmet();
-              if($helmet !== null && in_array($helmet->getId(), [DRAGON_HEAD, CREEPER_HEAD, SKELETON_SKULL, WITHER_SKELETON_SKULL, STEVE_HEAD, ZOMBIE_HEAD])) {
-                     switch($helmet->getId()) {
-                            case DRAGON_HEAD:
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 2, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
-                                break;
-                            case CREEPER_HEAD:
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-                                break;
-                            case SKELETON_SKULL:
-                            case WITHER_SKELETON_SKULL:
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-                                break;
-                            case STEVE_HEAD:
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-                                break;
-			    case ZOMBIE_HEAD:
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 1, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-                                $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
-                                break;
-		     }
-               }
-            }
-        }
-	
-     public function onItemHeld(PlayerItemHeldEvent $event) {
-         $player = $event->getPlayer();
-         $item = $event->getItem();
-	 $slot = $event->getSlot();
-
-         if($slot = in_array($item->getId(), [DRAGON_HEAD, CREEPER_HEAD, SKELETON_SKULL, WITHER_SKELETON_SKULL, STEVE_HEAD, ZOMBIE_HEAD])) {
-            $player->sendMessage(TF::GREEN . "Mask effect is working!!!");
-        }
-    }
+                        $form->setTitle("§d§lEffects §bList");
+                        $form->setContent("§6This plugin made by §fSkulZOnTheYT and Kylan1940\n\n§fSkeleton §eMask \n§fPrice: §6$skeleton \n§dEffects: \n§e-§dHaste §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dNight Vision §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dSpeed §7(§bI§7) §c*Only For 18 Minutes \n§e-§dJump Boost §7(§bII§7) §c*Only For 18 Minutes \n\n§2Zombie §eMask \n§fPrice: §6$zombie \n§dEffects: \n§e-§dStrength §7(§bI§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dJump Boost  §7(§bI§7) \n§e-§dRegeneration §7(§bI§7) \n§e-§dFire Resistance §7(§bI§7) \n\n§aCreeper §eMask \n§fPrice: §6$creeper \n§dEffects: \n§e-§dJump Boost §7(§bII§7) \n§e-§dStrength §7(§bII§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dRegeneration §7(§bII§7) \n§e-§dFire Resistance §7(§bI§7) \n§e-§dSpeed §7(§bI§7) \n\n§7Wither Skeleton §eMask \n§fPrice: §6$wither \n§dEffects: \n§e-§dSpeed §7(§bI§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dRegeneration \n§7(§bI§7) \n§e-§dHealth Boost §7(§bI§7) \n§e-§dFire Resistance §7(§bII§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n\n§3Steve §eMask \n§fPrice: §6$steve \n§dEffects: \n§e-§dStrength §7(§bIII§7) \n§e-§dSpeed §7(§bII§7) \n§e-§dRegeneration §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n\n§cDragon §eMask \n§fPrice: §6$dragon \n§dEffects: \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dSpeed §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dAbsorption §7(§bIII§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dSaturation §7(§bIII§7) \n§e-§dRegeneration §7(§bIII§7)"); 
+                        $form->addButton("§l§aBACK", 1);
+                        $form->addButton("§l§cEXIT", 2);
+                        $form->sendToPlayer($sender);
+      }
 }

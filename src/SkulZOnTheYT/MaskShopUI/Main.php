@@ -158,9 +158,8 @@ class Main extends PluginBase implements Listener {
 			$form->addButton("§3§lSteve", 1, "textures/items/player_head");
 			$form->addButton("§f§lSkeleton", 1, "textures/items/skeleton_skull");
 			$player->sendToPlayer($form);
-				}
-			)
-	});
+	}
+	
     }
     
     public function FeatureMenu($sender){

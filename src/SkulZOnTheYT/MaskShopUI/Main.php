@@ -160,7 +160,7 @@ class Main extends PluginBase implements Listener {
 			$player->sendToPlayer($form);
 				}
 			)
-		);
+	});
     }
     
     public function FeatureMenu($sender){

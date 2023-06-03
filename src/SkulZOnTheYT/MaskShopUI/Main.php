@@ -160,9 +160,7 @@ class Main extends PluginBase implements Listener {
 			$player->sendToPlayer($form);
 	}
 	
-    }
-    
-    public function FeatureMenu($sender){
+	public function FeatureMenu($sender){
         $form = new SimpleForm(function (Player $sender, int $data = null){
 			$result = $data;
 			if($result === null){
@@ -190,5 +188,6 @@ class Main extends PluginBase implements Listener {
       $form->addButton("§l§aBACK", 1);
       $form->addButton("§l§cEXIT", 2);
       $form->sendToPlayer($sender);
-   }
+	}
+    }
 }

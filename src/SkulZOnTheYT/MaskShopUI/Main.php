@@ -68,45 +68,49 @@ class Main extends PluginBase implements Listener {
 				          $this->FeatureMenu($sender);
   				      break;
                 case 2:
+	          $name = $sender->getName();
                   $money = EconomyAPI::getInstance()->myMoney($player);
-                    if($money >= $this->getConfig()->get($data)["zombie.prince"]){
-                      EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get($data)["zombie.prince"]);
+                    if($money >= $this->getConfig()->get("zombie.prince")){
+                      EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("zombie.prince"));
                   $item1 = ItemFactory::getInstance()->get(397, 2, 1);
                   $item1->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item1);
-					        $sender->sendMessage($this->getConfig()->get($data)["msg.shop.zombie"]);
+		  $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
                     } else {
-                        $sender->sendMessage($this->getCofig()-get($data)["msg.no-money"]);
+                        $sender->sendMessage($this->getCofig()->get("msg.no-money"));
                       }
                   return true;
 			    
                 case 3:
-                  $money = EconomyAPI::getInstance()->myMoney($player);
-                    if($money >= $this->getConfig()->get($data)["creeper.prince"]){
-                      EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get($data)["creeper.prince"]);
+                  $name = $sender->getName();
+		  $money = EconomyAPI::getInstance()->myMoney($player);
+                    if($money >= $this->getConfig()->get(creeper.prince")){
+                      EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("creeper.prince"));
                   $item2 = ItemFactory::getInstance()->get(397, 4, 1);
                   $item2->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item2);
-					        $sender->sendMessage($this->getConfig()->get($data)["msg.shop.creeper"]);
+					        $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
                     } else {
-                        $sender->sendMessage($this->getCofig()-get($data)["msg.no-money"]);
+                        $sender->sendMessage($this->getCofig()->get("msg.no-money"));
                       }
                   return true;
 			    
                 case 4:
+	          $name = $sender->getName();
                   $money = EconomyAPI::getInstance()->myMoney($player);
-                    if($money >= $this->getConfig()->get($data)["wither.prince"]){
-                      EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get($data)["wither.prince"]);
+                    if($money >= $this->getConfig()->get("wither.prince")){
+                      EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("wither.prince"));
                   $item3 = ItemFactory::getInstance()->get(397, 1, 1);
                   $item3->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item3);
-                  $sender->sendMessage($this->getConfig()->get($data)["msg.shop.wither"]);
+                  $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
                     } else {
-                        $sender->sendMessage($this->getCofig()-get($data)["msg.no-money"]);
+                        $sender->sendMessage($this->getCofig()->get("msg.no-money"));
                       }
                   return true;
 			    
                 case 5:
+		  $name = $sender->getName();
                   $money = EconomyAPI::getInstance()->myMoney($player);
                     if($money >= $this->getConfig()->get($data)["dragon.prince"]){
                       EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get($data)["dragon.prince"]);
@@ -115,11 +119,12 @@ class Main extends PluginBase implements Listener {
                   $sender->getInventory()->addItem($item4);
                   $sender->sendMessage($this->getConfig()->get($data)["msg.shop.dragon"]);
                   } else {
-                      $sender->sendMessage($this->getCofig()-get($data)["msg.no-money"]);
+                      $sender->sendMessage($this->getCofig()->get($data)["msg.no-money"]);
                     }
                   return true;
 			    
                 case 6:
+	          $name = $sender->getName();
                   $money = EconomyAPI::getInstance()->myMoney($player);
                     if($money >= $this->getConfig()->get($data)["steve.prince"]){
                       EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get($data)["steve.prince"]);
@@ -133,6 +138,7 @@ class Main extends PluginBase implements Listener {
                   return true;
 			    
                 case 7:
+		  $name = $sender->getName();
                   $money = EconomyAPI::getInstance()->myMoney($player);
                     if($money >= $this->getConfig()->get($data)["skeleton.prince"]){
                       EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get($data)["skeleton.prince"]);

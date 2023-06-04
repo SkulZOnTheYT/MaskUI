@@ -71,7 +71,7 @@ class Main extends PluginBase implements Listener {
 	          $name = $sender->getName();
                   $money = EconomyAPI::getInstance()->myMoney($sender);
                     if($money >= $this->getConfig()->get("zombie.prince")){
-                      EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("zombie.prince"));
+                      EconomyAPI::getInstance()->reduceMoney($sender, $this->getConfig()->get("zombie.prince"));
                   $item1 = ItemFactory::getInstance()->get(397, 2, 1);
                   $item1->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item1);
@@ -85,7 +85,7 @@ class Main extends PluginBase implements Listener {
                   $name = $sender->getName();
 		  $money = EconomyAPI::getInstance()->myMoney($sender);
                     if($money >= $this->getConfig()->get("creeper.prince")){
-                      EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("creeper.prince"));
+                      EconomyAPI::getInstance()->reduceMoney($sender, $this->getConfig()->get("creeper.prince"));
                   $item2 = ItemFactory::getInstance()->get(397, 4, 1);
                   $item2->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item2);
@@ -99,7 +99,7 @@ class Main extends PluginBase implements Listener {
 	          $name = $sender->getName();
                   $money = EconomyAPI::getInstance()->myMoney($sender);
                     if($money >= $this->getConfig()->get("wither.prince")){
-                      EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("wither.prince"));
+                      EconomyAPI::getInstance()->reduceMoney($sender, $this->getConfig()->get("wither.prince"));
                   $item3 = ItemFactory::getInstance()->get(397, 1, 1);
                   $item3->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item3);
@@ -113,7 +113,7 @@ class Main extends PluginBase implements Listener {
 		  $name = $sender->getName();
                   $money = EconomyAPI::getInstance()->myMoney($sender);
                     if($money >= $this->getConfig()->get("dragon.prince")){
-                      EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("dragon.prince"));
+                      EconomyAPI::getInstance()->reduceMoney($sender, $this->getConfig()->get("dragon.prince"));
                   $item4 = ItemFactory::getInstance()->get(397, 5, 1);
                   $item4->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item4);
@@ -127,7 +127,7 @@ class Main extends PluginBase implements Listener {
 	          $name = $sender->getName();
                   $money = EconomyAPI::getInstance()->myMoney($sender);
                     if($money >= $this->getConfig()->get("steve.prince")){
-                      EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("steve.prince"));
+                      EconomyAPI::getInstance()->reduceMoney($sender, $this->getConfig()->get("steve.prince"));
                   $item5 = ItemFactory::getInstance()->get(397, 3, 1);
                   $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item5);
@@ -141,7 +141,7 @@ class Main extends PluginBase implements Listener {
 		  $name = $sender->getName();
                   $money = EconomyAPI::getInstance()->myMoney($sender);
                     if($money >= $this->getConfig()->get("skeleton.prince")){
-                      EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("skeleton.prince"));
+                      EconomyAPI::getInstance()->reduceMoney($sender, $this->getConfig()->get("skeleton.prince"));
                   $item6 = ItemFactory::getInstance()->get(397, 0, 1);
                   $item6->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item6);

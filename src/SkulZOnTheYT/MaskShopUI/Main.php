@@ -160,12 +160,12 @@ class Main extends PluginBase implements Listener {
 			$form->setContent(str_replace(["{name}"], [$sender->getName()], "§fHello §b{name}\n§fFor know the price and the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"));
 			$form->addButton("§cExit", 1, "textures/ui/cancel");
 			$form->addButton("§l§eMask §dFeatures", 1, "textures/items/nether_stars");
-                        $form->addButton("§l§2Zombie" . "\n§rPrice : " . $this->getConfig()->get("zombie.prince")) , 1, "textures/items/zombie_head");
-			$form->addButton("§a§lCreeper" . "\n§rPrice : " . $this->getConfig()->get("creeper.prince")) , 1, "textures/items/creeper_head");
-			$form->addButton("§7§lWither Skeleton" . "\n§rPrice : " . $this->getConfig()->get("wither.prince")) , 1, "textures/items/wither_skeleton_skull");
-			$form->addButton("§c§lDragon" . "\n§rPrice : " . $this->getConfig()->get("dragon.prince")) , 1, "textures/items/dragon_head");
-			$form->addButton("§3§lSteve" . "\n§rPrice : " . $this->getConfig()->get("steve.prince")) , 1, "textures/items/player_head");
-			$form->addButton("§f§lSkeleton" . "\n§rPrice : " . $this->getConfig()->get("skeleton.prince")) , 1, "textures/items/skeleton_skull");
+                        $form->addButton("§l§2Zombie" . "\n§rPrice : " . $this->getConfig()->get("zombie.prince"), 1, "textures/items/zombie_head");
+			$form->addButton("§a§lCreeper" . "\n§rPrice : " . $this->getConfig()->get("creeper.prince"), 1, "textures/items/creeper_head");
+			$form->addButton("§7§lWither Skeleton" . "\n§rPrice : " . $this->getConfig()->get("wither.prince"), 1, "textures/items/wither_skeleton_skull");
+			$form->addButton("§c§lDragon" . "\n§rPrice : " . $this->getConfig()->get("dragon.prince"), 1, "textures/items/dragon_head");
+			$form->addButton("§3§lSteve" . "\n§rPrice : " . $this->getConfig()->get("steve.prince"), 1, "textures/items/player_head");
+			$form->addButton("§f§lSkeleton" . "\n§rPrice : " . $this->getConfig()->get("skeleton.prince"), 1, "textures/items/skeleton_skull");
 			$sender->sendToPlayer($form);
 	}
 	

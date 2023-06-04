@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SkulZOnTheYT\MaskShopUI;
 
 use pocketmine\Server;
-use pocketmine\player\Player;
+use pocketmine\player\PLayer;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerItemHeldEvent;
@@ -77,7 +77,7 @@ class Main extends PluginBase implements Listener {
                   $sender->getInventory()->addItem($item1);
 		  $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
                     } else {
-                        $sender->sendMessage($this->getCofig()->get("msg.no-money"));
+                        $sender->sendMessage($this->getConfig()->get("msg.no-money"));
                       }
                   return true;
 			    
@@ -91,7 +91,7 @@ class Main extends PluginBase implements Listener {
                   $sender->getInventory()->addItem($item2);
 		  $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
                     } else {
-                        $sender->sendMessage($this->getCofig()->get("msg.no-money"));
+                        $sender->sendMessage($this->getConfig()->get("msg.no-money"));
                       }
                   return true;
 			    
@@ -105,7 +105,7 @@ class Main extends PluginBase implements Listener {
                   $sender->getInventory()->addItem($item3);
                   $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
                     } else {
-                        $sender->sendMessage($this->getCofig()->get("msg.no-money"));
+                        $sender->sendMessage($this->getConfig()->get("msg.no-money"));
                       }
                   return true;
 			    
@@ -119,7 +119,7 @@ class Main extends PluginBase implements Listener {
                   $sender->getInventory()->addItem($item4);
                   $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
                   } else {
-                      $sender->sendMessage($this->getCofig()->get("msg.no-money"));
+                      $sender->sendMessage($this->getConfig()->get("msg.no-money"));
                     }
                   return true;
 			    
@@ -133,7 +133,7 @@ class Main extends PluginBase implements Listener {
                   $sender->getInventory()->addItem($item5);
                   $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
                   } else {
-                      $sender->sendMessage($this->getCofig()-get("msg.no-money"));
+                      $sender->sendMessage($this->getConfig()->get("msg.no-money"));
                     }
                   return true;
 			    
@@ -147,7 +147,7 @@ class Main extends PluginBase implements Listener {
                   $sender->getInventory()->addItem($item6);
                   $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
                   } else {
-                      $sender->sendMessage($this->getCofig()-get("msg.no-money"));
+                      $sender->sendMessage($this->getConfig()->get("msg.no-money"));
                     }
                   return true;
             }

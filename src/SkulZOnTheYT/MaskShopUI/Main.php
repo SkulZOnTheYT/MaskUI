@@ -25,9 +25,6 @@ class Main extends PluginBase implements Listener {
     /** @var Main $instance */
     private static $instance;
 	
-    /** @var EconomyAPI */
-    private static $economyAPI;
-	
 	public $plugin;
 
 	public function onEnable() : void{
@@ -72,7 +69,7 @@ class Main extends PluginBase implements Listener {
   				      break;
                 case 2:
 	          $name = $sender->getName();
-                  $money = EconomyAPI::getInstance()->myMoney($Player);
+                  $money = EconomyAPI::getInstance()->myMoney($sender);
                     if($money >= $this->getConfig()->get("zombie.prince")){
                       EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("zombie.prince"));
                   $item1 = ItemFactory::getInstance()->get(397, 2, 1);
@@ -86,7 +83,7 @@ class Main extends PluginBase implements Listener {
 			    
                 case 3:
                   $name = $sender->getName();
-		  $money = EconomyAPI::getInstance()->myMoney($Player);
+		  $money = EconomyAPI::getInstance()->myMoney($sender);
                     if($money >= $this->getConfig()->get("creeper.prince")){
                       EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("creeper.prince"));
                   $item2 = ItemFactory::getInstance()->get(397, 4, 1);
@@ -100,7 +97,7 @@ class Main extends PluginBase implements Listener {
 			    
                 case 4:
 	          $name = $sender->getName();
-                  $money = EconomyAPI::getInstance()->myMoney($Player);
+                  $money = EconomyAPI::getInstance()->myMoney($sender);
                     if($money >= $this->getConfig()->get("wither.prince")){
                       EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("wither.prince"));
                   $item3 = ItemFactory::getInstance()->get(397, 1, 1);
@@ -114,7 +111,7 @@ class Main extends PluginBase implements Listener {
 			    
                 case 5:
 		  $name = $sender->getName();
-                  $money = EconomyAPI::getInstance()->myMoney($Player);
+                  $money = EconomyAPI::getInstance()->myMoney($sender);
                     if($money >= $this->getConfig()->get("dragon.prince")){
                       EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("dragon.prince"));
                   $item4 = ItemFactory::getInstance()->get(397, 5, 1);
@@ -128,7 +125,7 @@ class Main extends PluginBase implements Listener {
 			    
                 case 6:
 	          $name = $sender->getName();
-                  $money = EconomyAPI::getInstance()->myMoney($Player);
+                  $money = EconomyAPI::getInstance()->myMoney($sender);
                     if($money >= $this->getConfig()->get("steve.prince")){
                       EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("steve.prince"));
                   $item5 = ItemFactory::getInstance()->get(397, 3, 1);
@@ -142,7 +139,7 @@ class Main extends PluginBase implements Listener {
 			    
                 case 7:
 		  $name = $sender->getName();
-                  $money = EconomyAPI::getInstance()->myMoney($Player);
+                  $money = EconomyAPI::getInstance()->myMoney($sender);
                     if($money >= $this->getConfig()->get("skeleton.prince")){
                       EconomyAPI::getInstance()->reduceMoney($player, $this->getConfig()->get("skeleton.prince"));
                   $item6 = ItemFactory::getInstance()->get(397, 0, 1);
@@ -184,6 +181,13 @@ class Main extends PluginBase implements Listener {
 				    break;
 			        }
 		        });
+		
+		$zombie = $this->getConfig()->get("zombie.price");
+		$wither = $this->getConfig()->get("wither.price");
+		$dragon = $this->getConfig()->get("dragon.price");
+		$skeleton = $this->getConfig()->get("skeleton.price");
+		$creeper = $this->getConfig()->get("creeper.price");
+		$steve = $this->getConfig()->get("steve.price"); 
 			
       $form->setTitle("§d§lEffects §bList");
       $form->setContent("§6This plugin made by §fSkulZOnTheYT and Kylan1940\n\n§fSkeleton §eMask \n§fPrice: §6$skeleton \n§dEffects: \n§e-§dHaste §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dNight Vision §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dSpeed §7(§bI§7) §c*Only For 18 Minutes \n§e-§dJump Boost §7(§bII§7) §c*Only For 18 Minutes \n\n§2Zombie §eMask \n§fPrice: §6$zombie \n§dEffects: \n§e-§dStrength §7(§bI§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dJump Boost  §7(§bI§7) \n§e-§dRegeneration §7(§bI§7) \n§e-§dFire Resistance §7(§bI§7) \n\n§aCreeper §eMask \n§fPrice: §6$creeper \n§dEffects: \n§e-§dJump Boost §7(§bII§7) \n§e-§dStrength §7(§bII§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dRegeneration §7(§bII§7) \n§e-§dFire Resistance §7(§bI§7) \n§e-§dSpeed §7(§bI§7) \n\n§7Wither Skeleton §eMask \n§fPrice: §6$wither \n§dEffects: \n§e-§dSpeed §7(§bI§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dRegeneration \n§7(§bI§7) \n§e-§dHealth Boost §7(§bI§7) \n§e-§dFire Resistance §7(§bII§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n\n§3Steve §eMask \n§fPrice: §6$steve \n§dEffects: \n§e-§dStrength §7(§bIII§7) \n§e-§dSpeed §7(§bII§7) \n§e-§dRegeneration §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n\n§cDragon §eMask \n§fPrice: §6$dragon \n§dEffects: \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dSpeed §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dAbsorption §7(§bIII§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dSaturation §7(§bIII§7) \n§e-§dRegeneration §7(§bIII§7)"); 

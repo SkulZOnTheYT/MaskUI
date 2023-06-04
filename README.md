@@ -8,7 +8,7 @@ Author: [SkulZOnTheYT](https://github.com/SkulZOnTheYT), [Kylan1940](https://git
 
 Commands: /mask
 
-Depencies Plugin: - [Bedrock Economy](https://poggit.pmmp.io/p/BedrockEconomy/2.0.8) (Required)
+Depencies Plugin: - [Economy Api](https://poggit.pmmp.io/p/EconomyAPI/5.7.2) (Required)
 
 
 # Features
@@ -17,7 +17,7 @@ Depencies Plugin: - [Bedrock Economy](https://poggit.pmmp.io/p/BedrockEconomy/2.
 
  - [x] Custome price mask
 
- - [x] Bedrock Economy Support
+ - [x] Economy Api Support
 
  - [x] Custome message when Buy a Mask
 

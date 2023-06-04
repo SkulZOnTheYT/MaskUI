@@ -10,3 +10,9 @@ commands:
    usage: "/mask"
    aliases:
      - ms
+   permission: mask.shop
+
+  permissions:
+   mask.shop:
+    default: true
+    description: allow user open mask shop

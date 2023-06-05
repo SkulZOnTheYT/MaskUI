@@ -163,7 +163,7 @@ class Main extends PluginBase implements Listener {
 			$form->addButton("§c§lDragon" . "\n§rPrice : " . $this->getConfig()->get("dragon.prince"), 1, "textures/items/dragon_head");
 			$form->addButton("§3§lSteve" . "\n§rPrice : " . $this->getConfig()->get("steve.prince"), 1, "textures/items/player_head");
 			$form->addButton("§f§lSkeleton" . "\n§rPrice : " . $this->getConfig()->get("skeleton.prince"), 1, "textures/items/skeleton_skull");
-			$sender->sendToPlayer($form);
+			$form->sendToPlayer($sender);
 	}
 	
 	public function FeatureMenu($sender){

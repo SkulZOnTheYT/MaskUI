@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AlexPads\CustomShopUI\economy;
+namespace SkulZOnTheYT\MaskShopUI\economy;
 
 use Closure;
 use pocketmine\player\Player;

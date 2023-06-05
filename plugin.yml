@@ -1,7 +1,7 @@
 name: MaskShopUI
 version: 1.0
 main: SkulZOnTheYT\MaskShopUI\Main
-api: 5.0.0
+api: 4.0.0
 author: SkulZOnTheYT, Kylan1940
 
 commands:

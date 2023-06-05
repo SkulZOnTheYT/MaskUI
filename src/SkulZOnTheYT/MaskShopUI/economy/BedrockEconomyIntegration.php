@@ -16,7 +16,7 @@ use function assert;
 
 final class BedrockEconomyIntegration implements EconomyIntegration{
 
-	private BedrockEconomy $plugin;
+	private $plugin = BedrockEconomy;
 
 	public function __construct(){
 		/** @var BedrockEconomy|null $plugin */

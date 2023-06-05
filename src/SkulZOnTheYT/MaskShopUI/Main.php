@@ -106,9 +106,9 @@ class Main extends PluginBase implements Listener {
 			    
                 case 5:
 		  $name = $sender->getName();
-                  $money = EconomyIntergration::getMoney($sender);
+                  $money = getMoney($sender);
                     if($money >= $this->getConfig()->get("dragon.prince")){
-                      EconomyIntergration::removeMoney($sender, $this->getConfig()->get("dragon.prince"));
+                      removeMoney($sender, $this->getConfig()->get("dragon.prince"));
                   $item4 = ItemFactory::getInstance()->get(397, 5, 1);
                   $item4->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item4);
@@ -120,9 +120,9 @@ class Main extends PluginBase implements Listener {
 			    
                 case 6:
 	          $name = $sender->getName();
-                  $money = EconomyIntergration::getMoney($sender);
+                  $money = getMoney($sender);
                     if($money >= $this->getConfig()->get("steve.prince")){
-                     EconomyIntergration::removeMoney($sender, $this->getConfig()->get("steve.prince"));
+                     $item6->removeMoney($sender, $this->getConfig()->get("steve.prince"));
                   $item5 = ItemFactory::getInstance()->get(397, 3, 1);
                   $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item5);
@@ -134,9 +134,9 @@ class Main extends PluginBase implements Listener {
 			    
                 case 7:
 		  $name = $sender->getName();
-                  $money = EconomyIntergration::getMoney($sender);
+                  $money = getMoney($sender);
                     if($money >= $this->getConfig()->get("skeleton.prince")){
-                      EconomyIntergration::removeMoney($sender, $this->getConfig()->get("skeleton.prince"));
+                      $item6->removeMoney($sender, $this->getConfig()->get("skeleton.prince"));
                   $item6 = ItemFactory::getInstance()->get(397, 0, 1);
                   $item6->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item6);
@@ -148,17 +148,24 @@ class Main extends PluginBase implements Listener {
             }
         });
       
+	        $zombie = $this->getConfig()->get("zombie.price");
+		$wither = $this->getConfig()->get("wither.price");
+		$dragon = $this->getConfig()->get("dragon.price");
+		$skeleton = $this->getConfig()->get("skeleton.price");
+		$creeper = $this->getConfig()->get("creeper.price");
+		$steve = $this->getConfig()->get("steve.price");
+	  
 			$form->setTitle("§eMask §bShop");
 			$form->setContent(str_replace(["{name}"], [$sender->getName()], "§fHello §b{name}\n§fFor know the price and the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"));
 			$form->addButton("§cExit", 1, "textures/ui/cancel");
 			$form->addButton("§l§eMask §dFeatures", 1, "textures/items/nether_stars");
-                        $form->addButton("§l§2Zombie" . "\n§rPrice : " . $this->getConfig()->get("zombie.prince"), 1, "textures/items/zombie_head");
-			$form->addButton("§a§lCreeper" . "\n§rPrice : " . $this->getConfig()->get("creeper.prince"), 1, "textures/items/creeper_head");
-			$form->addButton("§7§lWither Skeleton" . "\n§rPrice : " . $this->getConfig()->get("wither.prince"), 1, "textures/items/wither_skeleton_skull");
-			$form->addButton("§c§lDragon" . "\n§rPrice : " . $this->getConfig()->get("dragon.prince"), 1, "textures/items/dragon_head");
-			$form->addButton("§3§lSteve" . "\n§rPrice : " . $this->getConfig()->get("steve.prince"), 1, "textures/items/player_head");
-			$form->addButton("§f§lSkeleton" . "\n§rPrice : " . $this->getConfig()->get("skeleton.prince"), 1, "textures/items/skeleton_skull");
-			$form->sendToPlayer($sender);
+                        $form->addButton("§l§2Zombie" . "\n§rPrice : $zombie" , 1, "textures/items/zombie_head");
+			$form->addButton("§a§lCreeper" . "\n§rPrice : $creeper" , 1, "textures/items/creeper_head");
+			$form->addButton("§7§lWither Skeleton" . "\n§rPrice : $wither" , 1, "textures/items/wither_skeleton_skull");
+			$form->addButton("§c§lDragon" . "\n§rPrice : $dragon" , 1, "textures/items/dragon_head");
+			$form->addButton("§3§lSteve" . "\n§rPrice : $steve" , 1, "textures/items/player_head");
+			$form->addButton("§f§lSkeleton" . "\n§rPrice : $skeleton", 1, "textures/items/skeleton_skull");
+	                $form->sendToPlayer($sender);
 	}
 	
 	public function FeatureMenu($sender){

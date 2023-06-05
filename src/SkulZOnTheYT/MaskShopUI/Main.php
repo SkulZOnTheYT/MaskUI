@@ -17,7 +17,7 @@ use pocketmine\item\Item;
 use pocketmine\item\ItemFactory;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\utils\Config;
-use onebone\economyapi\EconomyAPI;
+use SkulZOnTheYT\MaskShopUI\economy\{EconomyIntergration, EconomyManager};
 use SkulZOnTheYT\MaskShopUI\Form\{Form, SimpleForm};
 
 class Main extends PluginBase implements Listener {

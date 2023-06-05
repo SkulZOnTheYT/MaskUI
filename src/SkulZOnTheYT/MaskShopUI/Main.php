@@ -64,9 +64,9 @@ class Main extends PluginBase implements Listener {
   				      break;
                 case 2:
 	          $name = $sender->getName();
-                  $money = EconomyIntergration::getMoney($sender);
+                  $money = EconomyIntergration::get();
                     if($money >= $this->getConfig()->get("zombie.prince")){
-                      EconomyIntergration::removeMoney($sender, $this->getConfig()->get("zombie.prince"));
+                      $money->removeMoney($sender, $this->getConfig()->get("zombie.prince"));
                   $item1 = ItemFactory::getInstance()->get(397, 2, 1);
                   $item1->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item1);
@@ -78,9 +78,9 @@ class Main extends PluginBase implements Listener {
 			    
                 case 3:
                   $name = $sender->getName();
-                  $money = EconomyIntergration::getMoney($sender);
+                  $money = EconomyIntergration::get();
                     if($money >= $this->getConfig()->get("creeper.prince")){
-                      EconomyIntergration::removeMoney($sender, $this->getConfig()->get("creeper.prince"));
+                      $money->removeMoney($sender, $this->getConfig()->get("creeper.prince"));
                   $item2 = ItemFactory::getInstance()->get(397, 4, 1);
                   $item2->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item2);
@@ -92,9 +92,9 @@ class Main extends PluginBase implements Listener {
 			    
                 case 4:
 	          $name = $sender->getName();
-                  $money = EconomyIntergration::getMoney($sender);
+                  $money = EconomyIntergration::get();
                     if($money >= $this->getConfig()->get("wither.prince")){
-                      EconomyIntergration::removeMoney($sender, $this->getConfig()->get("wither.prince"));
+                      $money->removeMoney($sender, $this->getConfig()->get("wither.prince"));
                   $item3 = ItemFactory::getInstance()->get(397, 1, 1);
                   $item3->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item3);
@@ -106,9 +106,9 @@ class Main extends PluginBase implements Listener {
 			    
                 case 5:
 		  $name = $sender->getName();
-                  $money = getMoney($sender);
+                  $money = EconomyIntergration::get();
                     if($money >= $this->getConfig()->get("dragon.prince")){
-                      removeMoney($sender, $this->getConfig()->get("dragon.prince"));
+                      $money->removeMoney($sender, $this->getConfig()->get("dragon.prince"));
                   $item4 = ItemFactory::getInstance()->get(397, 5, 1);
                   $item4->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item4);
@@ -120,9 +120,9 @@ class Main extends PluginBase implements Listener {
 			    
                 case 6:
 	          $name = $sender->getName();
-                  $money = getMoney($sender);
+                  $money = EconomyIntergration::get();
                     if($money >= $this->getConfig()->get("steve.prince")){
-                     $item6->removeMoney($sender, $this->getConfig()->get("steve.prince"));
+                     $money->removeMoney($sender, $this->getConfig()->get("steve.prince"));
                   $item5 = ItemFactory::getInstance()->get(397, 3, 1);
                   $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item5);
@@ -134,9 +134,9 @@ class Main extends PluginBase implements Listener {
 			    
                 case 7:
 		  $name = $sender->getName();
-                  $money = getMoney($sender);
+                  $money = EconomyIntergration::get();
                     if($money >= $this->getConfig()->get("skeleton.prince")){
-                      $item6->removeMoney($sender, $this->getConfig()->get("skeleton.prince"));
+                      $money->removeMoney($sender, $this->getConfig()->get("skeleton.prince"));
                   $item6 = ItemFactory::getInstance()->get(397, 0, 1);
                   $item6->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                   $sender->getInventory()->addItem($item6);

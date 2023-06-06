@@ -49,6 +49,9 @@ final class EconomyManager{
 	}
 
 	public static function get() : EconomyIntegration{
-		return self::$integrated;
+           if (self::$integrated === null) {
+               self::$integrated = new EconomyIntegration();
+          }
+	return self::$integrated;
 	}
 }

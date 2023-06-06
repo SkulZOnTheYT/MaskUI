@@ -6,6 +6,7 @@ namespace SkulZOnTheYT\MaskShopUI\economy;
 
 use InvalidArgumentException;
 use SkulZOnTheYT\MaskShopUI\Main;
+use SkulZOnTheYT\MaskShopUI\economy\EconomyIntegration;
 use pocketmine\utils\Utils;
 
 final class EconomyManager{
@@ -49,7 +50,7 @@ final class EconomyManager{
 	}
 
 	public static function get() : EconomyIntegration{
-           if (self::$integrated === null) {
+           if (self::$integrated == null) {
                self::$integrated = new EconomyIntegration();
           }
 	return self::$integrated;

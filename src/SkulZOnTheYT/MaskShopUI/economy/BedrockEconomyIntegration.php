@@ -6,7 +6,6 @@ namespace SkulZOnTheYT\MaskShopUI\economy;
 
 use Closure;
 use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
-use cooldogedev\BedrockEconomy\api\version\LegacyBEAPI;
 use cooldogedev\BedrockEconomy;
 use cooldogedev\libSQL\context\ClosureContext;
 use InvalidArgumentException;
@@ -17,6 +16,8 @@ use function assert;
 
 final class BedrockEconomyIntegration implements EconomyIntegration{
 
+	private BedrockEconomy $plugin;
+	
 	public function __construct(){
 		/** @var BedrockEconomy|null $plugin */
 		$plugin = Server::getInstance()->getPluginManager()->getPlugin("BedrockEconomy");
@@ -31,18 +32,18 @@ final class BedrockEconomyIntegration implements EconomyIntegration{
 	}
 
 	public function getMoney(Player $player, Closure $callback) : void{
-		LegacyBEAPI::getInstance()->getPlayerBalance($player->getName(), ClosureContext::create(static function(?int $balance) use($callback) : void{
+		BedrockEconomyAPI::getInstance()->getPlayerBalance($player->getName(), ClosureContext::create(static function(?int $balance) use($callback) : void{
 			$callback($balance ?? 0);
 		}));
 	}
 
 	public function addMoney(Player $player, float $money) : void{
-		LegacyBEAPI::getInstance()->addToPlayerBalance($player->getName(), (int) ceil($money));
+		BedrockEconomyAPI::getInstance()->addToPlayerBalance($player->getName(), (int) ceil($money));
 	}
 
 	//Thanks for the Repair @cooldogedev
 	public function removeMoney(Player $player, float $money, Closure $callback) : void{
-		LegacyBEAPI::getInstance()->subtractFromPlayerBalance($player->getName(), (int) ceil($money), ClosureContext::create(static function(bool $success) use($callback) : void{
+		BedrockEconomyAPI::getInstance()->subtractFromPlayerBalance($player->getName(), (int) ceil($money), ClosureContext::create(static function(bool $success) use($callback) : void{
 			$callback($success);
 		}));
 	}

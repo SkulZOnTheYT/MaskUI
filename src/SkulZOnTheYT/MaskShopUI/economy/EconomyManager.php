@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SkulZOnTheYT\MaskShopUI\economy;
 
 use InvalidArgumentException;
-use AlexPads\CustomShopUI\Main;
+use SkulZOnTheYT\MaskShopUI\Main;
 use pocketmine\utils\Utils;
 
 final class EconomyManager{

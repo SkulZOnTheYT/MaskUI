@@ -18,7 +18,7 @@ final class EconomyManager{
 	 */
 	private static array $integrations = [];
 
-	private static EconomyIntegration $integrated;
+	private static EconomyIntegration $integrated = null;
 
 	public static function init(Main $loader) : void{
 		self::registerDefaults();

@@ -18,7 +18,7 @@ final class EconomyManager{
 	 */
 	private static array $integrations = [];
 
-	private static EconomyIntegration $integrated = null;
+	private static EconomyIntegration $integrated;
 
 	public static function init(Main $loader) : void{
 		self::registerDefaults();
@@ -50,9 +50,7 @@ final class EconomyManager{
 	}
 
 	public static function get() : EconomyIntegration{
-           if (self::$integrated == null) {
-               self::$integrated = new EconomyIntegration();
-          }
+       
 	return self::$integrated;
 	}
 }

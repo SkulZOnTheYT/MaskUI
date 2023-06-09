@@ -18,6 +18,7 @@ use pocketmine\item\ItemFactory;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\utils\Config;
 use SkulZOnTheYT\MaskUI\Form\{Form, SimpleForm};
+use SkulZOnTheYT\MaskUI\EffectTask;
 
 class Main extends PluginBase implements Listener {
     
@@ -167,4 +168,11 @@ class Main extends PluginBase implements Listener {
       $form->addButton("§l§cEXIT", 2);
       $form->sendToPlayer($sender);
     	}
+	
+	public function onItemHeld(PlayerItemHeldEvent $event) {
+        $player = $event->getPlayer();
+        $item = $event->getItem();
+
+        $this->getScheduler()->scheduleDelayedTask(new EffectTask($player, $item), 1);
+     }
     }

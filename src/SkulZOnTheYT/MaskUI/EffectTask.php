@@ -17,9 +17,9 @@ use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
 
-    private $player
+    private $player;
     
-     public const DRAGON_HEAD = ItemFactory::getInstance()->get(397, 5, 1);
+    public const DRAGON_HEAD = ItemFactory::getInstance()->get(397, 5, 1);
     public const CREEPER_HEAD = ItemFactory::getInstance()->get(397, 4, 1);
     public const WITHER_SKELETON_SKULL = ItemFactory::getInstance()->get(397, 1, 1);
     public const STEVE_HEAD = ItemFactory::getInstance()->get(397, 3, 1);

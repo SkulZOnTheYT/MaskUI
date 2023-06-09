@@ -16,74 +16,11 @@ use pocketmine\utils\TextFormat;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
-    
-     public static function getEffectByName(string $name){
-		switch($name){
-			case "absorption":
-			return VanillaEffects::ABSORPTION();
-			case "blindness":
-			return VanillaEffects::BLINDNESS();
-			case "conduit_power":
-			return VanillaEffects::CONDUIT_POWER();
-			case "poison":
-			return VanillaEffects::POISON();
-			case "fire_resistance":
-			return VanillaEffects::FIRE_RESISTANCE();
-			case "haste":
-			return VanillaEffects::HASTE();
-			case "health_boost":
-			return VanillaEffects::HEALTH_BOOST();
-			case "hunger":
-			return VanillaEffects::HUNGER();
-			case "instant_damage":
-			return VanillaEffects::INSTANT_DAMAGE();
-			case "instant_health":
-			return VanillaEffects::INSTANT_HEALTH();
-			case "invisibility":
-			return VanillaEffects::INVISIBILITY();
-			case "jump_boost":
-			return VanillaEffects::JUMP_BOOST();
-			case "levitation":
-			return VanillaEffects::LEVITATION();
-			case "mining_fatigue":
-			return VanillaEffects::MINING_FATIGUE();
-			case "nausea":
-			return VanillaEffects::NAUSEA();
-			case "night_vision":
-			return VanillaEffects::NIGHT_VISION();
-			case "regeneration":
-			return VanillaEffects::REGENERATION();
-			case "resistance":
-			return VanillaEffects::RESISTANCE();
-			case "saturation":
-			return VanillaEffects::SATURATION();
-			case "slowness":
-			return VanillaEffects::SLOWNESS();
-			case "speed":
-			return VanillaEffects::SPEED();
-			case "strength":
-			return VanillaEffects::STRENGTH();
-			case "water_breathing":
-			return VanillaEffects::WATER_BREATHING();
-			case "weakness":
-			return VanillaEffects::WEAKNESS();
-			case "wither":
-			return VanillaEffects::WITHER();
-			default:
-			return null;
-		}
-	}
 
     public function onRun(int $currentTick) {
         $helmet = $this->player->getArmorInventory()->getHelmet();
           if ($helmet !== null) {
-            switch ($helmet->getId()) 
-             $dragon = ItemFactory::getInstance()->get(397, 5, 1);
-             $creeper = ItemFactory::getInstance()->get(397, 4, 1);
-             $wither = ItemFactory::getInstance()->get(397, 1, 1);
-             $steve = ItemFactory::getInstance()->get(397, 3, 1);
-             $skeleton = ItemFactory::getInstance()->get(397, 0, 1);
-             $zombie = ItemFactory::getInstance()->get(397, 2, 1); {
+            switch ($helmet->getId()) {
                 case $dragon:
                     $this->applyDragonHeadEffects();
                     break;
@@ -100,7 +37,14 @@ class EffectTask extends Task {
                 case $zombie:
                     $this->applyZombieHeadEffects();
                     break;
-            }
+            
+		   $dragon = ItemFactory::getInstance()->get(397, 5, 1);
+                   $creeper = ItemFactory::getInstance()->get(397, 4, 1);
+                   $wither = ItemFactory::getInstance()->get(397, 1, 1);
+                   $steve = ItemFactory::getInstance()->get(397, 3, 1);
+                   $skeleton = ItemFactory::getInstance()->get(397, 0, 1);
+                   $zombie = ItemFactory::getInstance()->get(397, 2, 1);
+	    }
         }
     }
 

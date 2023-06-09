@@ -1,15 +1,14 @@
-name: MaskShopUI
+name: MaskUI
 version: 1.0
-main: SkulZOnTheYT\MaskShopUI\Main
-api: 4.0.0
+main: SkulZOnTheYT\MaskUI\Main
+api: 5.0.0
 author: SkulZOnTheYT, Kylan1940
 
 commands:
   mask:
-   description: open mask shop in ui
-   usage: "/mask"
-   permission: mask.shop
+   description: "open mask ui"
+   permission: "mask.ui"
 permissions:
-  mask.shop:
-   default: true
-   description: allow user open mask shop
+  mask.ui:
+   description: "allow user open mask ui"
+   default: op

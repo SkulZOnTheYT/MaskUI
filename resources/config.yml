@@ -1,21 +1,19 @@
-# Heads costs
-zombie.price: 10000
-wither.price: 50000
-dragon.price: 35000
-creeper.price: 2500
-steve.price: 25000
-skeleton.price: 7500
+# Messages when successfully given a mask
+msg.shop.zombie: "§7[§eMask§bShop§7] §dyou successfully given a §2zombie §dmask!"
+msg.shop.wither: "§7[§eMask§bShop§7] §dyou successfully given a §7wither§d mask!"
+msg.shop.dragon: "§7[§eMask§bShop§7] §dyou successfully given a §cdragon§d mask!"
+msg.shop.creeper: "§7[§eMask§bShop§7] §dyou successfully given a §acreeper§d mask!"
+msg.shop.skeleton: "§7[§eMask§bShop§7] §dyou successfully given a §fskeleton §dmask!"
+msg.shop.steve: "§7[§eMask§bShop§7] §dyou successfully given a §3steve §dmask!"
 
-# Messages when successfully bought a mask
-msg.shop.zombie: "§7[§eMask§bShop§7] §dyou successfully bought a §2zombie §dmask!"
-msg.shop.wither: "§7[§eMask§bShop§7] §dyou successfully bought a §7wither§d mask!"
-msg.shop.dragon: "§7[§eMask§bShop§7] §dyou successfully bought a §cdragon§d mask!"
-msg.shop.creeper: "§7[§eMask§bShop§7] §dyou successfully bought a §acreeper§d mask!"
-msg.shop.skeleton: "§7[§eMask§bShop§7] §dyou successfully bought a §fskeleton §dmask!"
-msg.shop.steve: "§7[§eMask§bShop§7] §dyou successfully bought a §3steve §dmask!"
-
-# Dont have enough money message
-msg.no-money: "§7[§eMask§bShop§7] §cYou don't have enough money!"
+# Dont have permission
+msg.no-permission: "§7[§eMask§bShop§7] §cYou don't have permission!"
 
 # Message when Quit From the Menu 
 quit.message: "§7[§eMask§bShop§7] §cExited Mask Menu!"
+
+# Title of main Mask ui
+title.ui.main: "§eMask UI"
+
+# Title of effect list
+title.ui.feature: "§d§lEffects §bList"

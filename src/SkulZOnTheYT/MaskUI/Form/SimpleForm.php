@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace SkulZOnTheYT\MaskShopUI\Form;
+namespace SkulZOnTheYT\MaskUI\Form;
 
 class SimpleForm extends Form {
 

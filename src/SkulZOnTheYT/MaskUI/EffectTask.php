@@ -17,7 +17,7 @@ use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
     
-    private $player = $this->player
+    private $player = $this->player;
     
     private $dragon = ItemFactory::getInstance()->get(397, 5, 1);
     private $creeper = ItemFactory::getInstance()->get(397, 4, 1);

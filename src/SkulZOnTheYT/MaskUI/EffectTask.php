@@ -17,12 +17,12 @@ use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
     
-    $dragon = ItemFactory::getInstance()->get(397, 5, 1);
-    $creeper = ItemFactory::getInstance()->get(397, 4, 1);
-    $wither = ItemFactory::getInstance()->get(397, 1, 1);
-    $steve = ItemFactory::getInstance()->get(397, 3, 1);
-    $skeleton = ItemFactory::getInstance()->get(397, 0, 1);
-    $zombie = ItemFactory::getInstance()->get(397, 2, 1);
+    private $dragon = ItemFactory::getInstance()->get(397, 5, 1);
+    private $creeper = ItemFactory::getInstance()->get(397, 4, 1);
+    private $wither = ItemFactory::getInstance()->get(397, 1, 1);
+    private $steve = ItemFactory::getInstance()->get(397, 3, 1);
+    private $skeleton = ItemFactory::getInstance()->get(397, 0, 1);
+    private $zombie = ItemFactory::getInstance()->get(397, 2, 1);
 
     public function onRun(int $currentTick) void {
         $helmet = $this->player->getArmorInventory()->getHelmet();

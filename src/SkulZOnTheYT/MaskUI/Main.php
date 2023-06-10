@@ -8,7 +8,6 @@ use pocketmine\Server;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
@@ -30,6 +29,7 @@ class Main extends PluginBase implements Listener {
 	public function onEnable() : void{
 	    self::$instance = $this;
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
+      $this->getScheduler()->scheduleDelayedTask(new EffectTask($sender), 1);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
     }
@@ -139,12 +139,12 @@ class Main extends PluginBase implements Listener {
 			$form->addButton("§cExit", 1, "textures/ui/cancel");
 			$form->addButton("§l§eMask §dFeatures", 1, "textures/items/nether_stars");
 			$form->addButton("§f§lSkeleton" , 1, "textures/items/skeleton_skull");
-      $form->addButton("§l§2Zombie" , 1, "textures/items/zombie_head");
+                        $form->addButton("§l§2Zombie" , 1, "textures/items/zombie_head");
 			$form->addButton("§a§lCreeper" , 1, "textures/items/creeper_head");
 			$form->addButton("§7§lWither Skeleton" , 1, "textures/items/wither_skeleton_skull");
 			$form->addButton("§3§lSteve" , 1, "textures/items/player_head");
 			$form->addButton("§c§lDragon" , 1, "textures/items/dragon_head");
-	    $form->sendToPlayer($sender);
+	                $form->sendToPlayer($sender);
 	}
 	
 	public function FeatureMenu($sender){
@@ -168,11 +168,4 @@ class Main extends PluginBase implements Listener {
       $form->addButton("§l§cEXIT", 2);
       $form->sendToPlayer($sender);
     	}
-	
-	public function onItemHeld(PlayerItemHeldEvent $event) {
-        $player = $event->getPlayer();
-        $item = $event->getItem();
-
-        $this->getScheduler()->scheduleDelayedTask(new EffectTask($player, $item), 1);
-     }
     }

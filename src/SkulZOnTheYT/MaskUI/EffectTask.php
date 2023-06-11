@@ -9,28 +9,26 @@ use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\item\Item;
+use pocketmine\item\VanillaItems;
 use pocketmine\item\Armor;
-use pocketmine\item\ItemFactory;
 use pocketmine\Player;
 use pocketmine\scheduler\Task;
 use pocketmine\utils\TextFormat;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
-	
-	private $player;
 
 	public function __construct(Player $player) {
-		$this->player = $player->getName();
+		$this->player = $player;
 	}
 
     public function onRun(int $currentTick = 0) : void{
-	$dragon = Item::fromString("minecraft:dragon_head");
-        $creeper = Item::fromString("minecraft:creeper_head");
-        $wither = Item::fromString("minecraft:wither_skeleton_skull");
-        $steve = Item::fromString("minecraft:player_head");
-        $skeleton = Item::fromString("minecraft:skeleton_skull");
-        $zombie = Item::fromString("minecraft:zombie_head");
+	$dragon = VanillaItems::DRAGON_HEAD;
+        $creeper = VanillaItems::CREEPER_HEAD;
+        $wither = VanillaItems::WITHER_SKELETON_SKULL;
+        $steve = VanillaItems::PLAYER_HEAD;
+        $skeleton = VanillaItems::SKELETON_SKULL;
+        $zombie = VanillaItems::ZOMBIE_HEAD;
 	    
         $helmet = $this->getArmorInventrory()->getHelmet();
           if ($helmet !== null) {

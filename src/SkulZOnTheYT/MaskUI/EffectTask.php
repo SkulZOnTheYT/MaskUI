@@ -18,9 +18,11 @@ use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
 	
-	private $player = $this->getName();
+	private $player;
 
-	public function __construct(Player $player) {}
+	public function __construct(Player $player) {
+		$this->player = $player->getName();
+	}
 
     public function onRun(int $currentTick = 0) : void{
 	$dragon = Item::fromString("minecraft:dragon_head");

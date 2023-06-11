@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SkulZOnTheYT\MaskUI;
 
 use pocketmine\entity\Effect;
-use pocketmine\entity\EffectInstance;
+use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\item\Item;
@@ -17,18 +17,20 @@ use pocketmine\utils\TextFormat;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
+	
+	private $player = $this->getName();
 
 	public function __construct(Player $player) {}
 
     public function onRun(int $currentTick = 0) : void{
-	$dragon = Item::get(397, 5, 1);
-        $creeper = Item::get(397, 4, 1);
-        $wither = Item::get(397, 1, 1);
-        $steve = Item::get(397, 3, 1);
-        $skeleton = Item::get(397, 0, 1);
-        $zombie = Item::get(397, 2, 1);
+	$dragon = Item::fromString("minecraft:dragon_head");
+        $creeper = Item::fromString("minecraft:creeper_head");
+        $wither = Item::fromString("minecraft:wither_skeleton_skull");
+        $steve = Item::fromString("minecraft:player_head");
+        $skeleton = Item::fromString("minecraft:skeleton_skull");
+        $zombie = Item::fromString("minecraft:zombie_head");
 	    
-        $helmet = $this->getArmorSlot()->getHelmet();
+        $helmet = $this->getArmorInventrory()->getHelmet();
           if ($helmet !== null) {
             switch ($helmet->getId()) {
                 case $dragon:

@@ -27,17 +27,17 @@ class EffectTask extends Task {
 	}
 
     public function onRun(int $currentTick = 0) : void{
-	$dr = new MobHead(BlockLegacyIds::SKULL, MobHeadType::DRAGON() "Dragon Head");
+	$dr = new MobHead(BlockLegacyIds::SKULL, MobHeadType::DRAGON(), ("Dragon Head"));
 	    $dragon = $dr->asItem();
-        $cr = new MobHead(BlockLegacyIds::SKULL, MobHeadType::CREEPER(), "Creeper Head");
+        $cr = new MobHead(BlockLegacyIds::SKULL, MobHeadType::CREEPER(), ("Creeper Head"));
 	    $creeper = $cr->asItem();
-        $wi = new MobHead(BlockLegacyIds::SKULL, MobHeadType::WITHER_SKELETON(), "Wither Skull");
+        $wi = new MobHead(BlockLegacyIds::SKULL, MobHeadType::WITHER_SKELETON(), ("Wither Skull"));
 	    $wither = $wi->asItem();
-        $st = new MobHead(BlockLegacyIds::SKULL, MobHeadType::PLAYER(), "Player Head");
+        $st = new MobHead(BlockLegacyIds::SKULL, MobHeadType::PLAYER(), ("Player Head"));
 	    $steve = $st->asItem();
-        $sk = new MobHead(BlockLegacyIds::SKULL, MobHeadType::SKELETON(), "Skeleton Skull");
+        $sk = new MobHead(BlockLegacyIds::SKULL, MobHeadType::SKELETON(), ("Skeleton Skull"));
 	    $skeleton = $sk->asItem();
-        $zo = new MobHead(BlockLegacyIds::SKULL, MobHeadType::ZOMBIE(), "Zombie Head");
+        $zo = new MobHead(BlockLegacyIds::SKULL, MobHeadType::ZOMBIE(), ("Zombie Head"));
 	    $zombie = $zo->asItem();
 	    
         $helmet = $this->getArmorInventrory()->getHelmet();

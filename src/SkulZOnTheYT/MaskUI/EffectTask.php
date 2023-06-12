@@ -14,6 +14,8 @@ use pocketmine\player\Player;
 use pocketmine\command\CommandSender;
 use pocketmine\scheduler\Task;
 use pocketmine\utils\TextFormat;
+use pocketmine\block\MobHead;
+use pocketmine\block\utils\MobHeadType;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
@@ -25,12 +27,12 @@ class EffectTask extends Task {
 	}
 
     public function onRun(int $currentTick = 0) : void{
-	$dragon = VanillaItems::DRAGON_HEAD();
-        $creeper = VanillaItems::CREEPER_HEAD();
-        $wither = VanillaItems::WITHER_SKELETON_SKULL();
-        $steve = VanillaItems::PLAYER_HEAD();
-        $skeleton = VanillaItems::SKELETON_SKULL();
-        $zombie = VanillaItems::ZOMBIE_HEAD();
+	$dragon = new MobHead(MobHeadType::DRAGON()->asItem());
+        $creeper = new MobHead(MobHeadType::CREEPER()->asItem());
+        $wither = new MobHead(MobHeadType::WITHER_SKELETON()->asItem());
+        $steve = new MobHead(MobHeadType::PLAYER()->asItem());
+        $skeleton = new MobHead(MobHeadType::SKELETON()->asItem());
+        $zombie = new MobHead(MobHeadType::ZOMBIE()->asItem());
 	    
         $helmet = $this->getArmorInventrory()->getHelmet();
           if ($helmet !== null) {

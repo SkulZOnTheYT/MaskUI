@@ -27,12 +27,12 @@ class EffectTask extends Task {
 	}
 
     public function onRun(int $currentTick = 0) : void{
-	$dragon = new MobHead(MobHeadType::DRAGON()->asItem());
-        $creeper = new MobHead(MobHeadType::CREEPER()->asItem());
-        $wither = new MobHead(MobHeadType::WITHER_SKELETON()->asItem());
-        $steve = new MobHead(MobHeadType::PLAYER()->asItem());
-        $skeleton = new MobHead(MobHeadType::SKELETON()->asItem());
-        $zombie = new MobHead(MobHeadType::ZOMBIE()->asItem());
+	$dragon = new MobHead(MobHeadType::DRAGON())->asItem();
+        $creeper = new MobHead(MobHeadType::CREEPER())->asItem());
+        $wither = new MobHead(MobHeadType::WITHER_SKELETON())->asItem());
+        $steve = new MobHead(MobHeadType::PLAYER())->asItem());
+        $skeleton = new MobHead(MobHeadType::SKELETON())->asItem());
+        $zombie = new MobHead(MobHeadType::ZOMBIE())->asItem());
 	    
         $helmet = $this->getArmorInventrory()->getHelmet();
           if ($helmet !== null) {

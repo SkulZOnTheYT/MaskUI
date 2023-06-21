@@ -22,7 +22,7 @@ use SkulZOnTheYT\MaskUI\Main;
 class EffectTask extends Task {
 
 	public function __construct (Player $player) {
-		$player = $event->getPlayer();
+		$this->player = $player;
 	}
 
     public function onRun(int $currentTick = 0) : void{
@@ -39,7 +39,7 @@ class EffectTask extends Task {
         $zo = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::ZOMBIE(), ("Zombie Head"));
 	    $zombie = $zo->asItem();
 	    
-        $helmet = $this->ArmorInventrory()->getHelmet();
+        $helmet = $this->ArmorInventory()->getHelmet();
           if ($helmet !== null) {
             switch ($helmet->getId()) {
                 case $dragon:
@@ -63,7 +63,7 @@ class EffectTask extends Task {
     }
 	
     private function applyDragonHeadEffects(): void {
-
+         $player = $this->getPlayer();
          $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
          $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
          $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
@@ -76,6 +76,7 @@ class EffectTask extends Task {
     }
 
     private function applyCreeperHeadEffects(): void {
+	$player = $this->getPlayer();
         $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
@@ -86,6 +87,7 @@ class EffectTask extends Task {
     }
 
     private function applySkeletonHeadEffects(): void {
+	$player = $this->getPlayer();
         $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
@@ -94,6 +96,7 @@ class EffectTask extends Task {
     }
 
     private function applySteveHeadEffects(): void {
+       $player = $this->getPlayer();
        $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
        $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
        $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
@@ -104,6 +107,7 @@ class EffectTask extends Task {
     }
 
     private function applyZombieHeadEffects(): void {
+	$player = $this->getPlayer();
         $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));

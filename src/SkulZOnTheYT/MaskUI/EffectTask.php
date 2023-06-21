@@ -23,7 +23,6 @@ class EffectTask extends Task {
 
 	public function __construct (Player $player) {
 		$player = $event->getPlayer();
-            }
 	}
 
     public function onRun(int $currentTick = 0) : void{

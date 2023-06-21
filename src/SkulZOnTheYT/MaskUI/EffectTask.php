@@ -21,8 +21,14 @@ use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
 
+	private $player;
+
 	public function __construct (Player $player) {
 		$this->player = $player;
+	}
+
+	public function getPlayer(): Player {
+        return $this->player;
 	}
 
     public function onRun(int $currentTick = 0) : void{
@@ -39,7 +45,7 @@ class EffectTask extends Task {
         $zo = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::ZOMBIE(), ("Zombie Head"));
 	    $zombie = $zo->asItem();
 	    
-        $helmet = $this->ArmorInventory()->getHelmet();
+        $helmet = ArmorInventory::getHelmet();
           if ($helmet !== null) {
             switch ($helmet->getId()) {
                 case $dragon:

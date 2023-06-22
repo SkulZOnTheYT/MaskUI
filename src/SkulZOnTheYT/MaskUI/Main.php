@@ -34,9 +34,8 @@ class Main extends PluginBase implements Listener {
 
 	public function onEnable() : void{
 	    self::$instance = $this;
-      $player = $this->getPlayer();
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
-      $this->getScheduler()->scheduleDelayedTask(new EffectTask($player), 1);
+      $this->getScheduler()->scheduleDelayedTask(new EffectTask($this->getPlayer()), 1);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
     }

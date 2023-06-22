@@ -30,10 +30,6 @@ class EffectTask extends Task {
 	public function getPlayer(): Player {
         return $this->player;
 	}
-
-	public function getHelmet() : Item{
-        return $this->getItem(self::MOB_HEAD);
-    }
 	
     public function onRun(int $currentTick = 0) : void{
 	$dr = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::DRAGON(), ("Dragon Head"));
@@ -48,8 +44,9 @@ class EffectTask extends Task {
 	    $skeleton = $sk->asItem();
         $zo = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::ZOMBIE(), ("Zombie Head"));
 	    $zombie = $zo->asItem();
-	    
-	 $helmet = $this->getHelmet();
+
+	 $inv = $player->getArmorInventory();
+	 $helmet = $inv->getHelmet();
           if ($helmet !== null) {
             switch ($helmet->getItem()) {
                 case $dragon:

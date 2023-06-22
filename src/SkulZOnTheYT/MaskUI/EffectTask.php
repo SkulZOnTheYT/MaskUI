@@ -31,6 +31,10 @@ class EffectTask extends Task {
         return $this->player;
 	}
 
+	public function getHelmet() : Item{
+        return $this->getItem(self::MOB_HEAD);
+    }
+	
     public function onRun(int $currentTick = 0) : void{
 	$dr = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::DRAGON(), ("Dragon Head"));
 	    $dragon = $dr->asItem();

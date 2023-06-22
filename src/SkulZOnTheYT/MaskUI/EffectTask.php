@@ -45,7 +45,7 @@ class EffectTask extends Task {
         $zo = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::ZOMBIE(), ("Zombie Head"));
 	    $zombie = $zo->asItem();
 	    
-        $helmet = $armorInventory->getHelmet();
+        $helmet = $this->getPlayer()->getHelmet();
           if ($helmet !== null) {
             switch ($helmet->getItem()) {
                 case $dragon:

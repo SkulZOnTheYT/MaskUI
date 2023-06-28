@@ -13,6 +13,7 @@ use pocketmine\player\Player;
 use pocketmine\scheduler\Task;
 use pocketmine\event\player\PlayerEvent;
 use pocketmine\utils\TextFormat;
+use pocketmine\item\Item;
 use pocketmine\block\MobHead;
 use pocketmine\block\BlockTypeIds;
 use pocketmine\block\utils\MobHeadType;
@@ -49,7 +50,7 @@ class EffectTask extends Task {
           $helmet = $inv->getHelmet();
            $slot = 0;
             if ($helmet !== null) {
-             switch ($helmet->getItem($slot)) {
+             switch ($helmet->getName($slot)) {
                 case $dragon:
                     $this->applyDragonHeadEffects();
                     break;

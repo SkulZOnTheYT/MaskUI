@@ -27,12 +27,11 @@ class Main extends PluginBase implements Listener {
     private static $instance;
 	
 	public $plugin;
-	private $player;
 
 	public function onEnable() : void{
 	    self::$instance = $this;
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
-      $player = $this->getServer()->getOnlinePlayer();
+      $player = $this->getServer()->getOnlinePlayers();
       $this->getScheduler()->scheduleRepeatingTask(new EffectTask($player), 20);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");

@@ -31,10 +31,12 @@ class Main extends PluginBase implements Listener {
 	public function onEnable() : void{
 	    self::$instance = $this;
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
-      $player = $this->getServer()->getOnlinePlayers();
-      $this->getScheduler()->scheduleRepeatingTask(new EffectTask($player), 20);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
+      $server = Server::getInstance();
+        foreach ($server->getOnlinePlayers() as $player) {
+           $this->getScheduler()->scheduleRepeatingTask(new EffectTask($player), 20);
+	}
     }
 	
 	public static function getInstance() : self{

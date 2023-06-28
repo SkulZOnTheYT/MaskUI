@@ -48,9 +48,8 @@ class EffectTask extends Task {
 	$player = $this->getPlayer();
 	 $inv = new ArmorInventory($player);
           $helmet = $inv->getHelmet();
-           $slot = 0;
             if ($helmet !== null) {
-             switch ($helmet->getName($slot)) {
+             switch ($helmet->getName()) {
                 case $dragon:
                     $this->applyDragonHeadEffects();
                     break;

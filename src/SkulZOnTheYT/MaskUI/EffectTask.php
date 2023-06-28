@@ -23,9 +23,7 @@ class EffectTask extends Task {
 
 	private $player;
 
-	public function __construct () {
-		$this->player = $player;
-	}
+	public function __construct(){}
 
 	public function getPlayer(): Player {
         return $this->player;
@@ -50,7 +48,7 @@ class EffectTask extends Task {
           $helmet = $inv->getHelmet();
            $slot = 0;
             if ($helmet !== null) {
-             $item = $helmet->getItem($slot);
+             $item = $helmet->getId($slot);
               if ($item !== null) {
               switch ($item->getId()) {
                 case $dragon:

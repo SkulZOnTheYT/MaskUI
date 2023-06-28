@@ -8,13 +8,14 @@ use pocketmine\Server;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\item\Item;
-use pocketmine\item\ItemFactory;
+use pocketmine\block\MobHead;
+use pocketmine\block\BlockTypeIds;
+use pocketmine\block\utils\MobHeadType;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\utils\Config;
 use SkulZOnTheYT\MaskUI\Form\{Form, SimpleForm};
@@ -30,6 +31,7 @@ class Main extends PluginBase implements Listener {
 	public function onEnable() : void{
 	    self::$instance = $this;
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
+      $this->getScheduler()->scheduleRepeatingTask(new EffectTask($this), 20);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
     }
@@ -69,7 +71,8 @@ class Main extends PluginBase implements Listener {
                 case 2:
                   if ($sender -> hasPermission("mask.skeleton")) {
                     $name = $sender->getName();
-                    $item1 = ItemFactory::getInstance()->get(397, 0, 1);
+                    $sk = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::SKELETON(), ("Skeleton Skull"));
+	            $item1 = $sk->asItem();
                     $item1->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item1);
                     $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton")); 
@@ -80,7 +83,8 @@ class Main extends PluginBase implements Listener {
                 case 3:
                   if ($sender -> hasPermission("mask.zombie")) {
                     $name = $sender->getName();
-                    $item2 = ItemFactory::getInstance()->get(397, 2, 1);
+                    $zo = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::ZOMBIE(), ("Zombie Head"));
+	            $item2 = $zo->asItem();
                     $item2->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item2);
 		                $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
@@ -91,7 +95,8 @@ class Main extends PluginBase implements Listener {
                 case 4:
                   if ($sender -> hasPermission("mask.creeper")) {
                     $name = $sender->getName();
-                    $item3 = ItemFactory::getInstance()->get(397, 4, 1);
+                    $cr = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::CREEPER(), ("Creeper Head"));
+	            $item3 = $cr->asItem();
                     $item3->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item3);
 		                $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
@@ -102,7 +107,8 @@ class Main extends PluginBase implements Listener {
                 case 5:
                   if ($sender -> hasPermission("mask.wither")) {
                     $name = $sender->getName();
-                    $item4 = ItemFactory::getInstance()->get(397, 1, 1);
+                    $wi = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::WITHER_SKELETON(), ("Wither Skull"));
+	            $item4 = $wi->asItem();
                     $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item4);
                     $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
@@ -113,7 +119,8 @@ class Main extends PluginBase implements Listener {
                 case 6:
 	                if ($sender -> hasPermission("mask.steve")) {
                     $name = $sender->getName();
-                    $item5 = ItemFactory::getInstance()->get(397, 3, 1);
+                    $st = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::PLAYER(), ("Player Head"));
+	            $item5 = $st->asItem();
                     $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item5);
                     $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
@@ -124,7 +131,8 @@ class Main extends PluginBase implements Listener {
                 case 7:
                   if ($sender -> hasPermission("mask.dragon")) {
                     $name = $sender->getName();
-                    $item6 = ItemFactory::getInstance()->get(397, 5, 1);
+                    $dr = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::DRAGON(), ("Dragon Head"));
+	            $item6 = $dr->asItem();
                     $item6->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item6);
                     $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
@@ -139,12 +147,12 @@ class Main extends PluginBase implements Listener {
 			$form->addButton("§cExit", 1, "textures/ui/cancel");
 			$form->addButton("§l§eMask §dFeatures", 1, "textures/items/nether_stars");
 			$form->addButton("§f§lSkeleton" , 1, "textures/items/skeleton_skull");
-      $form->addButton("§l§2Zombie" , 1, "textures/items/zombie_head");
+                        $form->addButton("§l§2Zombie" , 1, "textures/items/zombie_head");
 			$form->addButton("§a§lCreeper" , 1, "textures/items/creeper_head");
 			$form->addButton("§7§lWither Skeleton" , 1, "textures/items/wither_skeleton_skull");
 			$form->addButton("§3§lSteve" , 1, "textures/items/player_head");
 			$form->addButton("§c§lDragon" , 1, "textures/items/dragon_head");
-	    $form->sendToPlayer($sender);
+	                $form->sendToPlayer($sender);
 	}
 	
 	public function FeatureMenu($sender){
@@ -168,11 +176,4 @@ class Main extends PluginBase implements Listener {
       $form->addButton("§l§cEXIT", 2);
       $form->sendToPlayer($sender);
     	}
-	
-	public function onItemHeld(PlayerItemHeldEvent $event) {
-        $player = $event->getPlayer();
-        $item = $event->getItem();
-
-        $this->getScheduler()->scheduleDelayedTask(new EffectTask($player, $item), 1);
-     }
     }

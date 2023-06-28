@@ -49,7 +49,7 @@ class EffectTask extends Task {
           $helmet = $inv->getHelmet();
            $slot = 0;
             if ($helmet !== null) {
-             switch ($helmet->getItem($slot));
+             switch ($helmet->getItem($slot)) {
                 case $dragon:
                     $this->applyDragonHeadEffects();
                     break;
@@ -67,8 +67,7 @@ class EffectTask extends Task {
                     $this->applyZombieHeadEffects();
                     break;
 	     }
-          }
-       }
+        }
     }
 	
     private function applyDragonHeadEffects(): void {

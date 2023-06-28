@@ -45,6 +45,7 @@ class EffectTask extends Task {
         $zo = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::ZOMBIE(), ("Zombie Head"));
 	    $zombie = $zo->asItem();
 
+	$player = $this->getPlayer();
 	 $inv = $player->getInventory();
           $helmet = $inv->getHelmet();
            $slot = 0;

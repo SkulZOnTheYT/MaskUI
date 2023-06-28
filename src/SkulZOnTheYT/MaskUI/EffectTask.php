@@ -23,7 +23,7 @@ class EffectTask extends Task {
 
 	private $player;
 
-	public function __construct (Player $player) {
+	public function __construct () {
 		$this->player = $player;
 	}
 
@@ -46,7 +46,7 @@ class EffectTask extends Task {
 	    $zombie = $zo->asItem();
 
 	$player = $this->getPlayer();
-	 $inv = $player->getInventory();
+	 $inv = $player->getArmorInventory();
           $helmet = $inv->getHelmet();
            $slot = 0;
             if ($helmet !== null) {

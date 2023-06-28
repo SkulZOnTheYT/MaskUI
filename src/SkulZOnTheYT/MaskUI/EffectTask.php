@@ -8,7 +8,6 @@ use pocketmine\entity\Effect;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
-use pocketmine\item\Item;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\player\Player;
 use pocketmine\scheduler\Task;
@@ -20,8 +19,6 @@ use pocketmine\block\utils\MobHeadType;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
-
-	private $player;
 
 	public function __construct(){}
 
@@ -48,7 +45,7 @@ class EffectTask extends Task {
           $helmet = $inv->getHelmet();
            $slot = 0;
             if ($helmet !== null) {
-             $item = $helmet->getId($slot);
+             $item = $helmet->getItem($slot);
               if ($item !== null) {
               switch ($item->getId()) {
                 case $dragon:

@@ -68,8 +68,9 @@ class EffectTask extends Task {
                 case $zombie:
                     $this->applyZombieHeadEffects();
                     break;
-	    }
-        }
+	     }
+          }
+       }
     }
 	
     private function applyDragonHeadEffects(): void {

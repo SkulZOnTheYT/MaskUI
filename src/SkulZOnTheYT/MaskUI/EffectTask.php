@@ -20,7 +20,11 @@ use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
 
-	public function __construct(){}
+        private $player;
+	
+	public function __construct (Player $player){
+		$this->player = $player;
+	}
 
 	public function getPlayer(): Player {
         return $this->player;
@@ -41,13 +45,11 @@ class EffectTask extends Task {
 	    $zombie = $zo->asItem();
 
 	$player = $this->getPlayer();
-	 $inv = $player->getArmorInventory();
+	 $inv = new ArmorInventory($player);
           $helmet = $inv->getHelmet();
            $slot = 0;
             if ($helmet !== null) {
-             $item = $helmet->getItem($slot);
-              if ($item !== null) {
-              switch ($item->getId()) {
+             switch ($helmet->getItem($slot));
                 case $dragon:
                     $this->applyDragonHeadEffects();
                     break;

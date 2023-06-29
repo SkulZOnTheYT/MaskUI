@@ -147,14 +147,14 @@ class Main extends PluginBase implements Listener {
         });
 			$form->setTitle($this->getConfig()->get("title.ui.main"));
 			$form->setContent(str_replace(["{name}"], [$sender->getName()], "§fHello §b{name}\n§fFor know the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"));
-			$form->addButton("§cExit", 1, "textures/ui/cancel");
-			$form->addButton("§l§eMask §dFeatures", 1, "textures/items/nether_stars");
-			$form->addButton("§f§lSkeleton" , 1, "textures/items/skeleton_skull");
-                        $form->addButton("§l§2Zombie" , 1, "textures/items/zombie_head");
-			$form->addButton("§a§lCreeper" , 1, "textures/items/creeper_head");
-			$form->addButton("§7§lWither Skeleton" , 1, "textures/items/wither_skeleton_skull");
-			$form->addButton("§3§lSteve" , 1, "textures/items/player_head");
-			$form->addButton("§c§lDragon" , 1, "textures/items/dragon_head");
+			$form->addButton("§cExit", 0, "textures/ui/cancel");
+			$form->addButton("§l§eMask §dFeatures", 0, "textures/items/nether_stars");
+			$form->addButton("§f§lSkeleton" , 0, "textures/items/skeleton_skull");
+                        $form->addButton("§l§2Zombie" , 0, "textures/items/zombie_head");
+			$form->addButton("§a§lCreeper" , 0, "textures/items/creeper_head");
+			$form->addButton("§7§lWither Skeleton" , 0, "textures/items/wither_skeleton_skull");
+			$form->addButton("§3§lSteve" , 0, "textures/items/player_head");
+			$form->addButton("§c§lDragon" , 0, "textures/items/dragon_head");
 	                $form->sendToPlayer($sender);
 	}
 	

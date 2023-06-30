@@ -19,6 +19,7 @@ use pocketmine\block\utils\MobHeadType;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\utils\Config;
 use pocketmine\world\sound\EndermanTeleportSound;
+use pocketmine\world\sound\AnvilFallSound;
 use SkulZOnTheYT\MaskUI\Form\{Form, SimpleForm};
 use SkulZOnTheYT\MaskUI\EffectTask;
 
@@ -80,10 +81,11 @@ class Main extends PluginBase implements Listener {
 	            $item1 = $sk->asItem();
                     $item1->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item1);
+                    $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-                    $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton")); 
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+	            $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 3:
@@ -93,9 +95,11 @@ class Main extends PluginBase implements Listener {
 	            $item2 = $zo->asItem();
                     $item2->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item2);
-		                $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
+		    $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 4:
@@ -105,9 +109,11 @@ class Main extends PluginBase implements Listener {
 	            $item3 = $cr->asItem();
                     $item3->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item3);
-		                $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
+		    $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 5:
@@ -118,20 +124,24 @@ class Main extends PluginBase implements Listener {
                     $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item4);
                     $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 6:
-	                if ($sender -> hasPermission("mask.steve")) {
+	          if ($sender -> hasPermission("mask.steve")) {
                     $name = $sender->getName();
                     $st = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::PLAYER(), ("Player Head"));
 	            $item5 = $st->asItem();
                     $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item5);
                     $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 7:
@@ -142,8 +152,10 @@ class Main extends PluginBase implements Listener {
                     $item6->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item6);
                     $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
             }

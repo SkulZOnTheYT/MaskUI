@@ -49,7 +49,11 @@ class Main extends PluginBase implements Listener {
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         if($sender instanceof Player){
           if($cmd->getName() == "mask"){
-            $this->MaskShopForm($sender);
+	    if ($sender -> hasPermission("mask.ui")) {
+              $this->MaskShopForm($sender);
+            } else {
+              $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+            }
           }
         } else {
           $sender->sendMessage("This command can only be used in-game.");

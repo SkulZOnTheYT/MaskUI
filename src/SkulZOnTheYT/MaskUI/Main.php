@@ -35,7 +35,7 @@ class Main extends PluginBase implements Listener {
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
-      $this->getLogger()->info("TF::GREEN Plugin TeleportUI has been actived");
+      $this->getLogger()->info("Plugin MaskUI has been actived");
       $server = Server::getInstance();
         foreach ($server->getOnlinePlayers() as $player) {
            $this->getScheduler()->scheduleRepeatingTask(new EffectTask($player), 20);
@@ -45,6 +45,7 @@ class Main extends PluginBase implements Listener {
 	public static function getInstance() : self{
 	    return self::$instance;
 	}
+	
      
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         if($sender instanceof Player){

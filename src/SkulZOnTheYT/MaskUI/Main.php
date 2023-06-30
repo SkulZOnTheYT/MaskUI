@@ -18,6 +18,7 @@ use pocketmine\block\BlockTypeIds;
 use pocketmine\block\utils\MobHeadType;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\utils\Config;
+use pocketmine\world\sound\EndermanTeleportSound;
 use SkulZOnTheYT\MaskUI\Form\{Form, SimpleForm};
 use SkulZOnTheYT\MaskUI\EffectTask;
 
@@ -33,7 +34,7 @@ class Main extends PluginBase implements Listener {
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
-      $this->getLogger()->info(TF::GREEN ("Plugin TeleportUI has been actived"));
+      $this->getLogger()->info(TF::GREEN "Plugin TeleportUI has been actived");
       $server = Server::getInstance();
         foreach ($server->getOnlinePlayers() as $player) {
            $this->getScheduler()->scheduleRepeatingTask(new EffectTask($player), 20);
@@ -79,6 +80,7 @@ class Main extends PluginBase implements Listener {
 	            $item1 = $sk->asItem();
                     $item1->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item1);
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                     $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton")); 
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));

@@ -33,6 +33,7 @@ class Main extends PluginBase implements Listener {
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
+      $this->getLogger()->info(TF::GREEN "Plugin TeleportUI has been actived");
       $server = Server::getInstance();
         foreach ($server->getOnlinePlayers() as $player) {
            $this->getScheduler()->scheduleRepeatingTask(new EffectTask($player), 20);
@@ -53,24 +54,24 @@ class Main extends PluginBase implements Listener {
             }
           }
         } else {
-          $sender->sendMessage($this->getConfig()->get("only-ingame"));
+          $sender->sendMessage("This command can only be used in-game.");
         }
         return true;
     }
     
   public function MaskShopForm($sender){
-				  $form = new SimpleForm(function (Player $sender, int $data = null){
+	$form = new SimpleForm(function (Player $sender, int $data = null){
             $result = $data;
             if ($result === null) {
                 return;
             }
             switch ($result) {
                 case 0:
-				          $sender->sendMessage($this->getConfig()->get("quit.message"));
-		    	   		break;
-			         	case 1:
-				          $this->FeatureMenu($sender);
-  				      break;
+		  $sender->sendMessage($this->getConfig()->get("quit.message"));
+		    break;
+		case 1:
+		  $this->FeatureMenu($sender);
+  		    break;
                 case 2:
                   if ($sender -> hasPermission("mask.skeleton")) {
                     $name = $sender->getName();

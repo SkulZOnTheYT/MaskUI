@@ -69,6 +69,14 @@ class EffectTask extends Task {
 	     }
         }
     }
+
+    public function onCancel(): void{
+      $player = $this->getPlayer();
+        if (isset($this->activeEffects[$player->getName()])) {
+          $player->getEffects()->remove(EffectInstance $instance);
+          unset($this->activeEffects[$player->getName()]);
+        }
+    }
 	
     private function applyDragonHeadEffects(): void {
          $player = $this->getPlayer();

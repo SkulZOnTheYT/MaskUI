@@ -11,7 +11,7 @@ commands:
 permissions:
   mask.ui:
    description: "allow user open mask ui"
-   default: true
+   default: op
 
 permissions:
   mask.skeleton:

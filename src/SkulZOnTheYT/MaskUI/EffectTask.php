@@ -73,7 +73,7 @@ class EffectTask extends Task {
     public function onCancel(): void{
       $player = $this->getPlayer();
         if (isset($this->activeEffects[$player->getName()])) {
-          $player->getEffects()->remove(EffectInstance $instance);
+          $player->getEffects()->remove($this->activeEffects[$player->getName()]);
           unset($this->activeEffects[$player->getName()]);
         }
     }

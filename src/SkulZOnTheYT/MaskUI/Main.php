@@ -47,7 +47,14 @@ class Main extends PluginBase implements Listener {
 	public static function getInstance() : self{
 	    return self::$instance;
 	}
-	
+
+	public function getMobHeadType(): MobHeadType {
+        return $this->mobHeadType;
+    }
+
+    public function setMobHeadType(MobHeadType $mobHeadType): void {
+        $this->mobHeadType = $mobHeadType;
+    }
      
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         if($sender instanceof Player){

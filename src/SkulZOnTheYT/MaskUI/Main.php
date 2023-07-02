@@ -15,6 +15,7 @@ use pocketmine\command\ConsoleCommandSender;
 use pocketmine\item\Item;
 use pocketmine\block\MobHead;
 use pocketmine\block\BlockTypeIds;
+use pocketmine\block\BlockIdentifier;
 use pocketmine\block\utils\MobHeadType;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\utils\Config;

@@ -80,7 +80,9 @@ class Main extends PluginBase implements Listener {
                 case 2:
                   if ($sender -> hasPermission("mask.skeleton")) {
                     $name = $sender->getName();
-                    $sk = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::SKELETON(), ("Skeleton Skull"));
+                    $blockId = 10348;
+		    $blockIdentifier = new BlockIdentifier($blockId);
+                    $sk = new MobHead($BlockIdentifier->getBlockTypeId(), MobHeadType::SKELETON(), ("Skeleton Skull"));
 	            $item1 = $sk->asItem();
                     $item1->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item1);
@@ -94,7 +96,9 @@ class Main extends PluginBase implements Listener {
                 case 3:
                   if ($sender -> hasPermission("mask.zombie")) {
                     $name = $sender->getName();
-                    $zo = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::ZOMBIE(), ("Zombie Head"));
+                    $blockId = 10348;
+		    $blockIdentifier = new BlockIdentifier($blockId);
+                    $zo = new MobHead($BlockIdentifier->getBlockTypeId(), MobHeadType::ZOMBIE(), ("Zombie Head"));
 	            $item2 = $zo->asItem();
                     $item2->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item2);
@@ -108,7 +112,9 @@ class Main extends PluginBase implements Listener {
                 case 4:
                   if ($sender -> hasPermission("mask.creeper")) {
                     $name = $sender->getName();
-                    $cr = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::CREEPER(), ("Creeper Head"));
+                    $blockId = 10348;
+		    $blockIdentifier = new BlockIdentifier($blockId);
+                    $cr = new MobHead($BlockIdentifier->getBlockTypeId(), MobHeadType::CREEPER(), ("Creeper Head"));
 	            $item3 = $cr->asItem();
                     $item3->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item3);
@@ -122,7 +128,9 @@ class Main extends PluginBase implements Listener {
                 case 5:
                   if ($sender -> hasPermission("mask.wither")) {
                     $name = $sender->getName();
-                    $wi = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::WITHER_SKELETON(), ("Wither Skull"));
+                    $blockId = 10348;
+		    $blockIdentifier = new BlockIdentifier($blockId);
+                    $wi = new MobHead($BlockIdentifier->getBlockTypeId(), MobHeadType::WITHER_SKELETON(), ("Wither Skeleton Skull"));
 	            $item4 = $wi->asItem();
                     $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item4);
@@ -136,7 +144,9 @@ class Main extends PluginBase implements Listener {
                 case 6:
 	          if ($sender -> hasPermission("mask.steve")) {
                     $name = $sender->getName();
-                    $st = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::PLAYER(), ("Player Head"));
+                    $blockId = 10348;
+		    $blockIdentifier = new BlockIdentifier($blockId);
+                    $st = new MobHead($BlockIdentifier->getBlockTypeId(), MobHeadType::PLAYER(), ("Player Head"));
 	            $item5 = $st->asItem();
                     $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item5);
@@ -150,7 +160,9 @@ class Main extends PluginBase implements Listener {
                 case 7:
                   if ($sender -> hasPermission("mask.dragon")) {
                     $name = $sender->getName();
-                    $dr = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::DRAGON(), ("Dragon Head"));
+                    $blockId = 10348;
+		    $blockIdentifier = new BlockIdentifier($blockId);
+                    $dr = new MobHead($BlockIdentifier->getBlockTypeId(), MobHeadType::DRAGON(), ("Dragon Head"));
 	            $item6 = $dr->asItem();
                     $item6->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item6);

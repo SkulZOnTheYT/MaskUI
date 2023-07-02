@@ -16,6 +16,7 @@ use pocketmine\item\Item;
 use pocketmine\block\MobHead;
 use pocketmine\block\BlockTypeIds;
 use pocketmine\block\BlockTypeInfo;
+use pocketmine\block\BlockBreakInfo;
 use pocketmine\block\BlockIdentifier;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\utils\Config;
@@ -82,7 +83,8 @@ class Main extends PluginBase implements Listener {
                     $name = $sender->getName();
 		    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $name1 = ("Skeleton Skull");
-		    $typeInfo = new BlockTypeInfo(BlockTypeIds::MOB_HEAD);
+		    $breakInfo = new BlockBreakInfo();
+		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $sk = new MobHead($idInfo, $name1, $typeInfo);
 	            $item1 = $sk->asItem();
                     $item1->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
@@ -99,7 +101,8 @@ class Main extends PluginBase implements Listener {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $name2 = ("Zombie Head");
-		    $typeInfo = new BlockTypeInfo(BlockTypeIds::MOB_HEAD);
+		    $breakInfo = new BlockBreakInfo();
+		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $zo = new MobHead($idInfo, $name2, $typeInfo);
 	            $item2 = $zo->asItem();
                     $item2->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
@@ -116,7 +119,8 @@ class Main extends PluginBase implements Listener {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $name3 = ("Creeper Head");
-		    $typeInfo = new BlockTypeInfo(BlockTypeIds::MOB_HEAD);
+		    $breakInfo = new BlockBreakInfo();
+		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $cr = new MobHead($idInfo, $name3, $typeInfo);
 	            $item3 = $cr->asItem();
                     $item3->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
@@ -133,7 +137,8 @@ class Main extends PluginBase implements Listener {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $name4 = ("Wither Skeleton Skull");
-		    $typeInfo = new BlockTypeInfo(BlockTypeIds::MOB_HEAD);
+		    $breakInfo = new BlockBreakInfo();
+		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $wi = new MobHead($idInfo, $name4, $typeInfo);
 	            $item4 = $wi->asItem();
                     $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
@@ -150,7 +155,8 @@ class Main extends PluginBase implements Listener {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $name5 = ("Player Head");
-		    $typeInfo = new BlockTypeInfo(BlockTypeIds::MOB_HEAD);
+		    $breakInfo = new BlockBreakInfo();
+		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $st = new MobHead($idInfo, $name5, $typeInfo);
 	            $item5 = $st->asItem();
                     $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
@@ -167,7 +173,8 @@ class Main extends PluginBase implements Listener {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $name6 = ("Dragon Head");
-		    $typeInfo = new BlockTypeInfo(BlockTypeIds::MOB_HEAD);
+		    $breakInfo = new BlockBreakInfo();
+		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $dr = new MobHead($idInfo, $name6, $typeInfo);
 	            $item6 = $dr->asItem();
                     $item6->setCustomName("§cDragon §eMask \n§bOwner: §c$name");

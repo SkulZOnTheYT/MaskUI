@@ -47,14 +47,6 @@ class Main extends PluginBase implements Listener {
 	public static function getInstance() : self{
 	    return self::$instance;
 	}
-
-	public function getMobHeadType(): MobHeadType {
-        return $this->mobHeadType;
-    }
-
-    public function setMobHeadType(MobHeadType $mobHeadType): void {
-        $this->mobHeadType = $mobHeadType;
-    }
      
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         if($sender instanceof Player){
@@ -93,7 +85,7 @@ class Main extends PluginBase implements Listener {
 		    $name1 = ("Skeleton Skull");
 		    $typeInfo = new BlockTypeInfo(BlockTypeIds::MOB_HEAD);
                     $sk = new MobHead($idInfo, $name1, $typeInfo);
-		    $sk->mobHeadType = MobHeadType::SKELETON();
+		    $sk->MobHeadType::fromId(MobHeadType::SKELETON());
 	            $item1 = $sk->asItem();
                     $item1->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item1);
@@ -111,7 +103,7 @@ class Main extends PluginBase implements Listener {
 		    $name2 = ("Zombie Head");
 		    $typeInfo = new BlockTypeInfo(BlockTypeIds::MOB_HEAD);
                     $zo = new MobHead($idInfo, $name2, $typeInfo);
-		    $zo->mobHeadType = MobHeadType::ZOMBIE();
+		    $zo->MobHeadType::fromId(MobHeadType::ZOMBIE());
 	            $item2 = $zo->asItem();
                     $item2->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item2);
@@ -129,7 +121,7 @@ class Main extends PluginBase implements Listener {
 		    $name3 = ("Creeper Head");
 		    $typeInfo = new BlockTypeInfo(BlockTypeIds::MOB_HEAD);
                     $cr = new MobHead($idInfo, $name3, $typeInfo);
-		    $cr->mobHeadType = MobHeadType::CREEPER();
+		    $cr->MobHeadType::fromId(MobHeadType::CREEPER());
 	            $item3 = $cr->asItem();
                     $item3->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item3);
@@ -147,7 +139,7 @@ class Main extends PluginBase implements Listener {
 		    $name4 = ("Wither Skeleton Skull");
 		    $typeInfo = new BlockTypeInfo(BlockTypeIds::MOB_HEAD);
                     $wi = new MobHead($idInfo, $name4, $typeInfo);
-		    $wi->mobHeadType = MobHeadType::WITHER_SKELETON();
+		    $wi->MobHeadType::fromId(MobHeadType::WITHER_SKELETON());
 	            $item4 = $wi->asItem();
                     $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item4);
@@ -165,7 +157,7 @@ class Main extends PluginBase implements Listener {
 		    $name5 = ("Player Head");
 		    $typeInfo = new BlockTypeInfo(BlockTypeIds::MOB_HEAD);
                     $st = new MobHead($idInfo, $name5, $typeInfo);
-		    $st->mobHeadType = MobHeadType::PLAYER();
+		    $st->MobHeadType::fromId(MobHeadType::PLAYER());
 	            $item5 = $st->asItem();
                     $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item5);
@@ -183,7 +175,7 @@ class Main extends PluginBase implements Listener {
 		    $name6 = ("Dragon Head");
 		    $typeInfo = new BlockTypeInfo(BlockTypeIds::MOB_HEAD);
                     $dr = new MobHead($idInfo, $name6, $typeInfo);
-		    $dr->mobHeadType = MobHeadType::DRAGON();
+		    $dr->MobHeadType::fromId(MobHeadType::DRAGON());
 	            $item6 = $dr->asItem();
                     $item6->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item6);

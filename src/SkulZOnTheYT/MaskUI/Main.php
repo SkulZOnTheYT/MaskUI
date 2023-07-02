@@ -147,7 +147,7 @@ class Main extends PluginBase implements Listener {
                     $name = $sender->getName();
                     $blockId = 10348;
 		    $blockIdentifier = new BlockIdentifier($blockId);
-                    $st = new MobHead(bBlockIdentifier->getBlockTypeId(), MobHeadType::PLAYER(), ("Player Head"));
+                    $st = new MobHead($blockIdentifier->getBlockTypeId(), MobHeadType::PLAYER(), ("Player Head"));
 	            $item5 = $st->asItem();
                     $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item5);

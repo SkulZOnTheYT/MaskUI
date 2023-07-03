@@ -80,6 +80,7 @@ class EffectTask extends Task {
 
   public function handleArmorChange(Player $player): void {
     $inv = $player->getArmorInventory();
+    $helmet = $inv->getHelmet();
     if ($helmet !== null && $this->isWearingMobHead($inv)) {
         $this->onRun($player);
     } else {

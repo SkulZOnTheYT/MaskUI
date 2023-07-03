@@ -61,21 +61,23 @@ class EffectTask extends Task {
         }
     }
 
-    public function onArmorChange(ArmorInventoryChangeEvent $event) {
-      $player = $event->getPlayer();
+    public function onArmorChange(ArmorInventoryChangeEvent $this) {
+      $player = $this->getPlayer();
         $inv = $player->getArmorInventory();
         if (!$this->isWearingMobHead($inv)) {
-            $this->removeEffects();
+            $this->onCancel();
         }
     }
 
-    public function removeEffects() {
-        $player = $this->getPlayer();
-        foreach ($this->activeEffects as $effect) {
-            $player->removeEffect($effect->getId());
-        }
-        $this->activeEffects = [];
+    public function onCancel(): void {
+    $player = $this->getPlayer();
+    $effectManager = $player->getEffectManager();
+
+    if (isset($this->activeEffects[$player->getName()])) {
+        $effectManager->remove($this->activeEffects[$player->getName()]);
+        unset($this->activeEffects[$player->getName()]);
     }
+}
 
     public function isWearingMobHead(ArmorInventory $inv) {
       $helmet = $inv->getHelmet();

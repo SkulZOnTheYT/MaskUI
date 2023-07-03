@@ -83,7 +83,7 @@ class Main extends PluginBase implements Listener {
                     $name = $sender->getName();
 		    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $name1 = ("Skeleton Skull");
-		    $breakInfo = new BlockBreakInfo();
+		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $sk = new MobHead($idInfo, $name1, $typeInfo);
 	            $item1 = $sk->asItem();
@@ -101,7 +101,7 @@ class Main extends PluginBase implements Listener {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $name2 = ("Zombie Head");
-		    $breakInfo = new BlockBreakInfo();
+		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $zo = new MobHead($idInfo, $name2, $typeInfo);
 	            $item2 = $zo->asItem();
@@ -119,7 +119,7 @@ class Main extends PluginBase implements Listener {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $name3 = ("Creeper Head");
-		    $breakInfo = new BlockBreakInfo();
+		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $cr = new MobHead($idInfo, $name3, $typeInfo);
 	            $item3 = $cr->asItem();
@@ -137,7 +137,7 @@ class Main extends PluginBase implements Listener {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $name4 = ("Wither Skeleton Skull");
-		    $breakInfo = new BlockBreakInfo();
+		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $wi = new MobHead($idInfo, $name4, $typeInfo);
 	            $item4 = $wi->asItem();
@@ -155,7 +155,7 @@ class Main extends PluginBase implements Listener {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $name5 = ("Player Head");
-		    $breakInfo = new BlockBreakInfo();
+		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $st = new MobHead($idInfo, $name5, $typeInfo);
 	            $item5 = $st->asItem();
@@ -173,7 +173,7 @@ class Main extends PluginBase implements Listener {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $name6 = ("Dragon Head");
-		    $breakInfo = new BlockBreakInfo();
+		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $dr = new MobHead($idInfo, $name6, $typeInfo);
 	            $item6 = $dr->asItem();

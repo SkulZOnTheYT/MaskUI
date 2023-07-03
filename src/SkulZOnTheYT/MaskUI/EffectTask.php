@@ -82,7 +82,7 @@ class EffectTask extends Task {
     $inv = $player->getArmorInventory();
     
     if (!$this->isWearingMobHead($inv)) {
-        $this->onCancel($player);
+        $this->onCancel();
     }
 }
 

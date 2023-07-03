@@ -18,6 +18,7 @@ use pocketmine\block\BlockTypeIds;
 use pocketmine\block\BlockTypeInfo;
 use pocketmine\block\BlockBreakInfo;
 use pocketmine\block\BlockIdentifier;
+use pocketmine\block\utils\MobHeadType;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\utils\Config;
 use pocketmine\world\sound\EndermanTeleportSound;

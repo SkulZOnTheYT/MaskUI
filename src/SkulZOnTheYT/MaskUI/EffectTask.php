@@ -68,10 +68,10 @@ class EffectTask extends Task {
         foreach ($actions as $action) {
           if ($action instanceof SlotChangeAction) {
             $inventory = $action->getInventory();
-            $player = $inventory->getHolder();
+            $source = $transaction->getSource();
             
-            if ($player instanceof Player && $inventory instanceof ArmorInventory) {
-                $this->handleArmorChange($player);
+            if ($source instanceof Player && $inventory instanceof ArmorInventory) {
+                $this->handleArmorChange($source);
                 return;
             }
         }
@@ -86,7 +86,7 @@ class EffectTask extends Task {
     }
 }
 
-   public function onCancel(Player $player): void{
+   public function onCancel(): void{
       $player = $this->getPlayer();
         if (isset($this->activeEffects[$player->getName()])) {
           $player->getEffects()->remove($this->activeEffects[$player->getName()]);

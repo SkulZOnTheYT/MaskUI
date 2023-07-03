@@ -9,7 +9,7 @@ use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\inventory\ArmorInventory;
-use pocketmine\inventory\ArmorInventoryChangeEvent;
+
 use pocketmine\player\Player;
 use pocketmine\item\Item;
 use pocketmine\scheduler\Task;
@@ -34,7 +34,7 @@ class EffectTask extends Task {
       $player = $this->getPlayer();
 	$inv = $player->getArmorInventory();
         if (!$this->isWearingMobHead($inv)) {
-            $this->removeEffects();
+            $this->onCancel();
             return;
         }
 	    
@@ -61,30 +61,44 @@ class EffectTask extends Task {
         }
     }
 
-    public function onArmorChange(ArmorInventoryChangeEvent $player) {
-      $player = $this->getPlayer();
-        $inv = $player->getArmorInventory();
-        if (!$this->isWearingMobHead($inv)) {
-            $this->onCancel();
+   public function onInventoryTransaction(InventoryTransactionEvent $event): void {
+      $transaction = $event->getTransaction();
+       $actions = $transaction->getActions();
+        foreach ($actions as $action) {
+          if ($action instanceof SlotChangeAction) {
+            $inventory = $action->getInventory();
+            $player = $inventory->getHolder();
+            
+            if ($player instanceof Player && $inventory instanceof ArmorInventory) {
+                $this->handleArmorChange($player);
+                return;
+            }
         }
-    }
-
-    public function onCancel(): void {
-    $player = $this->getPlayer();
-    $effectManager = $player->getEffectManager();
-
-    if (isset($this->activeEffects[$player->getName()])) {
-        $effectManager->remove($this->activeEffects[$player->getName()]);
-        unset($this->activeEffects[$player->getName()]);
     }
 }
 
-    public function isWearingMobHead(ArmorInventory $inv) {
-      $helmet = $inv->getHelmet();
-         $mobHeadNames = ["Wither Skeleton Skull", "Skeleton Skull", "Dragon Head", "Player Head", "Zombie Head", "Creeper Head"];
-            return $helmet !== null && in_array($helmet->getName(), $mobHeadNames);
+  public function handleArmorChange(Player $player): void {
+    $inv = $player->getArmorInventory();
+    
+    if (!$this->isWearingMobHead($inv)) {
+        $this->onCancel($player);
+    }
+}
+
+   public function onCancel(Player $player): void{
+      $player = $this->getPlayer();
+        if (isset($this->activeEffects[$player->getName()])) {
+          $player->getEffects()->remove($this->activeEffects[$player->getName()]);
+          unset($this->activeEffects[$player->getName()]);
+        }
    }
-	
+
+    public function isWearingMobHead(ArmorInventory $inv): bool {
+       $helmet = $inv->getHelmet();
+          $mobHeadNames = ["Wither Skeleton Skull", "Skeleton Skull", "Dragon Head", "Player Head", "Zombie Head", "Creeper Head"];
+          return $helmet !== null && in_array($helmet->getCustomName(), $mobHeadNames);
+    }
+
     private function applyDragonHeadEffects(): void {
          $player = $this->getPlayer();
          $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));

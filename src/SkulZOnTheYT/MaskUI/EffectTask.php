@@ -9,7 +9,8 @@ use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\inventory\ArmorInventory;
-
+use pocketmine\event\inventory\InventoryTransactionEvent;
+use pocketmine\inventory\transaction\action\SlotChangeAction;
 use pocketmine\player\Player;
 use pocketmine\item\Item;
 use pocketmine\scheduler\Task;

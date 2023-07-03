@@ -86,6 +86,8 @@ class Main extends PluginBase implements Listener {
 		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $sk = new MobHead($idInfo, $name1, $typeInfo);
+		    $sk->setMobHeadType(MobHeadType::SKELETON());
+                    $mobHeadType = $sk->getMobHeadType();
 	            $item1 = $sk->asItem();
                     $item1->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item1);
@@ -104,6 +106,8 @@ class Main extends PluginBase implements Listener {
 		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $zo = new MobHead($idInfo, $name2, $typeInfo);
+		    $zo->setMobHeadType(MobHeadType::ZOMBIE());
+                    $mobHeadType = $zo->getMobHeadType();
 	            $item2 = $zo->asItem();
                     $item2->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item2);
@@ -122,6 +126,8 @@ class Main extends PluginBase implements Listener {
 		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $cr = new MobHead($idInfo, $name3, $typeInfo);
+		    $cr->setMobHeadType(MobHeadType::CREEPER());
+                    $mobHeadType = $cr->getMobHeadType();
 	            $item3 = $cr->asItem();
                     $item3->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item3);
@@ -140,6 +146,8 @@ class Main extends PluginBase implements Listener {
 		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $wi = new MobHead($idInfo, $name4, $typeInfo);
+		    $wi->setMobHeadType(MobHeadType::WITHER_SKELETON());
+                    $mobHeadType = $wi->getMobHeadType();
 	            $item4 = $wi->asItem();
                     $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item4);
@@ -158,6 +166,8 @@ class Main extends PluginBase implements Listener {
 		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $st = new MobHead($idInfo, $name5, $typeInfo);
+		    $st->setMobHeadType(MobHeadType::PLAYER());
+                    $mobHeadType = $st->getMobHeadType();
 	            $item5 = $st->asItem();
                     $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item5);
@@ -176,6 +186,8 @@ class Main extends PluginBase implements Listener {
 		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
                     $dr = new MobHead($idInfo, $name6, $typeInfo);
+		    $dr->setMobHeadType(MobHeadType::DRAGON());
+                    $mobHeadType = $dr->getMobHeadType();
 	            $item6 = $dr->asItem();
                     $item6->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item6);

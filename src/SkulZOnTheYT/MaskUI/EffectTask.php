@@ -61,7 +61,7 @@ class EffectTask extends Task {
         }
     }
 
-    public function onArmorChange(ArmorInventoryChangeEvent $this) {
+    public function onArmorChange(ArmorInventoryChangeEvent $player) {
       $player = $this->getPlayer();
         $inv = $player->getArmorInventory();
         if (!$this->isWearingMobHead($inv)) {

@@ -1,16 +1,16 @@
 # Messages when successfully given a mask
-msg.shop.zombie: "§7[§eMask§bShop§7] §dyou successfully given a §2zombie §dmask!"
-msg.shop.wither: "§7[§eMask§bShop§7] §dyou successfully given a §7wither§d mask!"
-msg.shop.dragon: "§7[§eMask§bShop§7] §dyou successfully given a §cdragon§d mask!"
-msg.shop.creeper: "§7[§eMask§bShop§7] §dyou successfully given a §acreeper§d mask!"
-msg.shop.skeleton: "§7[§eMask§bShop§7] §dyou successfully given a §fskeleton §dmask!"
-msg.shop.steve: "§7[§eMask§bShop§7] §dyou successfully given a §3steve §dmask!"
+msg.shop.zombie: "§7[§eMask§bUI§7] §dyou successfully given a §2zombie §dmask!"
+msg.shop.wither: "§7[§eMask§bUI§7] §dyou successfully given a §7wither§d mask!"
+msg.shop.dragon: "§7[§eMask§bUI§7] §dyou successfully given a §cdragon§d mask!"
+msg.shop.creeper: "§7[§eMask§bUI§7] §dyou successfully given a §acreeper§d mask!"
+msg.shop.skeleton: "§7[§eMask§bUI§7] §dyou successfully given a §fskeleton §dmask!"
+msg.shop.steve: "§7[§eMask§bUI§7] §dyou successfully given a §3steve §dmask!"
 
 # Dont have permission
-msg.no-permission: "§7[§eMask§bShop§7] §cYou don't have permission!"
+msg.no-permission: "§7[§eMask§bUI§7] §cYou don't have permission!"
 
 # Message when Quit From the Menu 
-quit.message: "§7[§eMask§bShop§7] §cExited Mask Menu!"
+quit.message: "§7[§eMask§bUI§7] §cExited Mask Menu!"
 
 # Title of main Mask ui
 title.ui.main: "§eMask UI"

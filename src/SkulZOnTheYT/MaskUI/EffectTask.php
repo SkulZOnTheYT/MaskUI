@@ -12,10 +12,6 @@ use pocketmine\inventory\ArmorInventory;
 use pocketmine\player\Player;
 use pocketmine\scheduler\Task;
 use pocketmine\event\player\PlayerEvent;
-use pocketmine\utils\TextFormat;
-use pocketmine\item\Item;
-use pocketmine\block\MobHead;
-use pocketmine\block\BlockTypeIds;
 use pocketmine\block\utils\MobHeadType;
 use SkulZOnTheYT\MaskUI\Main;
 
@@ -32,38 +28,25 @@ class EffectTask extends Task {
 	}
 	
     public function onRun(int $currentTick = 0) : void{
-	$dr = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::DRAGON(), ("Dragon Head"));
-	    $dragon = $dr->asItem();
-        $cr = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::CREEPER(), ("Creeper Head"));
-	    $creeper = $cr->asItem();
-        $wi = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::WITHER_SKELETON(), ("Wither Skull"));
-	    $wither = $wi->asItem();
-        $st = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::PLAYER(), ("Player Head"));
-	    $steve = $st->asItem();
-        $sk = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::SKELETON(), ("Skeleton Skull"));
-	    $skeleton = $sk->asItem();
-        $zo = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::ZOMBIE(), ("Zombie Head"));
-	    $zombie = $zo->asItem();
-
 	$player = $this->getPlayer();
 	 $inv = new ArmorInventory($player);
           $helmet = $inv->getHelmet();
             if ($helmet !== null) {
              switch ($helmet->getName()) {
-                case $dragon:
+                case MobHeadType::DRAGON():
                     $this->applyDragonHeadEffects();
                     break;
-                case $creeper:
+                case MobHeadType::CREEPER():
                     $this->applyCreeperHeadEffects();
                     break;
-                case $wither:
-                case $skeleton:
+                case MobHeadType::WITHER_SKELETON():
+                case MobHeadType::SKELETON():
                     $this->applySkeletonHeadEffects();
                     break;
-                case $steve:
+		case MobHeadType::PLAYER():
                     $this->applySteveHeadEffects();
                     break;
-                case $zombie:
+                case MobHeadType::ZOMBIE():
                     $this->applyZombieHeadEffects();
                     break;
 	     }

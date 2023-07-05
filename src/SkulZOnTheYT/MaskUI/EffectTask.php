@@ -9,12 +9,13 @@ use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\inventory\ArmorInventory;
-use pocketmine\event\inventory\InventoryTransactionEvent;
 use pocketmine\inventory\transaction\action\SlotChangeAction;
 use pocketmine\player\Player;
 use pocketmine\item\Item;
 use pocketmine\scheduler\Task;
+use pocketmine\block\utils\MobHeadType;
 use pocketmine\event\player\PlayerEvent;
+use pocketmine\event\inventory\InventoryTransactionEvent;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
@@ -30,37 +31,6 @@ class EffectTask extends Task {
 	public function getPlayer(): Player {
         return $this->player;
 	}
-	
-    public function onRun(int $currentTick = 0) : void{
-      $player = $this->getPlayer();
-	$inv = $player->getArmorInventory();
-        if (!$this->isWearingMobHead($inv)) {
-            $this->onCancel();
-            return;
-        }
-	    
-        $helmet = $inv->getHelmet();
-        if ($helmet instanceof Item) {
-            switch ($helmet->getName()) {
-		case "Wither Skeleton Skull":
-                case "Skeleton Skull":
-                    $this->applySkeletonHeadEffects();
-                    break;
-                case "Dragon Head":
-                    $this->applyDragonHeadEffects();
-                    break;
-                case "Creeper Head":
-                    $this->applyCreeperHeadEffects();
-                    break;
-		case "Player Head":
-                    $this->applySteveHeadEffects();
-                    break;
-                case "Zombie Head":
-                    $this->applyZombieHeadEffects();
-                    break;
-	     }
-        }
-    }
 
    public function onInventoryTransaction(InventoryTransactionEvent $event): void {
       $transaction = $event->getTransaction();
@@ -68,10 +38,10 @@ class EffectTask extends Task {
         foreach ($actions as $action) {
           if ($action instanceof SlotChangeAction) {
             $inventory = $action->getInventory();
-            $source = $transaction->getSource();
+            $player = $transaction->getSource();
             
-            if ($source instanceof Player && $inventory instanceof ArmorInventory) {
-                $this->handleArmorChange($source);
+            if ($player instanceof Player && $inventory instanceof ArmorInventory) {
+                $this->handleArmorChange($player);
                 return;
             }
         }
@@ -80,20 +50,45 @@ class EffectTask extends Task {
 
   public function handleArmorChange(Player $player): void {
     $inv = $player->getArmorInventory();
-    $helmet = $inv->getHelmet();
-    if ($helmet !== null && $this->isWearingMobHead($inv)) {
-        $this->onRun($player);
-    } else {
-        $this->onCancel();
+    $wearingMobHead = false;
+
+    foreach ($inv->getContents() as $slot => $item) {
+        if ($this->isWearingMobHead($item)) {
+            $this->applyEffect($player, $item);
+            $wearingMobHead = true;
+        }
+    }
+
+    if (!$wearingMobHead) {
+        $this->removeEffect($player);
     }
 }
 
-   public function onCancel(): void{
+  public function applyEffect(Player $player, Item $item): void {
+    $mobHeadType = $this->getMobHeadType($item);
+     switch ($mobHeadType) {
+        case MobHeadType::DRAGON():
+            $this->applyDragonHeadEffects($player);
+            break;
+        case MobHeadType::CREEPER():
+            $this->applyCreeperHeadEffects($player);
+            break;
+        case MobHeadType::WITHER_SKELETON():
+        case MobHeadType::SKELETON():
+             $this->applySkeletonHeadEffects($player);
+            break;
+	case MobHeadType::ZOMBIE():
+	     $this->applyZombieHeadEffects($player);
+	     break;
+	case MobHeadType::PLAYER():
+	     $this->applySteveHeadEffects($player);
+	     break;
+     }
+  }
+
+   public function removeEffect(Player $player): void{
       $player = $this->getPlayer();
-        if (isset($this->activeEffects[$player->getName()])) {
-          $player->getEffects()->remove($this->activeEffects[$player->getName()]);
-          unset($this->activeEffects[$player->getName()]);
-        }
+	$player->removeAllEffects();
    }
 
     public function isWearingMobHead(ArmorInventory $inv): bool {
@@ -102,7 +97,7 @@ class EffectTask extends Task {
           return $helmet !== null && in_array($helmet->getCustomName(), $mobHeadNames);
     }
 
-    private function applyDragonHeadEffects(): void {
+    private function applyDragonHeadEffects(Player $player): void {
          $player = $this->getPlayer();
          $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
          $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
@@ -115,7 +110,7 @@ class EffectTask extends Task {
          $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
     }
 
-    private function applyCreeperHeadEffects(): void {
+    private function applyCreeperHeadEffects(Player $player): void {
 	$player = $this->getPlayer();
         $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
@@ -126,7 +121,7 @@ class EffectTask extends Task {
         $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
     }
 
-    private function applySkeletonHeadEffects(): void {
+    private function applySkeletonHeadEffects(Player $player): void {
 	$player = $this->getPlayer();
         $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
@@ -135,7 +130,7 @@ class EffectTask extends Task {
         $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
     }
 
-    private function applySteveHeadEffects(): void {
+    private function applySteveHeadEffects(Player $player): void {
        $player = $this->getPlayer();
        $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
        $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
@@ -146,7 +141,7 @@ class EffectTask extends Task {
        $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
     }
 
-    private function applyZombieHeadEffects(): void {
+    private function applyZombieHeadEffects(Player $player): void {
 	$player = $this->getPlayer();
         $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));

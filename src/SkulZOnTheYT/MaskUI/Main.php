@@ -24,7 +24,6 @@ use pocketmine\utils\Config;
 use pocketmine\world\sound\EndermanTeleportSound;
 use pocketmine\world\sound\AnvilFallSound;
 use SkulZOnTheYT\MaskUI\Form\{Form, SimpleForm};
-use SkulZOnTheYT\MaskUI\EffectTask;
 
 class Main extends PluginBase implements Listener {
     
@@ -39,10 +38,6 @@ class Main extends PluginBase implements Listener {
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
       $this->getLogger()->info("Plugin MaskUI has been actived");
-      $server = Server::getInstance();
-        foreach ($server->getOnlinePlayers() as $player) {
-           $this->getScheduler()->scheduleRepeatingTask(new EffectTask($player), 20);
-	}
     }
 	
 	public static function getInstance() : self{

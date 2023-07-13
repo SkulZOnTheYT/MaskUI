@@ -1,12 +1,13 @@
 # Description
-MaskUI Command For PocketMine-MP. If you are have a question, please make a [issues](https://github.com/SkulZOnTheYT/MaskUI/issues/new)
+MaskUI is a pocketmine api 5 plugin to give players mob head items with an attractive ui. If you are have a question, please make a [issues](https://github.com/SkulZOnTheYT/MaskUI/issues/new)
 
 # Features
 >- Custom message
 >- Custom name
->- Give effect
+>- Custom sound effect
 >- With permission
 >- With economy (soon)
+>- With effect (soon)
 
 # Installation
 1. Download the **plugin**
@@ -16,5 +17,5 @@ MaskUI Command For PocketMine-MP. If you are have a question, please make a [iss
 # Permission
 | Command | Permission | Default |
 |---|---|---|
-| /mask | mask.ui | NO |
+| /mask | mask.ui | OP |
 | (give mask) | mask.{type} | OP |

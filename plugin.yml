@@ -1,5 +1,5 @@
 name: MaskUI
-version: 1.0
+version: 1.1 BETA
 main: SkulZOnTheYT\MaskUI\Main
 api: 5.0.0
 author: SkulZOnTheYT, Kylan1940
@@ -8,7 +8,32 @@ commands:
   mask:
    description: "open mask ui"
    permission: "mask.ui"
+   
 permissions:
   mask.ui:
    description: "allow user open mask ui"
+   default: op
+
+  mask.skeleton:
+   description: "allow givving mask skeleton into player"
+   default: op
+
+  mask.zombie:
+   description: "allow givving mask zombie into player"
+   default: op
+
+  mask.creeper:
+   description: "allow givving mask creeper into player"
+   default: op
+
+  mask.wither:
+   description: "allow givving mask wither into player"
+   default: op
+
+  mask.steve:
+   description: "allow givving mask steve into player"
+   default: op
+
+  mask.dragon:
+   description: "allow givving mask dragon into player"
    default: op

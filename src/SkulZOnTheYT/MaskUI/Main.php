@@ -15,11 +15,15 @@ use pocketmine\command\ConsoleCommandSender;
 use pocketmine\item\Item;
 use pocketmine\block\MobHead;
 use pocketmine\block\BlockTypeIds;
+use pocketmine\block\BlockTypeInfo;
+use pocketmine\block\BlockBreakInfo;
+use pocketmine\block\BlockIdentifier;
 use pocketmine\block\utils\MobHeadType;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\utils\Config;
+use pocketmine\world\sound\EndermanTeleportSound;
+use pocketmine\world\sound\AnvilFallSound;
 use SkulZOnTheYT\MaskUI\Form\{Form, SimpleForm};
-use SkulZOnTheYT\MaskUI\EffectTask;
 
 class Main extends PluginBase implements Listener {
     
@@ -33,10 +37,7 @@ class Main extends PluginBase implements Listener {
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
-      $server = Server::getInstance();
-        foreach ($server->getOnlinePlayers() as $player) {
-           $this->getScheduler()->scheduleRepeatingTask(new EffectTask($player), 20);
-	}
+      $this->getLogger()->info("Plugin MaskUI has been actived");
     }
 	
 	public static function getInstance() : self{
@@ -46,101 +47,145 @@ class Main extends PluginBase implements Listener {
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         if($sender instanceof Player){
           if($cmd->getName() == "mask"){
-            if ($sender -> hasPermission("mask.ui")) {
+	    if ($sender -> hasPermission("mask.ui")) {
               $this->MaskShopForm($sender);
             } else {
               $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
             }
           }
         } else {
-          $sender->sendMessage($this->getConfig()->get("only-ingame"));
+          $sender->sendMessage("This command can only be used in-game.");
         }
         return true;
     }
     
   public function MaskShopForm($sender){
-				  $form = new SimpleForm(function (Player $sender, int $data = null){
+	$form = new SimpleForm(function (Player $sender, int $data = null){
             $result = $data;
             if ($result === null) {
                 return;
             }
             switch ($result) {
                 case 0:
-				          $sender->sendMessage($this->getConfig()->get("quit.message"));
-		    	   		break;
-			         	case 1:
-				          $this->FeatureMenu($sender);
-  				      break;
+		  $sender->sendMessage($this->getConfig()->get("quit.message"));
+		  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+		    break;
+		case 1:
+		  $this->FeatureMenu($sender);
+		  $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+  		    break;
                 case 2:
                   if ($sender -> hasPermission("mask.skeleton")) {
                     $name = $sender->getName();
-                    $sk = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::SKELETON(), ("Skeleton Skull"));
+		    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
+		    $name1 = ("Skeleton Skull");
+		    $breakInfo = new BlockBreakInfo(0);
+		    $typeInfo = new BlockTypeInfo($breakInfo);
+                    $sk = new MobHead($idInfo, $name1, $typeInfo);
+		    $sk->setMobHeadType(MobHeadType::SKELETON());
+                    $mobHeadType = $sk->getMobHeadType();
 	            $item1 = $sk->asItem();
-                    $item1->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item1);
-                    $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton")); 
+                    $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+	            $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 3:
                   if ($sender -> hasPermission("mask.zombie")) {
                     $name = $sender->getName();
-                    $zo = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::ZOMBIE(), ("Zombie Head"));
+                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
+		    $name2 = ("Zombie Head");
+		    $breakInfo = new BlockBreakInfo(0);
+		    $typeInfo = new BlockTypeInfo($breakInfo);
+                    $zo = new MobHead($idInfo, $name2, $typeInfo);
+		    $zo->setMobHeadType(MobHeadType::ZOMBIE());
+                    $mobHeadType = $zo->getMobHeadType();
 	            $item2 = $zo->asItem();
-                    $item2->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item2);
-		                $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
+		    $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 4:
                   if ($sender -> hasPermission("mask.creeper")) {
                     $name = $sender->getName();
-                    $cr = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::CREEPER(), ("Creeper Head"));
+                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
+		    $name3 = ("Creeper Head");
+		    $breakInfo = new BlockBreakInfo(0);
+		    $typeInfo = new BlockTypeInfo($breakInfo);
+                    $cr = new MobHead($idInfo, $name3, $typeInfo);
+		    $cr->setMobHeadType(MobHeadType::CREEPER());
+                    $mobHeadType = $cr->getMobHeadType();
 	            $item3 = $cr->asItem();
-                    $item3->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item3);
-		                $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
+		    $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 5:
                   if ($sender -> hasPermission("mask.wither")) {
                     $name = $sender->getName();
-                    $wi = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::WITHER_SKELETON(), ("Wither Skull"));
+                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
+		    $name4 = ("Wither Skeleton Skull");
+		    $breakInfo = new BlockBreakInfo(0);
+		    $typeInfo = new BlockTypeInfo($breakInfo);
+                    $wi = new MobHead($idInfo, $name4, $typeInfo);
+		    $wi->setMobHeadType(MobHeadType::WITHER_SKELETON());
+                    $mobHeadType = $wi->getMobHeadType();
 	            $item4 = $wi->asItem();
-                    $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item4);
                     $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 6:
-	                if ($sender -> hasPermission("mask.steve")) {
+	          if ($sender -> hasPermission("mask.steve")) {
                     $name = $sender->getName();
-                    $st = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::PLAYER(), ("Player Head"));
+                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
+		    $name5 = ("Player Head");
+		    $breakInfo = new BlockBreakInfo(0);
+		    $typeInfo = new BlockTypeInfo($breakInfo);
+                    $st = new MobHead($idInfo, $name5, $typeInfo);
+		    $st->setMobHeadType(MobHeadType::PLAYER());
+                    $mobHeadType = $st->getMobHeadType();
 	            $item5 = $st->asItem();
-                    $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item5);
                     $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 7:
                   if ($sender -> hasPermission("mask.dragon")) {
                     $name = $sender->getName();
-                    $dr = new MobHead(BlockTypeIds::MOB_HEAD, MobHeadType::DRAGON(), ("Dragon Head"));
+                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
+		    $name6 = ("Dragon Head");
+		    $breakInfo = new BlockBreakInfo(0);
+		    $typeInfo = new BlockTypeInfo($breakInfo);
+                    $dr = new MobHead($idInfo, $name6, $typeInfo);
+		    $dr->setMobHeadType(MobHeadType::DRAGON());
+                    $mobHeadType = $dr->getMobHeadType();
 	            $item6 = $dr->asItem();
-                    $item6->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
                     $sender->getInventory()->addItem($item6);
                     $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
             }
@@ -167,9 +212,11 @@ class Main extends PluginBase implements Listener {
 			switch($result){
 				case 0:
 				   $this->MaskShopForm($sender);
+				   $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
 					break;
 				case 1:
 				   $sender->sendMessage($this->getConfig()->get("quit.message"));
+				   $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
 				  break;
 			      }
 		      });

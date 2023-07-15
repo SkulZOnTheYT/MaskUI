@@ -236,7 +236,7 @@ class Main extends PluginBase implements Listener {
       $form->sendToPlayer($sender);
     	}
 
-     public function ArmorInventory(Player $sender, Skeleton $item1, Zombie $item2, Creeper $item3, Wither $item4, Steve $item5 Dragon $item6): void {
+     public function ArmorInventory(Player $sender, Skeleton $item1, Zombie $item2, Creeper $item3, Wither $item4, Steve $item5, Dragon $item6): void {
        $armorInventory = $sender->getArmorInventory(); 
 	     
 	 if ($armorInventory->getHelmet() === $item1) {

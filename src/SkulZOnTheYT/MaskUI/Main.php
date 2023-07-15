@@ -92,7 +92,6 @@ class Main extends PluginBase implements Listener {
                     $sender->getInventory()->addItem($item1);
                     $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-		    $sender->applySkeletonHeadEffects();
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
 	            $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -112,7 +111,6 @@ class Main extends PluginBase implements Listener {
                     $sender->getInventory()->addItem($item2);
 		    $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-		    $sender->applyZombieHeadEffects();
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -131,8 +129,7 @@ class Main extends PluginBase implements Listener {
 	            $item3 = $cr->asItem();
                     $sender->getInventory()->addItem($item3);
 		    $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
-		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-		    $sender->applyCreeperHeadEffects();
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound();
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -171,7 +168,6 @@ class Main extends PluginBase implements Listener {
                     $sender->getInventory()->addItem($item5);
                     $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-		    $sender->applySteveHeadEffects($sender);
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -191,7 +187,6 @@ class Main extends PluginBase implements Listener {
                     $sender->getInventory()->addItem($item6);
                     $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-		    $sender->applyDragonHeadEffects($sender);
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -236,13 +231,13 @@ class Main extends PluginBase implements Listener {
       $form->sendToPlayer($sender);
     	}
 
-     public function ArmorInventory(Player $sender, Skeleton $item1, Zombie $item2, Creeper $item3, Wither $item4, Steve $item5, Dragon $item6): void {
+     public function ArmorInventory(Skeleton $item1, Zombie $item2, Creeper $item3, Wither $item4, Steve $item5, Dragon $item6): void {
        $armorInventory = $sender->getArmorInventory(); 
 	     
 	 if ($armorInventory->getHelmet() === $item1) {
-            $sender->applySkeletonHeadEffects($skeleton);
+            $this->applySkeletonHeadEffects();
             } else {
-              $sender->getEffectManager()->remove($skeleton);
+              $this->getEffectManager()->remove();
         }
 	if ($armorInventory->getHelmet() === $item2) {
            $sender->applyZombieHeadEffects($zombie);
@@ -271,7 +266,7 @@ class Main extends PluginBase implements Listener {
         }
      }
 
-      private function applySkeletonHeadEffects($skeleton): void {
+      private function applySkeletonHeadEffects(): void {
         $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
         $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
         $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
@@ -279,7 +274,7 @@ class Main extends PluginBase implements Listener {
         $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
     }
 
-      private function applyZombieHeadEffects($zombie): void {
+      private function applyZombieHeadEffects(): void {
         $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
         $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
         $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
@@ -288,7 +283,7 @@ class Main extends PluginBase implements Listener {
         $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
     }
 
-      private function applyCreeperHeadEffects($creeper): void {
+      private function applyCreeperHeadEffects(): void {
         $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
         $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
         $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
@@ -298,7 +293,7 @@ class Main extends PluginBase implements Listener {
         $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
     }
 
-     private function applyWitherSkeletonHeadEffects($wither): void {
+     private function applyWitherSkeletonHeadEffects(): void {
         $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
@@ -306,7 +301,7 @@ class Main extends PluginBase implements Listener {
         $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
     }
 
-      private function applySteveHeadEffects($steve): void {
+      private function applySteveHeadEffects(): void {
        $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
        $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
        $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
@@ -316,9 +311,9 @@ class Main extends PluginBase implements Listener {
        $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
     }
 
-      private function applyDragonHeadEffects($dragon): void {
-         $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-         $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+      private function applyDragonHeadEffects(): void {
+         $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
+         $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
          $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
          $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 2, false));
          $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));

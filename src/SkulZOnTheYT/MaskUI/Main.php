@@ -235,10 +235,10 @@ class Main extends PluginBase implements Listener {
       $form->addButton("§l§cEXIT", 2);
       $form->sendToPlayer($sender);
     	}
-    }
 
      public function ArmorInventory(Player $sender, Skeleton $item1, Zombie $item2, Creeper $item3, Wither $item4, Steve $item5 Dragon $item6): void {
        $armorInventory = $sender->getArmorInventory(); 
+	     
 	 if ($armorInventory->getHelmet() === $item1) {
             $sender->applySkeletonHeadEffects($skeleton);
             } else {
@@ -269,7 +269,7 @@ class Main extends PluginBase implements Listener {
            } else {
               $sender->getEffectManager()->remove($dragon);
         }
-  }
+     }
 
       private function applySkeletonHeadEffects($skeleton): void {
         $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));

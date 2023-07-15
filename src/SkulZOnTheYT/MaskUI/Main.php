@@ -237,18 +237,39 @@ class Main extends PluginBase implements Listener {
     	}
     }
 
-     public function ArmorInventory(Player $sender,Skeleton $item1, Zombie $item2, Creeper $item3, Wither $item4, Steve $item5 Dragon $item6): void {
+     public function ArmorInventory(Player $sender, Skeleton $item1, Zombie $item2, Creeper $item3, Wither $item4, Steve $item5 Dragon $item6): void {
        $armorInventory = $sender->getArmorInventory(); 
-	switch ($item1, $item2, $item3, $item4, $item5, $item6) {
-	  case $item1:
-	    if ($armorInventory->getItem($item1)) {
-	        $sender->applyWitherSkeletonHeadEffects($skeleton);
-	    } else {
-	        $sender->getEffectManager()->remove($skeleton);
-            };
-	     break;
-	}
-     }
+	 if ($armorInventory->getHelmet() === $item1) {
+            $sender->applySkeletonHeadEffects($skeleton);
+            } else {
+              $sender->getEffectManager()->remove($skeleton);
+        }
+	if ($armorInventory->getHelmet() === $item2) {
+           $sender->applyZombieHeadEffects($zombie);
+           } else {
+              $sender->getEffectManager()->remove($zombie);
+        }
+	if ($armorInventory->getHelmet() === $item3) {
+           $sender->applyCreeperHeadEffects($creeper);
+           } else {
+              $sender->getEffectManager()->remove($creeper);
+        }
+	if ($armorInventory->getHelmet() === $item4) {
+           $sender->applyWitherSkeletonHeadEffects($wither);
+           } else {
+              $sender->getEffectManager()->remove($wither);
+        } 
+	if ($armorInventory->getHelmet() === $item5) {
+           $sender->applySteveHeadEffects($steve);
+           } else {
+              $sender->getEffectManager()->remove($steve);
+        }
+	if ($armorInventory->getHelmet() === $item6) {
+           $sender->applyDragonHeadEffects($dragon);
+           } else {
+              $sender->getEffectManager()->remove($dragon);
+        }
+  }
 
       private function applySkeletonHeadEffects($skeleton): void {
         $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
@@ -293,4 +314,16 @@ class Main extends PluginBase implements Listener {
        $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
        $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
        $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+    }
+
+      private function applyDragonHeadEffects($dragon): void {
+         $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
+         $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+         $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
+         $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 2, false));
+         $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+         $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+         $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
+         $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
+         $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
     }

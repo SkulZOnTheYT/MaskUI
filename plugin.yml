@@ -7,33 +7,33 @@ author: SkulZOnTheYT, Kylan1940
 commands:
   mask:
    description: "open mask ui"
-   permission: "mask.ui"
+   permission: "maskui-open.commands"
    
 permissions:
-  mask.ui:
+  maskui-open.commands:
    description: "allow user open mask ui"
    default: op
 
-  mask.skeleton:
+  maskui-skeleton.give:
    description: "allow givving mask skeleton into player"
    default: op
 
-  mask.zombie:
+  maskui-zombie.give:
    description: "allow givving mask zombie into player"
    default: op
 
-  mask.creeper:
+  maskui-creeper.give:
    description: "allow givving mask creeper into player"
    default: op
 
-  mask.wither:
+  maskui-wither.give:
    description: "allow givving mask wither into player"
    default: op
 
-  mask.steve:
+  maskui-steve.give:
    description: "allow givving mask steve into player"
    default: op
 
-  mask.dragon:
+  maskui-dragon.give:
    description: "allow givving mask dragon into player"
    default: op

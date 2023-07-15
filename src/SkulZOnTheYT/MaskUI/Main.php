@@ -327,3 +327,4 @@ class Main extends PluginBase implements Listener {
          $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
          $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
     }
+}

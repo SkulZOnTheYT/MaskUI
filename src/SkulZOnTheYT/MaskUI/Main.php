@@ -129,7 +129,7 @@ class Main extends PluginBase implements Listener {
 	            $item3 = $cr->asItem();
                     $sender->getInventory()->addItem($item3);
 		    $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
-		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound();
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -232,7 +232,15 @@ class Main extends PluginBase implements Listener {
     	}
 
      public function ArmorInventory(Skeleton $item1, Zombie $item2, Creeper $item3, Wither $item4, Steve $item5, Dragon $item6): void {
-       $armorInventory = $sender->getArmorInventory(); 
+       $armorInventory = $sender->getArmorInventory();
+	$idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
+	$breakInfo = new BlockBreakInfo(0);
+	$typeInfo = new BlockTypeInfo($breakInfo);
+	 $name1 = ("Skeleton Skull");
+          $sk = new MobHead($idInfo, $name1, $typeInfo);
+	   $sk->setMobHeadType(MobHeadType::SKELETON());
+            $mobHeadType = $sk->getMobHeadType();
+	     $item1 = $sk->asItem();
 	     
 	 if ($armorInventory->getHelmet() === $item1) {
             $this->applySkeletonHeadEffects();

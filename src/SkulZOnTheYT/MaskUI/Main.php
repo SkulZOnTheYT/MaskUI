@@ -8,6 +8,7 @@ use pocketmine\Server;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerEvent;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
@@ -82,9 +83,9 @@ class Main extends PluginBase implements Listener {
                   if ($sender -> hasPermission("maskui-skeleton.give")) {
                     $name = $sender->getName();
 		    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		    $name1 = ("Skeleton Skull");
 		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
+		    $name1 = ("Skeleton Skull");
                     $sk = new MobHead($idInfo, $name1, $typeInfo);
 		    $sk->setMobHeadType(MobHeadType::SKELETON());
                     $mobHeadType = $sk->getMobHeadType();
@@ -101,9 +102,9 @@ class Main extends PluginBase implements Listener {
                   if ($sender -> hasPermission("maskui-zombie.give")) {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		    $name2 = ("Zombie Head");
 		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
+		    $name2 = ("Zombie Head");
                     $zo = new MobHead($idInfo, $name2, $typeInfo);
 		    $zo->setMobHeadType(MobHeadType::ZOMBIE());
                     $mobHeadType = $zo->getMobHeadType();
@@ -120,16 +121,16 @@ class Main extends PluginBase implements Listener {
                   if ($sender -> hasPermission("maskui-creeper.give")) {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		    $name3 = ("Creeper Head");
 		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
+		    $name3 = ("Creeper Head");
                     $cr = new MobHead($idInfo, $name3, $typeInfo);
 		    $cr->setMobHeadType(MobHeadType::CREEPER());
                     $mobHeadType = $cr->getMobHeadType();
 	            $item3 = $cr->asItem();
                     $sender->getInventory()->addItem($item3);
 		    $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
-		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound();
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
                     $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -139,9 +140,9 @@ class Main extends PluginBase implements Listener {
                   if ($sender -> hasPermission("maskui-wither.give")) {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		    $name4 = ("Wither Skeleton Skull");
 		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
+		    $name4 = ("Wither Skeleton Skull");
                     $wi = new MobHead($idInfo, $name4, $typeInfo);
 		    $wi->setMobHeadType(MobHeadType::WITHER_SKELETON());
                     $mobHeadType = $wi->getMobHeadType();
@@ -158,9 +159,9 @@ class Main extends PluginBase implements Listener {
 	          if ($sender -> hasPermission("maskui-steve.give")) {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		    $name5 = ("Player Head");
 		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
+		    $name5 = ("Player Head");
                     $st = new MobHead($idInfo, $name5, $typeInfo);
 		    $st->setMobHeadType(MobHeadType::PLAYER());
                     $mobHeadType = $st->getMobHeadType();
@@ -177,9 +178,9 @@ class Main extends PluginBase implements Listener {
                   if ($sender -> hasPermission("maskui-dragon.give")) {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		    $name6 = ("Dragon Head");
 		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
+		    $name6 = ("Dragon Head");
                     $dr = new MobHead($idInfo, $name6, $typeInfo);
 		    $dr->setMobHeadType(MobHeadType::DRAGON());
                     $mobHeadType = $dr->getMobHeadType();
@@ -231,69 +232,84 @@ class Main extends PluginBase implements Listener {
       $form->sendToPlayer($sender);
     	}
 
-     public function ArmorInventory(Skeleton $item1, Zombie $item2, Creeper $item3, Wither $item4, Steve $item5, Dragon $item6): void {
-       $armorInventory = $sender->getArmorInventory(); 
+     public function ArmorInventory(PlayerEvent $player, Skeleton $item1, Zombie $item2, Creeper $item3, Wither $item4, Steve $item5, Dragon $item6): void {
+       $player = new PlayerEvent($this->getPlayer());
+	 $armorInventory = $player->getArmorInventory();
+	     
+	   $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
+	   $breakInfo = new BlockBreakInfo(0);
+	   $typeInfo = new BlockTypeInfo($breakInfo);
+	     
+	     $name1 = ("Skeleton Skull");
+             $sk = new MobHead($idInfo, $name1, $typeInfo);
+	     $sk->setMobHeadType(MobHeadType::SKELETON());
+             $mobHeadType = $sk->getMobHeadType();
+	     $item1 = $sk->asItem();
+	     
+	       $name2 = ("Zombie Head");
+               $zo = new MobHead($idInfo, $name2, $typeInfo);
+	       $zo->setMobHeadType(MobHeadType::ZOMBIE());
+               $mobHeadType = $zo->getMobHeadType();
+	       $item2 = $zo->asItem();
+
+	         $name3 = ("Creeper Head");
+                 $cr = new MobHead($idInfo, $name3, $typeInfo);
+		 $cr->setMobHeadType(MobHeadType::CREEPER());
+                 $mobHeadType = $cr->getMobHeadType();
+	         $item3 = $cr->asItem();
+	     
+	           $name4 = ("Wither Skeleton Skull");
+                   $wi = new MobHead($idInfo, $name4, $typeInfo);
+		   $wi->setMobHeadType(MobHeadType::WITHER_SKELETON());
+                   $mobHeadType = $wi->getMobHeadType();
+	           $item4 = $wi->asItem();
+	     
+	              $name5 = ("Player Head");
+                      $st = new MobHead($idInfo, $name5, $typeInfo);
+		      $st->setMobHeadType(MobHeadType::PLAYER());
+                      $mobHeadType = $st->getMobHeadType();
+	              $item5 = $st->asItem();
+	     
+	                $name6 = ("Dragon Head");
+                        $dr = new MobHead($idInfo, $name6, $typeInfo);
+		        $dr->setMobHeadType(MobHeadType::DRAGON());
+                        $mobHeadType = $dr->getMobHeadType();
+	                $item6 = $dr->asItem();
 	     
 	 if ($armorInventory->getHelmet() === $item1) {
-            $this->applySkeletonHeadEffects();
+            $this->applySkeletonHeadEffects($player);
             } else {
-              $this->getEffectManager()->remove();
+              $this->getEffectManager()->remove($player);
         }
 	if ($armorInventory->getHelmet() === $item2) {
-           $sender->applyZombieHeadEffects($zombie);
+           $sender->applyZombieHeadEffects($player);
            } else {
-              $sender->getEffectManager()->remove($zombie);
+              $sender->getEffectManager()->remove($player);
         }
 	if ($armorInventory->getHelmet() === $item3) {
-           $sender->applyCreeperHeadEffects($creeper);
+           $sender->applyCreeperHeadEffects($player);
            } else {
-              $sender->getEffectManager()->remove($creeper);
+              $sender->getEffectManager()->remove($player);
         }
 	if ($armorInventory->getHelmet() === $item4) {
-           $sender->applyWitherSkeletonHeadEffects($wither);
+           $sender->applyWitherSkeletonHeadEffects($player);
            } else {
-              $sender->getEffectManager()->remove($wither);
+              $sender->getEffectManager()->remove($player);
         } 
 	if ($armorInventory->getHelmet() === $item5) {
-           $sender->applySteveHeadEffects($steve);
+           $sender->applySteveHeadEffects($player);
            } else {
-              $sender->getEffectManager()->remove($steve);
+              $sender->getEffectManager()->remove($player);
         }
 	if ($armorInventory->getHelmet() === $item6) {
-           $sender->applyDragonHeadEffects($dragon);
+           $sender->applyDragonHeadEffects($player);
            } else {
-              $sender->getEffectManager()->remove($dragon);
+              $sender->getEffectManager()->remove($player);
         }
      }
 
-      private function applySkeletonHeadEffects(): void {
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-    }
-
-      private function applyZombieHeadEffects(): void {
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 1, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
-    }
-
-      private function applyCreeperHeadEffects(): void {
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-        $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-    }
-
-     private function applyWitherSkeletonHeadEffects(): void {
+      public function applySkeletonHeadEffects($player): void {
+	$player = new PlayerEvent($this->getPlayer());
         $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
@@ -301,7 +317,38 @@ class Main extends PluginBase implements Listener {
         $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
     }
 
-      private function applySteveHeadEffects(): void {
+      public function applyZombieHeadEffects($player): void {
+        $player = new PlayerEvent($this->getPlayer());
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 1, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
+    }
+
+      public function applyCreeperHeadEffects($player): void {
+	$player = new PlayerEvent($this->getPlayer());
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+    }
+
+     private function applyWitherSkeletonHeadEffects($player): void {
+	$player = new PlayerEvent($this->getPlayer());
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
+        $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
+    }
+
+      private function applySteveHeadEffects($player): void {
+       $player = new PlayerEvent($this->getPlayer());
        $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
        $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
        $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
@@ -311,9 +358,10 @@ class Main extends PluginBase implements Listener {
        $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
     }
 
-      private function applyDragonHeadEffects(): void {
-         $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-         $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+      private function applyDragonHeadEffects($player): void {
+	 $player = new PlayerEvent($this->getPlayer());
+         $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
+         $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
          $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
          $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 2, false));
          $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));

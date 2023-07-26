@@ -8,7 +8,6 @@ use pocketmine\Server;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerEvent;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
@@ -37,7 +36,6 @@ class Main extends PluginBase implements Listener {
     private static $instance;
 	
 	public $plugin;
-	private $player;
 
 	public function onEnable() : void{
 	    self::$instance = $this;
@@ -284,32 +282,32 @@ class Main extends PluginBase implements Listener {
 	 if ($armorInventory->getHelmet() === $item1) {
             $this->applySkeletonHeadEffects($player);
             } else {
-              EffectManager::remove($player);
+              $player->EffectManager()->clear();
         }
 	if ($armorInventory->getHelmet() === $item2) {
            $this->applyZombieHeadEffects($player);
            } else {
-              EffectManager::remove($player);
+              $player->EffectManager()->clear();
         }
 	if ($armorInventory->getHelmet() === $item3) {
            $this->applyCreeperHeadEffects($player);
            } else {
-              EffectManager::remove($player);
+              $player->EffectManager()->clear();
         }
 	if ($armorInventory->getHelmet() === $item4) {
            $this->applyWitherSkeletonHeadEffects($player);
            } else {
-              EffectManager::remove($player);
+              $player->EffectManager()->clear();
         } 
 	if ($armorInventory->getHelmet() === $item5) {
            $this->applySteveHeadEffects($player);
            } else {
-              EffectManager::remove($player);
+              $player->EffectManager()->clear();
         }
 	if ($armorInventory->getHelmet() === $item6) {
            $this->applyDragonHeadEffects($player);
            } else {
-              EffectManager::remove($player);
+              $player->EffectManager()->clear();
         }
      }
 

@@ -36,10 +36,12 @@ class Main extends PluginBase implements Listener {
     private static $instance;
 	
 	public $plugin;
+	private $activeEffects;
 
 	public function onEnable() : void{
 	    self::$instance = $this;
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
+      $this->activeEffects = [];
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
     }
@@ -348,17 +350,17 @@ class Main extends PluginBase implements Listener {
 }
 
      public function applyWitherSkeletonHeadEffects($player): void {
-	 if ($player instanceof Player) {
+      if ($player instanceof Player) {
         $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
         $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
     }
-     }
+}
 
       public function applySteveHeadEffects($player): void {
-       $player = $this->getPlayer();
+       if ($player instanceof Player) {
        $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
        $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
        $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
@@ -367,9 +369,10 @@ class Main extends PluginBase implements Listener {
        $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
        $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
     }
+}
 
       public function applyDragonHeadEffects($player): void {
-	 $player = $this->getPlayer();
+	if ($player instanceof Player) {
          $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
          $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
          $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
@@ -379,5 +382,6 @@ class Main extends PluginBase implements Listener {
          $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
          $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
          $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
-    }
+     }
+  }
 }

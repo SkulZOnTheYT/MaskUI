@@ -28,6 +28,10 @@ use pocketmine\entity\Effect;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
+use cooldogedev\BedrockEconomy\BedrockEconomy;
+use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
+use cooldogedev\BedrockEconomy\api\version\LegacyBEAPI;
+use cooldogedev\BedrockEconomy\api\legacy\ClosureContext;
 use SkulZOnTheYT\MaskUI\Form\{Form, SimpleForm};
 
 class Main extends PluginBase implements Listener {
@@ -53,11 +57,7 @@ class Main extends PluginBase implements Listener {
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         if($sender instanceof Player){
           if($cmd->getName() == "mask"){
-	    if ($sender -> hasPermission("maskui-open.commands")) {
               $this->MaskShopForm($sender);
-            } else {
-              $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
-            }
           }
         } else {
           $sender->sendMessage("This command can only be used in-game.");
@@ -81,7 +81,7 @@ class Main extends PluginBase implements Listener {
 		  $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
   		    break;
                 case 2:
-                  if ($sender -> hasPermission("maskui-skeleton.give")) {
+                  if BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 5000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},)); {
                     $name = $sender->getName();
 		    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $breakInfo = new BlockBreakInfo(0);
@@ -96,12 +96,12 @@ class Main extends PluginBase implements Listener {
                     $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
-                    $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+                    $sender->sendMessage($this->getConfig()->get("msg.no-money"));
 	            $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 3:
-                  if ($sender -> hasPermission("maskui-zombie.give")) {
+                  if BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 10000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},)); {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $breakInfo = new BlockBreakInfo(0);
@@ -116,12 +116,12 @@ class Main extends PluginBase implements Listener {
 		    $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
-                    $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+                    $sender->sendMessage($this->getConfig()->get("msg.no-money"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 4:
-                  if ($sender -> hasPermission("maskui-creeper.give")) {
+                  if BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 15000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},)); {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $breakInfo = new BlockBreakInfo(0);
@@ -136,12 +136,12 @@ class Main extends PluginBase implements Listener {
 		    $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
-                    $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+                    $sender->sendMessage($this->getConfig()->get("msg.no-money"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 5:
-                  if ($sender -> hasPermission("maskui-wither.give")) {
+                  if BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 20000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},)); {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $breakInfo = new BlockBreakInfo(0);
@@ -156,12 +156,12 @@ class Main extends PluginBase implements Listener {
                     $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
-                    $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+                    $sender->sendMessage($this->getConfig()->get("msg.no-money"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 6:
-	          if ($sender -> hasPermission("maskui-steve.give")) {
+	          if BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 25000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},)); {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $breakInfo = new BlockBreakInfo(0);
@@ -176,12 +176,12 @@ class Main extends PluginBase implements Listener {
                     $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
-                    $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+                    $sender->sendMessage($this->getConfig()->get("msg.no-money"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;
                 case 7:
-                  if ($sender -> hasPermission("maskui-dragon.give")) {
+                  if BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 30000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},)); {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $breakInfo = new BlockBreakInfo(0);
@@ -196,7 +196,7 @@ class Main extends PluginBase implements Listener {
                     $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   } else {
-                    $sender->sendMessage($this->getConfig()->get("msg.no-permission"));
+                    $sender->sendMessage($this->getConfig()->get("msg.no-money"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
                   }
                   return true;

@@ -81,7 +81,7 @@ class Main extends PluginBase implements Listener {
 		  $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
   		    break;
                 case 2:
-                  if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 5000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},));) {
+                  if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 5000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},)); ) {
                     $name = $sender->getName();
 		    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $breakInfo = new BlockBreakInfo(0);
@@ -101,7 +101,7 @@ class Main extends PluginBase implements Listener {
                   }
                   return true;
                 case 3:
-                  if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 10000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},));) {
+                  if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 10000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},)); ) {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $breakInfo = new BlockBreakInfo(0);
@@ -121,7 +121,7 @@ class Main extends PluginBase implements Listener {
                   }
                   return true;
                 case 4:
-                  if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 15000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},));) {
+                  if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 15000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},)); ) {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $breakInfo = new BlockBreakInfo(0);
@@ -141,7 +141,7 @@ class Main extends PluginBase implements Listener {
                   }
                   return true;
                 case 5:
-                  if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 20000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},));) {
+                  if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 20000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},)); ) {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $breakInfo = new BlockBreakInfo(0);
@@ -161,7 +161,7 @@ class Main extends PluginBase implements Listener {
                   }
                   return true;
                 case 6:
-	          if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 25000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},));) {
+	          if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 25000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},)); ) {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $breakInfo = new BlockBreakInfo(0);
@@ -181,7 +181,7 @@ class Main extends PluginBase implements Listener {
                   }
                   return true;
                 case 7:
-                  if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 30000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},));) {
+                  if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 30000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},)); ) {
                     $name = $sender->getName();
                     $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $breakInfo = new BlockBreakInfo(0);

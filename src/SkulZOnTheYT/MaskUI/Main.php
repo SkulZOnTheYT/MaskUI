@@ -81,44 +81,44 @@ class Main extends PluginBase implements Listener {
 		  $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
   		    break;
                 case 2:
-		  if ($sender instanceof Player){
                    $name = $sender->getName();
 		   $amountToSubtract = 5000;
                    BedrockEconomyAPI::legacy()->getPlayerBalance(
                      $name,
                        ClosureContext::create(
                        function (?int $balance) use ($name, $amountToSubtract): void {
+			 if ($player instanceof Player) {
                           if ($balance !== null && $balance >= $amountToSubtract) {
                            BedrockEconomyAPI::legacy()->subtractFromPlayerBalance(
                              $name,
                               $amountToSubtract,
                                ClosureContext::create(
-                               function (bool $wasUpdated) use ($name, $amountToSubtract): void {
+                               function (bool $wasUpdated) use ($name): void {
                                if ($wasUpdated) {
-                                $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		                $breakInfo = new BlockBreakInfo(0);
-		                $typeInfo = new BlockTypeInfo($breakInfo);
-		                $name1 = ("Skeleton Skull");
-                                $sk = new MobHead($idInfo, $name1, $typeInfo);
-		                $sk->setMobHeadType(MobHeadType::SKELETON());
-                                $mobHeadType = $sk->getMobHeadType();
-	                        $item1 = $sk->asItem();
-		                $item1->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
-                                $sender->getInventory()->addItem($item1);
-                                $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
-		                $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+                                $player->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
                               }  
-                            }
-                          )
-                        );
-	          } else {
-                    $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-	            $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
-                  }
-                 }
-                )
-               );
-	      }
+                             }
+                            )
+                           );
+	                } else {
+                          $player->sendMessage(this->getConfig()->get("msg.no-money"));
+                        }
+                       }
+		      }
+                     )
+                    );
+		    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
+		    $breakInfo = new BlockBreakInfo(0);
+		    $typeInfo = new BlockTypeInfo($breakInfo);
+		    $name1 = ("Skeleton Skull");
+                    $sk = new MobHead($idInfo, $name1, $typeInfo);
+		    $sk->setMobHeadType(MobHeadType::SKELETON());
+                    $mobHeadType = $sk->getMobHeadType();
+	            $item1 = $sk->asItem();
+		    $item1->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
+                    $sender->getInventory()->addItem($item1);
+                    $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
                   return true;
                 case 3:
                   if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 10000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},))) {

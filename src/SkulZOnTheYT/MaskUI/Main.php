@@ -93,9 +93,8 @@ class Main extends PluginBase implements Listener {
                              $name,
                               $amountToSubtract,
                                ClosureContext::create(
-                               function (bool $wasUpdated) use ($name): void {
+                               function (bool $wasUpdated): void {
                                if ($wasUpdated) {
-                                $player->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
                               }  
                              }
                             )

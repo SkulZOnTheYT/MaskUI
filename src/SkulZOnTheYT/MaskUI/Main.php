@@ -81,6 +81,7 @@ class Main extends PluginBase implements Listener {
 		  $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
   		    break;
                 case 2:
+		  if ($sender instanceof Player){
                    $name = $sender->getName();
 		   $amountToSubtract = 5000;
                    BedrockEconomyAPI::legacy()->getPlayerBalance(
@@ -117,6 +118,7 @@ class Main extends PluginBase implements Listener {
                  }
                 )
                );
+	      }
                   return true;
                 case 3:
                   if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 10000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},))) {

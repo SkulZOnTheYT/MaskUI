@@ -99,8 +99,7 @@ class Main extends PluginBase implements Listener {
                             )
                            );
 	                } 
-                       }
-		      }
+		       }
                      )
                     );
 		    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);

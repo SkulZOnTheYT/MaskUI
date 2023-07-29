@@ -87,7 +87,6 @@ class Main extends PluginBase implements Listener {
                      $name,
                        ClosureContext::create(
                        function (?int $balance) use ($name, $amountToSubtract): void {
-			 if ($player instanceof Player) {
                           if ($balance !== null && $balance >= $amountToSubtract) {
                            BedrockEconomyAPI::legacy()->subtractFromPlayerBalance(
                              $name,
@@ -99,9 +98,7 @@ class Main extends PluginBase implements Listener {
                              }
                             )
                            );
-	                } else {
-                          $player->sendMessage(this->getConfig()->get("msg.no-money"));
-                        }
+	                } 
                        }
 		      }
                      )

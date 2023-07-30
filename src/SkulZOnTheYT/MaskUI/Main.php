@@ -115,7 +115,8 @@ class Main extends PluginBase implements Listener {
 				  $player->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $player->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
 			    }
-			   } 
+			   }
+			  }
 	                  ) 
 			 );
 			} else {

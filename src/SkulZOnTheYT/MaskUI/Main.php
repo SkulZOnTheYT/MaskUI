@@ -83,7 +83,7 @@ class Main extends PluginBase implements Listener {
                 case 2:
                    $name = $sender->getName();
 		   $amountToSubtract = 5000;
-                   BedrockEconomyAPI::legacy()->getPlayerBalance(
+                   if (BedrockEconomyAPI::legacy()->getPlayerBalance(
                      $name,
                        ClosureContext::create(
                        function (?int $balance) use ($name, $amountToSubtract): void {
@@ -93,15 +93,7 @@ class Main extends PluginBase implements Listener {
                               $amountToSubtract,
                                ClosureContext::create(
                                function (bool $wasUpdated): void {
-                               if ($wasUpdated) {
-                              }  
-                             }
-                            )
-                           );
-	                } 
-		       }
-                     )
-                    );
+                               if ($wasUpdated) {} } ) ); } } ) ); ) {
 		    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);
@@ -114,6 +106,10 @@ class Main extends PluginBase implements Listener {
                     $sender->getInventory()->addItem($item1);
                     $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
 		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+		  } else {
+                    $sender->sendMessage($this->getConfig()->get("msg.no-money"));
+		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+                  }
                   return true;
                 case 3:
                   if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 10000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},))) {

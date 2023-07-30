@@ -93,7 +93,16 @@ class Main extends PluginBase implements Listener {
                               $amountToSubtract,
                                ClosureContext::create(
                                function (bool $wasUpdated): void {
-                               if ($wasUpdated) {} } ) ); } } ) ); ) {
+                               if ($wasUpdated) {
+			       }
+			      } 
+	                     ) 
+			    );
+			   }
+		          }
+		         )
+		        );
+		       ) {
 		    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		    $breakInfo = new BlockBreakInfo(0);
 		    $typeInfo = new BlockTypeInfo($breakInfo);

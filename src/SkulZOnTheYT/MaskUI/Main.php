@@ -121,7 +121,7 @@ class Main extends PluginBase implements Listener {
 			} else {
                            if ($sender instanceof Player) {
 			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-		             $sender->getWorld()->addSound($player->getPosition(), new AnvilFallSound());
+		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
 		       }
 		      }
 		     }
@@ -169,7 +169,7 @@ class Main extends PluginBase implements Listener {
 			} else {
                            if ($sender instanceof Player) {
 			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-		             $sender->getWorld()->addSound($player->getPosition(), new AnvilFallSound());
+		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
 		       }
 		      }
 		     }
@@ -217,7 +217,7 @@ class Main extends PluginBase implements Listener {
 			} else {
                            if ($sender instanceof Player) {
 			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-		             $sender->getWorld()->addSound($player->getPosition(), new AnvilFallSound());
+		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
 		       }
 		      }
 		     }
@@ -226,7 +226,7 @@ class Main extends PluginBase implements Listener {
                   return true;
                 case 5:
                    $name = $sender->getName();
-		   $amountToSubtract = $this->getConfig()->get("creeper.price");
+		   $amountToSubtract = $this->getConfig()->get("wither.price");
                    BedrockEconomyAPI::legacy()->getPlayerBalance(
                      $name,
                        ClosureContext::create(
@@ -265,7 +265,7 @@ class Main extends PluginBase implements Listener {
 			} else {
                            if ($sender instanceof Player) {
 			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-		             $sender->getWorld()->addSound($player->getPosition(), new AnvilFallSound());
+		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
 		       }
 		      }
 		     }
@@ -273,44 +273,100 @@ class Main extends PluginBase implements Listener {
 		   );
                   return true;
                 case 6:
-	          if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 25000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},))) {
-                    $name = $sender->getName();
-                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		    $breakInfo = new BlockBreakInfo(0);
-		    $typeInfo = new BlockTypeInfo($breakInfo);
-		    $name5 = ("Player Head");
-                    $st = new MobHead($idInfo, $name5, $typeInfo);
-		    $st->setMobHeadType(MobHeadType::PLAYER());
-                    $mobHeadType = $st->getMobHeadType();
-	            $item5 = $st->asItem();
-		    $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
-                    $sender->getInventory()->addItem($item5);
-                    $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
-		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-                  } else {
-                    $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
-                  }
+	           $name = $sender->getName();
+		   $amountToSubtract = $this->getConfig()->get("steve.price");
+                   BedrockEconomyAPI::legacy()->getPlayerBalance(
+                     $name,
+                       ClosureContext::create(
+                       function (?int $balance, Player $sender) use ($name, $amountToSubtract): void {
+                         if ($balance !== null && $balance >= $amountToSubtract) {
+                           BedrockEconomyAPI::legacy()->subtractFromPlayerBalance(
+                             $name,
+                              $amountToSubtract,
+                               ClosureContext::create(
+                               function (bool $wasUpdated, Player $sender): void {
+                                if ($wasUpdated) {
+                                  if ($sender instanceof Player) {
+			            $name = $sender->getName();
+                                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
+		                    $breakInfo = new BlockBreakInfo(0);
+		                    $typeInfo = new BlockTypeInfo($breakInfo);
+		                    $name5 = ("Player Head");
+                                    $st = new MobHead($idInfo, $name5, $typeInfo);
+		                    $st->setMobHeadType(MobHeadType::PLAYER());
+                                    $mobHeadType = $st->getMobHeadType();
+	                            $item5 = $st->asItem();
+		                    $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
+                                    $sender->getInventory()->addItem($item5);
+                                    $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
+		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+                              }
+			     } else {
+                                if ($sender instanceof Player) {
+				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
+		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+			    }
+			   }
+			  }
+	                  ) 
+			 );
+			} else {
+                           if ($sender instanceof Player) {
+			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
+		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+		       }
+		      }
+		     }
+		    )
+		   );
                   return true;
                 case 7:
-                  if (BedrockEconomyAPI::legacy()->subtractFromPlayerBalance($sender->getName(), 30000, ClosureContext::create(function (bool $wasUpdated): void {var_dump($wasUpdated);},))) {
-                    $name = $sender->getName();
-                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		    $breakInfo = new BlockBreakInfo(0);
-		    $typeInfo = new BlockTypeInfo($breakInfo);
-		    $name6 = ("Dragon Head");
-                    $dr = new MobHead($idInfo, $name6, $typeInfo);
-		    $dr->setMobHeadType(MobHeadType::DRAGON());
-                    $mobHeadType = $dr->getMobHeadType();
-	            $item6 = $dr->asItem();
-		    $item6->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
-                    $sender->getInventory()->addItem($item6);
-                    $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
-		    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-                  } else {
-                    $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-		    $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
-                  }
+                   $name = $sender->getName();
+		   $amountToSubtract = $this->getConfig()->get("dragon.price");
+                   BedrockEconomyAPI::legacy()->getPlayerBalance(
+                     $name,
+                       ClosureContext::create(
+                       function (?int $balance, Player $sender) use ($name, $amountToSubtract): void {
+                         if ($balance !== null && $balance >= $amountToSubtract) {
+                           BedrockEconomyAPI::legacy()->subtractFromPlayerBalance(
+                             $name,
+                              $amountToSubtract,
+                               ClosureContext::create(
+                               function (bool $wasUpdated, Player $sender): void {
+                                if ($wasUpdated) {
+                                  if ($sender instanceof Player) {
+                                    $name = $sender->getName();
+                                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
+		                    $breakInfo = new BlockBreakInfo(0);
+		                    $typeInfo = new BlockTypeInfo($breakInfo);
+		                    $name6 = ("Dragon Head");
+                                    $dr = new MobHead($idInfo, $name6, $typeInfo);
+		                    $dr->setMobHeadType(MobHeadType::DRAGON());
+                                    $mobHeadType = $dr->getMobHeadType();
+	                            $item6 = $dr->asItem();
+		                    $item6->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
+                                    $sender->getInventory()->addItem($item6);
+                                    $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
+		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+                              }
+			     } else {
+                                if ($sender instanceof Player) {
+				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
+		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+			    }
+			   }
+			  }
+	                  ) 
+			 );
+			} else {
+                           if ($sender instanceof Player) {
+			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
+		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+		       }
+		      }
+		     }
+		    )
+		   );
                   return true;
             }
         });

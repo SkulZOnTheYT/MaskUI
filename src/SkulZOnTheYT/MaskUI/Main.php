@@ -94,8 +94,9 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated): void {
                                if ($wasUpdated) {
-				 $player = Server::getInstance()->getPlayerExact($name);
                                   if ($player instanceof Player) {
+				  $name = $player->getName();
+				  $player = Server::getInstance()->getPlayerExact($name);
 				    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 		                    $breakInfo = new BlockBreakInfo(0);
 		                    $typeInfo = new BlockTypeInfo($breakInfo);
@@ -107,23 +108,25 @@ class Main extends PluginBase implements Listener {
 		                    $item1->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                                     $player->getInventory()->addItem($item1);
                                     $player->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
-				    $player->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+				    $player->getWorld()->addSound($player->getPosition(), new EndermanTeleportSound());
 			      }
 			     } else {
-			       $player = Server::getInstance()->getPlayerExact($name);
                                 if ($player instanceof Player) {
+				$name = $player->getName();
+				$player = Server::getInstance()->getPlayerExact($name);
 				  $player->sendMessage($this->getConfig()->get("msg.transactions-failed"));
-		                  $player->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+		                  $player->getWorld()->addSound($player->getPosition(), new AnvilFallSound());
 			    }
 			   }
 			  }
 	                  ) 
 			 );
 			} else {
-			  $player = Server::getInstance()->getPlayerExact($name);
                            if ($player instanceof Player) {
+			   $name = $player->getName();
+			   $player = Server::getInstance()->getPlayerExact($name);
 			     $player->sendMessage($this->getConfig()->get("msg.no-money"));
-		             $player->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+		             $player->getWorld()->addSound($player->getPosition(), new AnvilFallSound());
 		       }
 		      }
 		     }

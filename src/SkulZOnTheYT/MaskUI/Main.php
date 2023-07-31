@@ -423,34 +423,22 @@ class Main extends PluginBase implements Listener {
 	     
 	 if ($armorInventory->getHelmet() === $item1) {
             $this->applySkeletonHeadEffects($player);
-            } else {
-              $player->getEffects()->remove($this->activeEffects[$player->getName()]);
-        }
+            }
 	if ($armorInventory->getHelmet() === $item2) {
            $this->applyZombieHeadEffects($player);
-           } else {
-              $player->getEffects()->remove($this->activeEffects[$player->getName()]);
-        }
+           } 
 	if ($armorInventory->getHelmet() === $item3) {
            $this->applyCreeperHeadEffects($player);
-           } else {
-              $player->getEffects()->remove($this->activeEffects[$player->getName()]);
-        }
+           }
 	if ($armorInventory->getHelmet() === $item4) {
            $this->applyWitherSkeletonHeadEffects($player);
-           } else {
-              $player->getEffects()->remove($this->activeEffects[$player->getName()]);
-        } 
+           } 
 	if ($armorInventory->getHelmet() === $item5) {
            $this->applySteveHeadEffects($player);
-           } else {
-              $player->getEffects()->remove($this->activeEffects[$player->getName()]);
-        }
+           } 
 	if ($armorInventory->getHelmet() === $item6) {
            $this->applyDragonHeadEffects($player);
-           } else {
-              $player->getEffects()->remove($this->activeEffects[$player->getName()]);
-        }
+           } 
      }
   }
 

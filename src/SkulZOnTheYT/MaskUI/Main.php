@@ -87,6 +87,7 @@ class Main extends PluginBase implements Listener {
                      $name,
                        ClosureContext::create(
                        function (?int $balance, Player $sender) use ($name, $amountToSubtract): void {
+			if ($sender instanceof Player) {
                          if ($balance !== null && $balance >= $amountToSubtract) {
                            BedrockEconomyAPI::legacy()->subtractFromPlayerBalance(
                              $name,
@@ -119,7 +120,6 @@ class Main extends PluginBase implements Listener {
 	                  ) 
 			 );
 			} else {
-                           if ($sender instanceof Player) {
 			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
 		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
 		       }
@@ -135,6 +135,7 @@ class Main extends PluginBase implements Listener {
                      $name,
                        ClosureContext::create(
                        function (?int $balance, Player $sender) use ($name, $amountToSubtract): void {
+			if ($sender instanceof Player) {
                          if ($balance !== null && $balance >= $amountToSubtract) {
                            BedrockEconomyAPI::legacy()->subtractFromPlayerBalance(
                              $name,
@@ -167,7 +168,6 @@ class Main extends PluginBase implements Listener {
 	                  ) 
 			 );
 			} else {
-                           if ($sender instanceof Player) {
 			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
 		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
 		       }
@@ -183,6 +183,7 @@ class Main extends PluginBase implements Listener {
                      $name,
                        ClosureContext::create(
                        function (?int $balance, Player $sender) use ($name, $amountToSubtract): void {
+			if ($sender instanceof Player) {
                          if ($balance !== null && $balance >= $amountToSubtract) {
                            BedrockEconomyAPI::legacy()->subtractFromPlayerBalance(
                              $name,
@@ -215,7 +216,6 @@ class Main extends PluginBase implements Listener {
 	                  ) 
 			 );
 			} else {
-                           if ($sender instanceof Player) {
 			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
 		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
 		       }
@@ -231,6 +231,7 @@ class Main extends PluginBase implements Listener {
                      $name,
                        ClosureContext::create(
                        function (?int $balance, Player $sender) use ($name, $amountToSubtract): void {
+			if ($sender instanceof Player) {
                          if ($balance !== null && $balance >= $amountToSubtract) {
                            BedrockEconomyAPI::legacy()->subtractFromPlayerBalance(
                              $name,
@@ -263,7 +264,6 @@ class Main extends PluginBase implements Listener {
 	                  ) 
 			 );
 			} else {
-                           if ($sender instanceof Player) {
 			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
 		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
 		       }
@@ -279,6 +279,7 @@ class Main extends PluginBase implements Listener {
                      $name,
                        ClosureContext::create(
                        function (?int $balance, Player $sender) use ($name, $amountToSubtract): void {
+			if ($sender instanceof Player) {
                          if ($balance !== null && $balance >= $amountToSubtract) {
                            BedrockEconomyAPI::legacy()->subtractFromPlayerBalance(
                              $name,
@@ -311,7 +312,6 @@ class Main extends PluginBase implements Listener {
 	                  ) 
 			 );
 			} else {
-                           if ($sender instanceof Player) {
 			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
 		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
 		       }
@@ -327,6 +327,7 @@ class Main extends PluginBase implements Listener {
                      $name,
                        ClosureContext::create(
                        function (?int $balance, Player $sender) use ($name, $amountToSubtract): void {
+			if ($sender instanceof Player) {
                          if ($balance !== null && $balance >= $amountToSubtract) {
                            BedrockEconomyAPI::legacy()->subtractFromPlayerBalance(
                              $name,
@@ -359,7 +360,6 @@ class Main extends PluginBase implements Listener {
 	                  ) 
 			 );
 			} else {
-                           if ($sender instanceof Player) {
 			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
 		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
 		       }

@@ -40,12 +40,10 @@ class Main extends PluginBase implements Listener {
     private static $instance;
 	
 	public $plugin;
-	private $activeEffects;
 
 	public function onEnable() : void{
 	    self::$instance = $this;
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
-      $this->activeEffects = [];
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
     }

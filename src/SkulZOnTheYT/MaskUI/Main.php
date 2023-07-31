@@ -420,92 +420,58 @@ class Main extends PluginBase implements Listener {
 	                $item6 = $dr->asItem();
 	     
 	 if ($armorInventory->getHelmet() === $item1) {
-            $this->applySkeletonHeadEffects($player);
+            $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
+            $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
+            $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
+            $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
+            $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
             }
 	if ($armorInventory->getHelmet() === $item2) {
-           $this->applyZombieHeadEffects($player);
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 1, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
            } 
 	if ($armorInventory->getHelmet() === $item3) {
-           $this->applyCreeperHeadEffects($player);
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
            }
 	if ($armorInventory->getHelmet() === $item4) {
-           $this->applyWitherSkeletonHeadEffects($player);
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
            } 
 	if ($armorInventory->getHelmet() === $item5) {
-           $this->applySteveHeadEffects($player);
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
            } 
 	if ($armorInventory->getHelmet() === $item6) {
-           $this->applyDragonHeadEffects($player);
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 2, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
+           $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
            } 
-     }
-  }
-
-      public function applySkeletonHeadEffects($player): void {
-       if ($player instanceof Player) {
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-    }
-}
-
-      public function applyZombieHeadEffects($player): void {
-       if ($player instanceof Player) {
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 1, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
-    }
-}
-
-      public function applyCreeperHeadEffects($player): void {
-       if ($player instanceof Player) {
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-    }
-}
-
-     public function applyWitherSkeletonHeadEffects($player): void {
-      if ($player instanceof Player) {
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-        $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-    }
-}
-
-      public function applySteveHeadEffects($player): void {
-       if ($player instanceof Player) {
-       $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-       $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
-       $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
-       $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
-       $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-       $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-       $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-    }
-}
-
-      public function applyDragonHeadEffects($player): void {
-	if ($player instanceof Player) {
-         $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-         $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-         $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
-         $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 2, false));
-         $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-         $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-         $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-         $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
-         $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
      }
   }
 }

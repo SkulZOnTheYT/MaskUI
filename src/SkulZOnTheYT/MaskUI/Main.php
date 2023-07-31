@@ -209,7 +209,7 @@ class Main extends PluginBase implements Listener {
 		   );
 		  }
                   return true;
-                case 5
+                case 5:
 		  if ($sender instanceof Player) {
                    $name = $sender->getName();
 		   $amountToSubtract = $this->getConfig()->get("wither.price");

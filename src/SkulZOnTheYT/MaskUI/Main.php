@@ -104,6 +104,7 @@ class Main extends PluginBase implements Listener {
                                     $sender->getInventory()->addItem($item1);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
 				    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+				    $this->ArmorInventory($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -147,6 +148,7 @@ class Main extends PluginBase implements Listener {
                                     $sender->getInventory()->addItem($item2);
 		                    $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+				    $this->ArmorInventory($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -190,6 +192,7 @@ class Main extends PluginBase implements Listener {
                                     $sender->getInventory()->addItem($item3);
 		                    $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+				    $this->ArmorInventory($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -233,6 +236,7 @@ class Main extends PluginBase implements Listener {
                                     $sender->getInventory()->addItem($item4);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+				    $this->ArmorInventory($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -276,6 +280,7 @@ class Main extends PluginBase implements Listener {
                                     $sender->getInventory()->addItem($item5);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+				    $this->ArmorInventory($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -319,6 +324,7 @@ class Main extends PluginBase implements Listener {
                                     $sender->getInventory()->addItem($item6);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+				    $this->ArmorInventory($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -374,9 +380,9 @@ class Main extends PluginBase implements Listener {
       $form->sendToPlayer($sender);
     	}
 
-     public function ArmorInventory(Player $player): void {
-       if ($player instanceof Player) {
-	 $armorInventory = $player->getArmorInventory();
+     public function ArmorInventory($sender): void {
+       if ($sender instanceof Player) {
+	 $armorInventory = $sender->getArmorInventory();
 	  $helmet = $armorInventory->getHelmet();
 	     
 	   $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
@@ -419,58 +425,58 @@ class Main extends PluginBase implements Listener {
                         $mobHeadType = $dr->getMobHeadType();
 	                $item6 = $dr->asItem();
 	     
-	 if ($helmet !== null && $helmet->getId() === $item1->getId() && $helmet->getName() === $item1->getName()) {
-            $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
-            $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-            $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
-            $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-            $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
+	 if ($helmet !== null && $helmet->getName() === $item1->getName()) {
+            $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
+            $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
+            $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
+            $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
+            $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
             }
-	if ($armorInventory->getHelmet($this->getItem($item2))) {
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 1, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
+	if ($helmet !== null && $helmet->getName() === $item2->getName()) {
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 1, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
            } 
-	if ($armorInventory->getHelmet($this->getItem($item3))) {
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+	if ($helmet !== null && $helmet->getName() === $item3->getName()) {
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
            }
-	if ($armorInventory->getHelmet($this->getItem($item4))) {
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+	if ($helmet !== null && $helmet->getName() === $item4->getName()) {
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
            } 
-	if ($armorInventory->getHelmet($this->getItem($item5))) {
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+	if ($helmet !== null && $helmet->getName() === $item5->getName()) {
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
            } 
-	if ($armorInventory->getHelmet($this->getItem($item6))) {
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 2, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
-           $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
+	if ($helmet !== null && $helmet->getName() === $item1->getName()) {
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
            } 
      }
   }

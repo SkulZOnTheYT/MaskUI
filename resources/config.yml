@@ -1,3 +1,11 @@
+# Heads costs
+zombie.price: 10000
+wither.price: 20000
+dragon.price: 35000
+creeper.price: 15000
+steve.price: 25000
+skeleton.price: 5000
+
 # Messages when successfully given a mask
 msg.shop.zombie: "§7[§eMask§bUI§7] §dyou successfully given a §2zombie §dmask!"
 msg.shop.wither: "§7[§eMask§bUI§7] §dyou successfully given a §7wither§d mask!"
@@ -6,8 +14,11 @@ msg.shop.creeper: "§7[§eMask§bUI§7] §dyou successfully given a §acreeper§
 msg.shop.skeleton: "§7[§eMask§bUI§7] §dyou successfully given a §fskeleton §dmask!"
 msg.shop.steve: "§7[§eMask§bUI§7] §dyou successfully given a §3steve §dmask!"
 
-# Dont have permission
-msg.no-permission: "§7[§eMask§bUI§7] §cYou don't have permission!"
+# message when no money
+msg.no-money: "§7[§eMask§bUI§7] §cYou do not have enough money"
+
+# message when transaction failed
+msg.transactions-failed: "§7[§eMask§bUI§7] §cThis transactions failed!"
 
 # Message when Quit From the Menu 
 quit.message: "§7[§eMask§bUI§7] §cExited Mask Menu!"

@@ -384,54 +384,54 @@ class Main extends PluginBase implements Listener {
               
 	 private function applySkeletonEffects($sender){
 	   if ($sender instanceof Player){
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
+            $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 1000, 100, false));
+            $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 1000, 100, false));
+            $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 1000, 100, false));
+            $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 1000, 100, false));
+            $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 1000, 100, false));
 	   }
         }
           private function applyZombieEffects($sender){
 	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 1, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 9999, 130, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 9999, 130, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 9999, 130, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 9999, 130, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 9999, 130, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 9999, 130, false));
            } 
 	  }
 	 private function applyCreeperEffects($sender){
 	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 10000, 150, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 10000, 150, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 10000, 150, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 10000, 150, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 10000, 150, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 10000, 150, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 10000, 150, false));
            }
 	 }
 	 private function applyWitherEffects($sender){
 	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 99999, 180, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 99999, 180, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 99999, 180, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 99999, 180, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 99999, 180, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 99999, 180, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 99999, 180, false));
            } 
 	 }
 	 private function applySteveEffects($sender){
 	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 100000, 200, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 100000, 200, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 100000, 200, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 100000, 200, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 100000, 200, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 100000, 200, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 100000, 200, false));
            } 
 	 }
 	 private function applyDragonEffects($sender){

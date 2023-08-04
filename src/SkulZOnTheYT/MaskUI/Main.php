@@ -447,6 +447,4 @@ class Main extends PluginBase implements Listener {
            $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
            } 
 	 }
-     }
-  }
 }

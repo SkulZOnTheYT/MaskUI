@@ -6,8 +6,8 @@ MaskUI is a pocketmine api 5 plugin to give players mob head items with an attra
 >- Custom name
 >- Custom sound effect
 >- With permission
->- With economy (Customable Cost Head)
->- With effect (very over power)
+>- With economy (Costumeable cost)
+>- With effect (Very OverPower 😅)
 
 # Installation
 1. Download the **plugin**

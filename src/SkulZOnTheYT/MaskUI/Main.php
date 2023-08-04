@@ -236,7 +236,7 @@ class Main extends PluginBase implements Listener {
                                     $sender->getInventory()->addItem($item4);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-				    $this->appyWitherEffects($sender);
+				    $this->applyWitherEffects($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());

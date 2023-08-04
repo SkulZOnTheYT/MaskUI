@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SkulZOnTheYT\MaskUI;
 
 use pocketmine\Server;
+use pocketmine\utils\Config;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
@@ -20,10 +21,8 @@ use pocketmine\block\BlockBreakInfo;
 use pocketmine\block\BlockIdentifier;
 use pocketmine\block\utils\MobHeadType;
 use pocketmine\inventory\ArmorInventory;
-use pocketmine\utils\TextFormat as TF;
-use pocketmine\utils\Config;
-use pocketmine\world\sound\EndermanTeleportSound;
 use pocketmine\world\sound\AnvilFallSound;
+use pocketmine\world\sound\EndermanTeleportSound;
 use pocketmine\entity\Effect;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
@@ -378,6 +377,7 @@ class Main extends PluginBase implements Listener {
      public function ArmorInventory(Player $player): void {
        if ($player instanceof Player) {
 	 $armorInventory = $player->getArmorInventory();
+	  $helmet = $armorInventory->getHelmet();
 	     
 	   $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 	   $breakInfo = new BlockBreakInfo(0);
@@ -419,7 +419,7 @@ class Main extends PluginBase implements Listener {
                         $mobHeadType = $dr->getMobHeadType();
 	                $item6 = $dr->asItem();
 	     
-	 if ($armorInventory->getHelmet($this->getItem($item1))) {
+	 if ($helmet !== null && $helmet->getId() === $item1->getId() && $helmet->getName() === $item1->getName()) {
             $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
             $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
             $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));

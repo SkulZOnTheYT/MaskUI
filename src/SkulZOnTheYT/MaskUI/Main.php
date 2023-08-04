@@ -436,15 +436,15 @@ class Main extends PluginBase implements Listener {
 	 }
 	 private function applyDragonEffects($sender){
 	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 2, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 999999, 255, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 999999, 255, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 999999, 255, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 999999, 255, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 999999, 255, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 999999, 255, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 999999, 255, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 999999, 255, false));
+           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 999999, 255, false));
            } 
 	 }
 }

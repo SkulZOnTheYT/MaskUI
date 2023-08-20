@@ -32,7 +32,9 @@ class EffectTask extends Task {
 	}
 
     public function onRun(int $currentTick = 0) : void {
-     if ($player instanceOf Player) {
+     $server = Server::getInstance();
+      $player = $server->getOnlinePlayers();
+       if ($player instanceOf Player) {
         $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 	      $breakInfo = new BlockBreakInfo(0);
 	       $typeInfo = new BlockTypeInfo($breakInfo);
@@ -40,10 +42,10 @@ class EffectTask extends Task {
           
          $mobHead = new MobHead($idInfo, $name1, $typeInfo);
           $i = $mobHead->asItem();
-	        $inv = $player->getArmorInventory();
+	  $inv = $player->getArmorInventory();
           $helmet = $inv->getHelmet();
           
-           if(!$helmet->getItem() == $i) return;
+           if(!$helmet->SimpleInventory::getItem() == $i) return;
             switch($mobHead->getMobHeadType()){
                 case MobHeadType::SKELETON():
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
@@ -68,25 +70,25 @@ class EffectTask extends Task {
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-		                break;
-		            case MobHeadType::WITHER_SKELETON():
-		                 $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
+	            break;
+	        case MobHeadType::WITHER_SKELETON():
+	             $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-		                break;
-	              case MobHeadType::PLAYER():
-		                 $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
+		    break;
+	        case MobHeadType::PLAYER():
+		     $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-		                break;
-	              case MobHeadType::DRAGON():
-		                 $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
+		    break;
+	        case MobHeadType::DRAGON():
+		     $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
       	             $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 2, false));
@@ -95,7 +97,7 @@ class EffectTask extends Task {
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
-		                break;
+		    break;
             }
         }
     }

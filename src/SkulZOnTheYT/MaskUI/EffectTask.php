@@ -35,9 +35,9 @@ class EffectTask extends Task {
      $player = $this->getServer()->getPlayerExact($args[0]);
      if ($player instanceof Player){
         $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-	      $breakInfo = new BlockBreakInfo(0);
-	       $typeInfo = new BlockTypeInfo($breakInfo);
-	       $name1 = ("Mask Name");
+	  $breakInfo = new BlockBreakInfo(0);
+	  $typeInfo = new BlockTypeInfo($breakInfo);
+	  $name1 = ("Mask Name");
           
          $mobHead = new MobHead($idInfo, $name1, $typeInfo);
           $i = $mobHead->asItem();

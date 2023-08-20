@@ -15,7 +15,6 @@ use pocketmine\Server;
 use pocketmine\scheduler\Task;
 use pocketmine\event\player\PlayerEvent;
 use pocketmine\utils\TextFormat;
-use pocketmine\item\Item;
 use pocketmine\block\MobHead;
 use pocketmine\block\BlockTypeIds;
 use pocketmine\block\BlockTypeInfo;
@@ -32,7 +31,7 @@ class EffectTask extends Task {
 	}
 
     public function onRun(int $currentTick = 0) : void {
-     $player = $this->getServer()->getPlayerExact($args[0]);
+     $player = [];
      if ($player instanceof Player){
         $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 	  $breakInfo = new BlockBreakInfo(0);

@@ -46,6 +46,7 @@ class Main extends PluginBase implements Listener {
         foreach ($server->getOnlinePlayers() as $player) {
            $this->getScheduler()->scheduleRepeatingTask(new EffectTask($player), 20);
     }
+}
 	
 	public static function getInstance() : self{
 	    return self::$instance;

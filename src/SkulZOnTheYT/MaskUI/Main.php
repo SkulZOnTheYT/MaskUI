@@ -23,10 +23,7 @@ use pocketmine\block\utils\MobHeadType;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\world\sound\AnvilFallSound;
 use pocketmine\world\sound\EndermanTeleportSound;
-use pocketmine\entity\Effect;
-use pocketmine\entity\effect\EffectInstance;
-use pocketmine\entity\effect\EffectManager;
-use pocketmine\entity\effect\VanillaEffects;
+use pocketmine\scheduler\Task;
 use cooldogedev\BedrockEconomy\BedrockEconomy;
 use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
 use cooldogedev\BedrockEconomy\api\version\LegacyBEAPI;
@@ -45,6 +42,9 @@ class Main extends PluginBase implements Listener {
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
+      $server = Server::getInstance();
+        foreach ($server->getOnlinePlayers() as $player) {
+           $this->getScheduler()->scheduleRepeatingTask(new EffectTask($player), 20);
     }
 	
 	public static function getInstance() : self{
@@ -104,7 +104,6 @@ class Main extends PluginBase implements Listener {
                                     $sender->getInventory()->addItem($item1);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
 				    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-				    $this->applySkeletonEffects($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -148,7 +147,6 @@ class Main extends PluginBase implements Listener {
                                     $sender->getInventory()->addItem($item2);
 		                    $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-				    $this->applyZombieEffects($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -192,7 +190,6 @@ class Main extends PluginBase implements Listener {
                                     $sender->getInventory()->addItem($item3);
 		                    $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-				    $this->applyCreeperEffects($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -236,7 +233,6 @@ class Main extends PluginBase implements Listener {
                                     $sender->getInventory()->addItem($item4);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-				    $this->applyWitherEffects($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -280,7 +276,6 @@ class Main extends PluginBase implements Listener {
                                     $sender->getInventory()->addItem($item5);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-				    $this->applySteveEffects($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -324,7 +319,6 @@ class Main extends PluginBase implements Listener {
                                     $sender->getInventory()->addItem($item6);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-				    $this->applyDragonEffects($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -379,72 +373,4 @@ class Main extends PluginBase implements Listener {
       $form->addButton("§l§cEXIT", 2);
       $form->sendToPlayer($sender);
     	}
-
-     
-              
-	 private function applySkeletonEffects($sender){
-	   if ($sender instanceof Player){
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 1000, 100, false));
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 1000, 100, false));
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 1000, 100, false));
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 1000, 100, false));
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 1000, 100, false));
-	   }
-        }
-          private function applyZombieEffects($sender){
-	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 9999, 130, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 9999, 130, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 9999, 130, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 9999, 130, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 9999, 130, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 9999, 130, false));
-           } 
-	  }
-	 private function applyCreeperEffects($sender){
-	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 10000, 150, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 10000, 150, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 10000, 150, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 10000, 150, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 10000, 150, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 10000, 150, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 10000, 150, false));
-           }
-	 }
-	 private function applyWitherEffects($sender){
-	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 99999, 180, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 99999, 180, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 99999, 180, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 99999, 180, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 99999, 180, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 99999, 180, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 99999, 180, false));
-           } 
-	 }
-	 private function applySteveEffects($sender){
-	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 100000, 200, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 100000, 200, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 100000, 200, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 100000, 200, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 100000, 200, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 100000, 200, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 100000, 200, false));
-           } 
-	 }
-	 private function applyDragonEffects($sender){
-	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 999999, 255, false));
-           } 
-	 }
 }

@@ -34,7 +34,6 @@ class EffectTask extends Task {
     public function onRun(int $currentTick = 0) : void {
      $server = Server::getInstance();
       $player = $server->getOnlinePlayers();
-       if ($player instanceOf Player) {
         $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 	      $breakInfo = new BlockBreakInfo(0);
 	       $typeInfo = new BlockTypeInfo($breakInfo);
@@ -98,7 +97,6 @@ class EffectTask extends Task {
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
 		    break;
-            }
         }
     }
 }

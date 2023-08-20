@@ -31,7 +31,6 @@ class EffectTask extends Task {
 	}
 
     public function onRun(int $currentTick = 0) : void {
-     $player = [];
      if ($player instanceof Player){
         $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
 	  $breakInfo = new BlockBreakInfo(0);

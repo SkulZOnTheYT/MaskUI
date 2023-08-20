@@ -9,7 +9,7 @@ use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\inventory\ArmorInventory;
-use pocketmine\inventory\SimpleInventory;
+use pocketmine\item\Item;
 use pocketmine\player\Player;
 use pocketmine\Server;
 use pocketmine\scheduler\Task;
@@ -24,10 +24,11 @@ use pocketmine\block\utils\MobHeadType;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
+
+	private $player;
 	
 	public function __construct (Player $player){
-	   $server = Server::getInstance();
-           $player = $server->getOnlinePlayers();
+	   $this->player = $player;
 	}
 
     public function onRun(int $currentTick = 0) : void {
@@ -42,7 +43,7 @@ class EffectTask extends Task {
 	  $inv = $player->getArmorInventory();
           $helmet = $inv->getHelmet();
           
-           if(!$helmet->SimpleInventory::getItem() == $i) return;
+           if(!$helmet->getName() == $i) return;
             switch($mobHead->getMobHeadType()){
                 case MobHeadType::SKELETON():
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));

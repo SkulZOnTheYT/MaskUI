@@ -42,8 +42,7 @@ class Main extends PluginBase implements Listener {
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
-      $server = Server::getInstance();
-        foreach ($server->getOnlinePlayers() as $player) {
+      if ($player instanceof Player) {
            $this->getScheduler()->scheduleRepeatingTask(new EffectTask($player), 20);
     }
 }

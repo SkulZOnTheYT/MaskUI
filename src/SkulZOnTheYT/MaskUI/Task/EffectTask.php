@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SkulZOnTheYT\MaskUI;
+namespace SkulZOnTheYT\MaskUI\Task;
 
 use pocketmine\entity\Effect;
 use pocketmine\entity\effect\EffectInstance;
@@ -10,18 +10,20 @@ use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\player\Player;
+use pocketmine\Server;
 use pocketmine\scheduler\Task;
 use pocketmine\event\player\PlayerEvent;
 use pocketmine\utils\TextFormat;
 use pocketmine\item\Item;
 use pocketmine\block\MobHead;
 use pocketmine\block\BlockTypeIds;
+use pocketmine\block\BlockTypeInfo;
+use pocketmine\block\BlockBreakInfo;
+use pocketmine\block\BlockIdentifier;
 use pocketmine\block\utils\MobHeadType;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
-
-        private $player;
 	
 	public function __construct (Player $player){
 	   $server = Server::getInstance();
@@ -37,7 +39,7 @@ class EffectTask extends Task {
           
          $mobHead = new MobHead($idInfo, $name1, $typeInfo);
           $i = $mobHead->asItem();
-	  $inv = $players->getArmorInventory();
+	  $inv = $player->getArmorInventory();
           $helmet = $inv->getHelmet();
           
            if(!$helmet->getItem() == $i) return;

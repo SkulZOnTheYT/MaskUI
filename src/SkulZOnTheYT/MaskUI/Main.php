@@ -5,15 +5,16 @@ declare(strict_types=1);
 namespace SkulZOnTheYT\MaskUI;
 
 use pocketmine\Server;
+use pocketmine\item\Item;
 use pocketmine\utils\Config;
 use pocketmine\player\Player;
-use pocketmine\plugin\PluginBase;
+use pocketmine\scheduler\Task;
 use pocketmine\event\Listener;
+use pocketmine\plugin\PluginBase;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
 use pocketmine\command\ConsoleCommandSender;
-use pocketmine\item\Item;
 use pocketmine\block\MobHead;
 use pocketmine\block\BlockTypeIds;
 use pocketmine\block\BlockTypeInfo;
@@ -23,7 +24,6 @@ use pocketmine\block\utils\MobHeadType;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\world\sound\AnvilFallSound;
 use pocketmine\world\sound\EndermanTeleportSound;
-use pocketmine\scheduler\Task;
 use cooldogedev\BedrockEconomy\BedrockEconomy;
 use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
 use cooldogedev\BedrockEconomy\api\version\LegacyBEAPI;
@@ -43,8 +43,8 @@ class Main extends PluginBase implements Listener {
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
-      $player = $this->player;
-      if ($player instanceof Player) {
+      $server = Server::getInstance();
+        foreach ($server->getOnlinePlayers() as $player) {
            $this->getScheduler()->scheduleRepeatingTask(new EffectTask($player), 20);
     }
 }

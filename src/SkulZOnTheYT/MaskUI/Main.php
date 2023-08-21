@@ -36,7 +36,6 @@ class Main extends PluginBase implements Listener {
     private static $instance;
 	
 	public $plugin;
-	private $player;
 
 	public function onEnable() : void{
 	    self::$instance = $this;

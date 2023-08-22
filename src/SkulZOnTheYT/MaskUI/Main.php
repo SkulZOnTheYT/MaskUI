@@ -374,4 +374,16 @@ class Main extends PluginBase implements Listener {
       $form->addButton("§l§cEXIT", 2);
       $form->sendToPlayer($sender);
     	}
+
+   public function onItemHeld(PlayerItemHeldEvent $event) {
+        $player = $event->getPlayer();
+        $heldItem = $event->getItem();
+        $armorInventory = $player->getArmorInventory();
+        $diamondHelmet = Item::get(VanillaItems::DIAMOND_HELMET);
+
+        if ($armorInventory->getHelmet()->equals($diamondHelmet) && $heldItem->equals($diamondHelmet)) {
+            $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
+            $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
+        }
+    }
 }

@@ -24,6 +24,12 @@ use pocketmine\block\utils\MobHeadType;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\world\sound\AnvilFallSound;
 use pocketmine\world\sound\EndermanTeleportSound;
+use pocketmine\item\VanillaItems;
+use pocketmine\event\player\PlayerItemHeldEvent;
+use pocketmine\entity\Effect;
+use pocketmine\entity\effect\EffectInstance;
+use pocketmine\entity\effect\EffectManager;
+use pocketmine\entity\effect\VanillaEffects;
 use cooldogedev\BedrockEconomy\BedrockEconomy;
 use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
 use cooldogedev\BedrockEconomy\api\version\LegacyBEAPI;
@@ -379,7 +385,7 @@ class Main extends PluginBase implements Listener {
         $player = $event->getPlayer();
         $heldItem = $event->getItem();
         $armorInventory = $player->getArmorInventory();
-        $diamondHelmet = Item::get(VanillaItems::DIAMOND_HELMET);
+        $diamondHelmet = VanillaItems::DIAMOND_HELMET();
 
         if ($armorInventory->getHelmet()->equals($diamondHelmet) && $heldItem->equals($diamondHelmet)) {
             $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));

@@ -48,10 +48,7 @@ class Main extends PluginBase implements Listener {
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
-      $server = Server::getInstance();
-        foreach ($server->getOnlinePlayers() as $player) {
-           $this->getScheduler()->scheduleRepeatingTask(new EffectTask($player), 20);
-    }
+      $this->getScheduler()->scheduleRepeatingTask(new EffectTask(), 20);
 }
 	
 	public static function getInstance() : self{
@@ -380,16 +377,4 @@ class Main extends PluginBase implements Listener {
       $form->addButton("§l§cEXIT", 2);
       $form->sendToPlayer($sender);
     	}
-
-   public function onItemHeld(PlayerItemHeldEvent $event) {
-        $player = $event->getPlayer();
-        $heldItem = $event->getItem();
-        $armorInventory = $player->getArmorInventory();
-        $diamondHelmet = VanillaItems::DIAMOND_HELMET();
-
-        if ($armorInventory->getHelmet()->equals($diamondHelmet) && $heldItem->equals($diamondHelmet)) {
-            $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
-            $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-        }
-    }
 }

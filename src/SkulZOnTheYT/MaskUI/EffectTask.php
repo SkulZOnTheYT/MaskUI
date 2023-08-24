@@ -15,12 +15,9 @@ use pocketmine\Server;
 use pocketmine\scheduler\Task;
 use pocketmine\event\player\PlayerEvent;
 use pocketmine\utils\TextFormat;
+use pocketmine\block\Block;
+use pocketmine\block\VanillaBlocks;
 use pocketmine\block\MobHead;
-use pocketmine\block\BlockTypeIds;
-use pocketmine\block\BlockTypeInfo;
-use pocketmine\block\BlockBreakInfo;
-use pocketmine\block\BlockIdentifier;
-use pocketmine\block\utils\MobHeadType;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
@@ -38,26 +35,18 @@ class EffectTask extends Task {
     public function onRun(int $currentTick = 0) : void {
      $player = $this->getPlayer();
      if ($player instanceof Player){
-        $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-	  $breakInfo = new BlockBreakInfo(0);
-	  $typeInfo = new BlockTypeInfo($breakInfo);
-	  $name1 = ("Mask Name");
-          
-         $mobHead = new MobHead($idInfo, $name1, $typeInfo);
-          $i = $mobHead->asItem();
-	  $inv = $player->getArmorInventory();
-          $helmet = $inv->getHelmet();
-          
-           if(!$helmet->getName() == $i) return;
-            switch($mobHead->getMobHeadType()){
-                case MobHeadType::SKELETON():
+        $inv = $players->getArmorInventory();
+            $helmet = $inv->getHelmet();
+            if(!$helmet->getTypeId() == VanillaBlocks::MOB_HEAD) return;
+            switch($helmet->getStateId()){
+                case 2:
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
                     break;
-                case MobHeadType::ZOMBIE():
+                case 4:
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
@@ -65,7 +54,7 @@ class EffectTask extends Task {
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
                     break;
-                case MobHeadType::CREEPER():
+                case 1:
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
@@ -74,14 +63,14 @@ class EffectTask extends Task {
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
 	            break;
-	        case MobHeadType::WITHER_SKELETON():
+	        case 6:
 	             $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
 		    break;
-	        case MobHeadType::PLAYER():
+	        case 3:
 		     $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
@@ -90,7 +79,7 @@ class EffectTask extends Task {
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
 		    break;
-	        case MobHeadType::DRAGON():
+	        case 5:
 		     $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
       	             $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));

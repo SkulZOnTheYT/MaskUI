@@ -19,8 +19,7 @@ class EffectTask extends Task {
 
 	private $player;
 	
-	public function __construct (Player $player){
-	   $this->player = $player;
+	public function __construct () {
 	}
 
 	public function getPlayer(): Player {
@@ -32,7 +31,7 @@ class EffectTask extends Task {
      if ($player instanceof Player){
         $inv = $players->getArmorInventory();
             $helmet = $inv->getHelmet();
-            if($helmet->getTypeId() !== BlockTypeIds::MOB_HEAD) return;
+            if($helmet->getTypeId() !== BlockTypeIds::MOB_HEAD) continue;
             switch($helmet->getStateId()){
                 case 2:
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));

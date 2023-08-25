@@ -11,13 +11,8 @@ use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\item\Item;
 use pocketmine\player\Player;
-use pocketmine\Server;
 use pocketmine\scheduler\Task;
-use pocketmine\event\player\PlayerEvent;
-use pocketmine\utils\TextFormat;
-use pocketmine\block\Block;
-use pocketmine\block\VanillaBlocks;
-use pocketmine\block\MobHead;
+use pocketmine\block\BlockTypeIds;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
@@ -37,7 +32,7 @@ class EffectTask extends Task {
      if ($player instanceof Player){
         $inv = $players->getArmorInventory();
             $helmet = $inv->getHelmet();
-            if(!$helmet->getTypeId() == VanillaBlocks::MOB_HEAD) return;
+            if($helmet->getTypeId() !== BlockTypeIds::MOB_HEAD) return;
             switch($helmet->getStateId()){
                 case 2:
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));

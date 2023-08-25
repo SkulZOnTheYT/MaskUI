@@ -31,7 +31,7 @@ class EffectTask extends Task {
      if ($player instanceof Player){
         $inv = $player->getArmorInventory();
             $helmet = $inv->getHelmet();
-            if($helmet->getTypeId() !== BlockTypeIds::MOB_HEAD) continue;
+            if($helmet->getTypeId() !== BlockTypeIds::MOB_HEAD) {
             switch($helmet->getStateId()){
                 case 2:
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
@@ -84,6 +84,7 @@ class EffectTask extends Task {
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
 		    break;
+	        }
 	    }
         }
     }

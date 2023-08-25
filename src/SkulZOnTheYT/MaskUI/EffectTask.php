@@ -16,8 +16,6 @@ use pocketmine\block\BlockTypeIds;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
-
-	private $player;
 	
 	public function __construct () {
 	}

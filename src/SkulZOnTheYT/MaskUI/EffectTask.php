@@ -10,26 +10,20 @@ use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\item\Item;
+use pocketmine\Server;
 use pocketmine\player\Player;
 use pocketmine\scheduler\Task;
 use pocketmine\block\BlockTypeIds;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
-
-	/** @var Player */
-    private $player;
 	
 	public function __construct () {
 	}
 
-	public function getPlayer(): Player {
-        return $this->player;
-	}
-
     public function onRun(int $currentTick = 0) : void {
-     $player = $this->getPlayer();
-     if ($player instanceof Player){
+      $server = Main::getInstance()->getServer();
+        foreach ($server->getOnlinePlayers() as $player) {
         $inv = $player->getArmorInventory();
             $helmet = $inv->getHelmet();
             if($helmet->getTypeId() !== BlockTypeIds::MOB_HEAD) {

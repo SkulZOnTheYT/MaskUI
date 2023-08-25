@@ -29,7 +29,7 @@ class EffectTask extends Task {
     public function onRun(int $currentTick = 0) : void {
      $player = $this->getPlayer();
      if ($player instanceof Player){
-        $inv = $players->getArmorInventory();
+        $inv = $player->getArmorInventory();
             $helmet = $inv->getHelmet();
             if($helmet->getTypeId() !== BlockTypeIds::MOB_HEAD) continue;
             switch($helmet->getStateId()){

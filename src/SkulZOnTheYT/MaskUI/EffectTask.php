@@ -9,7 +9,7 @@ use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\inventory\ArmorInventory;
-use pocketmine\item\Item;
+use pocketmine\block\Blocks;
 use pocketmine\Server;
 use pocketmine\player\Player;
 use pocketmine\scheduler\Task;
@@ -26,8 +26,8 @@ class EffectTask extends Task {
         foreach ($server->getOnlinePlayers() as $player) {
           $inv = $player->getArmorInventory();
             $helmet = $inv->getHelmet();
-            if($helmet->getTypeId() === BlockTypeIds::MOB_HEAD) {
-            switch($helmet->getStateId()){
+            $mobHead = $helmet->getBlocks()->getTypeId() === BlockTypeIds::MOB_HEAD();
+            switch($mobHead->getStateId()){
                 case 2:
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));

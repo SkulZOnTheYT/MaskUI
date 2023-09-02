@@ -9,11 +9,11 @@ use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\inventory\ArmorInventory;
-use pocketmine\block\Blocks;
+use pocketmine\item\Item;
 use pocketmine\Server;
 use pocketmine\player\Player;
 use pocketmine\scheduler\Task;
-use pocketmine\block\BlockTypeIds;
+use pocketmine\block\VanillaBlocks;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
@@ -26,7 +26,7 @@ class EffectTask extends Task {
         foreach ($server->getOnlinePlayers() as $player) {
           $inv = $player->getArmorInventory();
             $helmet = $inv->getHelmet();
-            $mobHead = $helmet->getBlocks()->getTypeId() === BlockTypeIds::MOB_HEAD();
+            $mobHead = $helmet->getBlock() === VanillaBlocks::MOB_HEAD();
             switch($mobHead->getStateId()){
                 case 2:
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));

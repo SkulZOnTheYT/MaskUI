@@ -23,11 +23,12 @@ class EffectTask extends Task {
 
     public function onRun(int $currentTick = 0) : void {
       $server = Main::getInstance()->getServer();
-        foreach ($server->getOnlinePlayers() as $player) {
-          $inv = $player->getArmorInventory();
-            $helmet = $inv->getHelmet();
-            $mobHead = $helmet->getBlock() === VanillaBlocks::MOB_HEAD();
-            switch($mobHead->getStateId()){
+       foreach ($server->getOnlinePlayers() as $player) {
+        $inv = $player->getArmorInventory();
+         $helmet = $inv->getHelmet();
+          if ($helmet->getBlock() === VanillaBlocks::MOB_HEAD()) {
+	   $stateId = $helmet->getStateId();
+            switch($stateId){
                 case 2:
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
@@ -79,6 +80,7 @@ class EffectTask extends Task {
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
 		    break;
+	         }
 	    }
         }
     }

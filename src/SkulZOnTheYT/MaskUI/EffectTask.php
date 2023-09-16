@@ -27,7 +27,8 @@ class EffectTask extends Task {
        foreach ($server->getOnlinePlayers() as $player) {
         $helmet = $player->getArmorInventory()->getHelmet();
           if ($helmet instanceof MobHead) {
-	   $types = $helmet->getMobHeadType();
+	   $item = $helmet->asItem();
+	   $types = $item->getMobHeadType();
             switch($types){
                 case MobHeadType::SKELETON:
                      $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));

@@ -13,8 +13,9 @@ use pocketmine\item\Item;
 use pocketmine\Server;
 use pocketmine\player\Player;
 use pocketmine\scheduler\Task;
-use pocketmine\block\MobHead;
-use pocketmine\block\utils\MobHeadType;
+use pocketmine\item\ItemIdentifier;
+use pocketmine\item\ItemTypeIds;
+use pocketmine\item\VanillaItems;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {
@@ -26,63 +27,14 @@ class EffectTask extends Task {
       $server = Main::getInstance()->getServer();
        foreach ($server->getOnlinePlayers() as $player) {
         $helmet = $player->getArmorInventory()->getHelmet();
-          if ($helmet instanceof MobHead) {
-	   $item = $helmet->asItem();
-	   $types = $item->getMobHeadType();
-            switch($types){
-                case MobHeadType::SKELETON:
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-                    break;
-                case MobHeadType::ZOMBIE:
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 1, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
-                    break;
-                case MobHeadType::CREEPER:
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 0, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 1, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-	            break;
-	        case MobHeadType::WITHER_SKELETON:
-	             $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 0, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
-		    break;
-	        case MobHeadType::PLAYER:
-		     $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-		    break;
-	        case MobHeadType::DRAGON:
-		     $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 3, false));
-      	             $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 2, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 220, 4, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 2, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 2, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 220, 2, false));
-                     $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 2, false));
-		    break;
-	         }
-	    }
+           if ($helmet->getTypeId() === VanillaItems::DIAMOND_HELMET()->getTypeId()) {
+	     $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0, false));
+             $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
+           }
+	   if ($helmet !== null && $helmet->getTypeId() === ItemTypeIds::NETHERITE_HELMET) {
+	     $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
+             $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
+	   }	  
         }
     }
 }

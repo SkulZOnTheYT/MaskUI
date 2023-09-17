@@ -34,7 +34,15 @@ class EffectTask extends Task {
 	   if ($helmet !== null && $helmet->getTypeId() === ItemTypeIds::NETHERITE_HELMET) {
 	     $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
              $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
-	   }	  
+	   }
+	   if ($helmet->getTypeId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE())->asItem()->getTypeId()) {
+	     $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1, false));
+             $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1, false));
+             $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 1, false));
+             $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 1, false));
+             $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0, false));
+             $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0, false));
+	   } 
         }
     }
 }

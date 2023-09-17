@@ -15,16 +15,10 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
 use pocketmine\command\ConsoleCommandSender;
-use pocketmine\block\MobHead;
-use pocketmine\block\BlockTypeIds;
-use pocketmine\block\BlockTypeInfo;
-use pocketmine\block\BlockBreakInfo;
-use pocketmine\block\BlockIdentifier;
 use pocketmine\block\utils\MobHeadType;
-use pocketmine\inventory\ArmorInventory;
+use pocketmine\block\VanillaBlocks;
 use pocketmine\world\sound\AnvilFallSound;
 use pocketmine\world\sound\EndermanTeleportSound;
-use pocketmine\item\VanillaItems;
 use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\entity\Effect;
 use pocketmine\entity\effect\EffectInstance;
@@ -96,14 +90,7 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-				    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		                    $breakInfo = new BlockBreakInfo(0);
-		                    $typeInfo = new BlockTypeInfo($breakInfo);
-		                    $name1 = ("Skeleton Skull");
-                                    $sk = new MobHead($idInfo, $name1, $typeInfo);
-		                    $sk->setMobHeadType(MobHeadType::SKELETON());
-                                    $mobHeadType = $sk->getMobHeadType();
-	                            $item1 = $sk->asItem();
+	                            $item1 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE())->asItem();
 		                    $item1->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                                     $sender->getInventory()->addItem($item1);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
@@ -139,14 +126,7 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-                                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		                    $breakInfo = new BlockBreakInfo(0);
-		                    $typeInfo = new BlockTypeInfo($breakInfo);
-		                    $name2 = ("Zombie Head");
-                                    $zo = new MobHead($idInfo, $name2, $typeInfo);
-		                    $zo->setMobHeadType(MobHeadType::ZOMBIE());
-                                    $mobHeadType = $zo->getMobHeadType();
-	                            $item2 = $zo->asItem();
+	                            $item2 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE())->asItem();
 		                    $item2->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
                                     $sender->getInventory()->addItem($item2);
 		                    $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
@@ -182,14 +162,7 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-                                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		                    $breakInfo = new BlockBreakInfo(0);
-		                    $typeInfo = new BlockTypeInfo($breakInfo);
-		                    $name3 = ("Creeper Head");
-                                    $cr = new MobHead($idInfo, $name3, $typeInfo);
-		                    $cr->setMobHeadType(MobHeadType::CREEPER());
-                                    $mobHeadType = $cr->getMobHeadType();
-	                            $item3 = $cr->asItem();
+	                            $item3 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::CREEPER())->asItem();
 		                    $item3->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
                                     $sender->getInventory()->addItem($item3);
 		                    $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
@@ -210,7 +183,43 @@ class Main extends PluginBase implements Listener {
 		   );
 		  }
                   return true;
-                case 5:
+		case 5:
+		  if ($sender instanceof Player) {
+                   $name = $sender->getName();
+		   $amountToSubtract = $this->getConfig()->get("piglin.price");
+                   BedrockEconomyAPI::legacy()->getPlayerBalance(
+                     $name,
+                       ClosureContext::create(
+                       function (?int $balance) use ($sender, $name, $amountToSubtract): void {
+                         if ($balance !== null && $balance >= $amountToSubtract) {
+                           BedrockEconomyAPI::legacy()->subtractFromPlayerBalance(
+                             $name,
+                              $amountToSubtract,
+                               ClosureContext::create(
+                               function (bool $wasUpdated) use ($sender, $name): void {
+                                if ($wasUpdated) {
+				 item4 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PIGLIN())->asItem();
+				 $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
+                                 $sender->getInventory()->addItem($item4);
+                                 $sender->sendMessage($this->getConfig()->get("msg.shop.piglin"));
+		                 $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+			     } else {
+				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
+		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+			    }
+			   }
+	                  ) 
+			 );
+			} else {
+			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
+		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+		       }
+		      }
+		    )
+		   );
+	          }
+                  return true;
+                case 6:
 		  if ($sender instanceof Player) {
                    $name = $sender->getName();
 		   $amountToSubtract = $this->getConfig()->get("wither.price");
@@ -225,14 +234,7 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-                                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		                    $breakInfo = new BlockBreakInfo(0);
-		                    $typeInfo = new BlockTypeInfo($breakInfo);
-		                    $name4 = ("Wither Skeleton Skull");
-                                    $wi = new MobHead($idInfo, $name4, $typeInfo);
-		                    $wi->setMobHeadType(MobHeadType::WITHER_SKELETON());
-                                    $mobHeadType = $wi->getMobHeadType();
-	                            $item4 = $wi->asItem();
+	                            $item4 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::WITHER_SKELETON())->asItem();
 		                    $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
                                     $sender->getInventory()->addItem($item4);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
@@ -253,7 +255,7 @@ class Main extends PluginBase implements Listener {
 		   );
 	          }
                   return true;
-                case 6:
+                case 7:
 		  if ($sender instanceof Player) {
 	           $name = $sender->getName();
 		   $amountToSubtract = $this->getConfig()->get("steve.price");
@@ -268,14 +270,7 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-                                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		                    $breakInfo = new BlockBreakInfo(0);
-		                    $typeInfo = new BlockTypeInfo($breakInfo);
-		                    $name5 = ("Player Head");
-                                    $st = new MobHead($idInfo, $name5, $typeInfo);
-		                    $st->setMobHeadType(MobHeadType::PLAYER());
-                                    $mobHeadType = $st->getMobHeadType();
-	                            $item5 = $st->asItem();
+	                            $item5 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PLAYER())->asItem();
 		                    $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
                                     $sender->getInventory()->addItem($item5);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
@@ -296,7 +291,7 @@ class Main extends PluginBase implements Listener {
 		   );
 		  }
                   return true;
-                case 7:
+                case 8:
 		  if ($sender instanceof Player) {
                    $name = $sender->getName();
 		   $amountToSubtract = $this->getConfig()->get("dragon.price");
@@ -311,14 +306,7 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-                                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		                    $breakInfo = new BlockBreakInfo(0);
-		                    $typeInfo = new BlockTypeInfo($breakInfo);
-		                    $name6 = ("Dragon Head");
-                                    $dr = new MobHead($idInfo, $name6, $typeInfo);
-		                    $dr->setMobHeadType(MobHeadType::DRAGON());
-                                    $mobHeadType = $dr->getMobHeadType();
-	                            $item6 = $dr->asItem();
+	                            $item6 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::DRAGON())->asItem();
 		                    $item6->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
                                     $sender->getInventory()->addItem($item6);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
@@ -344,13 +332,14 @@ class Main extends PluginBase implements Listener {
 			$form->setTitle($this->getConfig()->get("title.ui.main"));
 			$form->setContent(str_replace(["{name}"], [$sender->getName()], "§fHello §b{name}\n§fFor know the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"));
 			$form->addButton("§cExit", 0, "textures/ui/cancel");
-			$form->addButton("§l§eMask §dFeatures", 0, "textures/items/nether_stars");
-			$form->addButton("§f§lSkeleton" , 0, "textures/items/skeleton_skull");
-                        $form->addButton("§l§2Zombie" , 0, "textures/items/zombie_head");
-			$form->addButton("§a§lCreeper" , 0, "textures/items/creeper_head");
-			$form->addButton("§7§lWither Skeleton" , 0, "textures/items/wither_skeleton_skull");
-			$form->addButton("§3§lSteve" , 0, "textures/items/player_head");
-			$form->addButton("§c§lDragon" , 0, "textures/items/dragon_head");
+			$form->addButton("§l§eMask §dFeatures", 0, "resources/items/nether_stars");
+			$form->addButton("§f§lSkeleton" , 0, "resources/items/skeleton_skull");
+                        $form->addButton("§l§2Zombie" , 0, "resources/items/zombie_head");
+			$form->addButton("§a§lCreeper" , 0, "resources/items/creeper_head");
+	                $form->addButton("§6§lPiglin" , 0, "resources/items/piglin_head");
+			$form->addButton("§7§lWither Skeleton" , 0, "resources/items/wither_skeleton_skull");
+			$form->addButton("§3§lSteve" , 0, "resources/items/player_head");
+			$form->addButton("§c§lDragon" , 0, "resources/items/dragon_mask");
 	                $form->sendToPlayer($sender);
 	}
 	

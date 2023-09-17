@@ -16,6 +16,8 @@ use pocketmine\scheduler\Task;
 use pocketmine\item\ItemIdentifier;
 use pocketmine\item\ItemTypeIds;
 use pocketmine\item\VanillaItems;
+use pocketmine\block\VanillaBlocks;
+use pocketmine\block\utils\MobHeadType;
 use SkulZOnTheYT\MaskUI\Main;
 
 class EffectTask extends Task {

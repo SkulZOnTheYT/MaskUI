@@ -198,7 +198,7 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-				 item4 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PIGLIN())->asItem();
+				 $item4 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PIGLIN())->asItem();
 				 $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
                                  $sender->getInventory()->addItem($item4);
                                  $sender->sendMessage($this->getConfig()->get("msg.shop.piglin"));

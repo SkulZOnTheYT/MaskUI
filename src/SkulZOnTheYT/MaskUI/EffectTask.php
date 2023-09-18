@@ -29,7 +29,7 @@ class EffectTask extends Task {
       $server = Main::getInstance()->getServer();
        foreach ($server->getOnlinePlayers() as $player) {
         $helmet = $player->getArmorInventory()->getHelmet();
-            if ($helmet->getTypeId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::SKELETON())->asItem()->getTypeId()) {
+            if ($helmet->getStateId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::SKELETON())->asItem()->getStateId()) {
 	      $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 300, 3, false));
       	      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 300, 2, false));
               $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 300, 4, false));
@@ -37,7 +37,7 @@ class EffectTask extends Task {
               $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 300, 2, false));
               $player->getEffects()->add(new EffectInstance(VanillaEffects::INSTANT_HEALTH(), 300, 2, false));
            }
-	   if ($helmet->getTypeId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE())->asItem()->getTypeId()) {
+	   if ($helmet->getStateId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE())->asItem()->getStateId()) {
 	      $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 300, 3, false));
       	      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 300, 2, false));
               $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 300, 4, false));
@@ -46,7 +46,7 @@ class EffectTask extends Task {
               $player->getEffects()->add(new EffectInstance(VanillaEffects::INSTANT_HEALTH(), 300, 2, false));
               $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 300, 2, false));
 	   } 
-	   if ($helmet->getTypeId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::CREEPER())->asItem()->getTypeId()) {
+	   if ($helmet->getStateId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::CREEPER())->asItem()->getStateId()) {
 	      $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 300, 3, false));
       	      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 300, 2, false));
               $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 300, 4, false));
@@ -56,7 +56,7 @@ class EffectTask extends Task {
               $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 300, 2, false));
               $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 300, 2, false));
 	   }
-	   if ($helmet->getTypeId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PIGLIN())->asItem()->getTypeId()) {
+	   if ($helmet->getStateId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PIGLIN())->asItem()->getStateId()) {
 	      $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 300, 3, false));
       	      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 300, 2, false));
               $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 300, 4, false));
@@ -67,7 +67,7 @@ class EffectTask extends Task {
               $player->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 300, 2, false));
               $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 300, 2, false)); 
 	   }
-	   if ($helmet->getTypeId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PLAYER())->asItem()->getTypeId()) {
+	   if ($helmet->getStateId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PLAYER())->asItem()->getStateId()) {
 	      $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 300, 3, false));
       	      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 300, 2, false));
               $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 300, 4, false));
@@ -79,7 +79,7 @@ class EffectTask extends Task {
               $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 300, 2, false));
 	      $player->getEffects()->add(new EffectInstance(VanillaEffects::WATER_BREATHING(), 300, 2, false));
 	   }
-	   if ($helmet->getTypeId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::WITHER_SKELETON())->asItem()->getTypeId()) {
+	   if ($helmet->getStateId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::WITHER_SKELETON())->asItem()->getStateId()) {
 	      $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 300, 3, false));
       	      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 300, 2, false));
               $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 300, 4, false));
@@ -92,7 +92,7 @@ class EffectTask extends Task {
 	      $player->getEffects()->add(new EffectInstance(VanillaEffects::WATER_BREATHING(), 300, 2, false));
 	      $player->getEffects()->add(new EffectInstance(VanillaEffects::HASTE(), 300, 2, false));
 	   }
-	   if ($helmet->getTypeId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::DRAGON())->asItem()->getTypeId()) {
+	   if ($helmet->getStateId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::DRAGON())->asItem()->getStateId()) {
 	      $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 300, 3, false));
       	      $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 300, 2, false));
               $player->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 300, 4, false));

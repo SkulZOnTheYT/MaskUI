@@ -336,7 +336,7 @@ class Main extends PluginBase implements Listener {
 			$form->addButton("§f§lSkeleton" , 0, "resources/items/skeleton_skull");
                         $form->addButton("§l§2Zombie" , 0, "resources/items/zombie_head");
 			$form->addButton("§a§lCreeper" , 0, "resources/items/creeper_head");
-	                $form->addButton("§6§lPiglin" , 0, "resources/items/piglin_head");
+	                $form->addButton("§6§lPiglin" , 1, "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b5/Piglin_Head_%288%29_JE1.png/revision/latest/scale-to-width/360?cb=20221117124730");
 			$form->addButton("§7§lWither Skeleton" , 0, "resources/items/wither_skeleton_skull");
 			$form->addButton("§3§lSteve" , 0, "resources/items/player_head");
 			$form->addButton("§c§lDragon" , 0, "resources/items/dragon_mask");

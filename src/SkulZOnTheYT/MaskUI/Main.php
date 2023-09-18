@@ -199,7 +199,7 @@ class Main extends PluginBase implements Listener {
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
 				 $item4 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PIGLIN())->asItem();
-				 $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
+				 $item4->setCustomName("§6Piglin §eMask \n§bOwner: §c$name");
                                  $sender->getInventory()->addItem($item4);
                                  $sender->sendMessage($this->getConfig()->get("msg.shop.piglin"));
 		                 $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
@@ -332,14 +332,14 @@ class Main extends PluginBase implements Listener {
 			$form->setTitle($this->getConfig()->get("title.ui.main"));
 			$form->setContent(str_replace(["{name}"], [$sender->getName()], "§fHello §b{name}\n§fFor know the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"));
 			$form->addButton("§cExit", 0, "textures/ui/cancel");
-			$form->addButton("§l§eMask §dFeatures", 0, "resources/items/nether_stars");
-			$form->addButton("§f§lSkeleton" , 0, "resources/items/skeleton_skull");
-                        $form->addButton("§l§2Zombie" , 0, "resources/items/zombie_head");
-			$form->addButton("§a§lCreeper" , 0, "resources/items/creeper_head");
-	                $form->addButton("§6§lPiglin" , 1, "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b5/Piglin_Head_%288%29_JE1.png/revision/latest/scale-to-width/360?cb=20221117124730");
-			$form->addButton("§7§lWither Skeleton" , 0, "resources/items/wither_skeleton_skull");
-			$form->addButton("§3§lSteve" , 0, "resources/items/player_head");
-			$form->addButton("§c§lDragon" , 0, "resources/items/dragon_mask");
+			$form->addButton("§l§eMask §dFeatures");
+			$form->addButton("§f§lSkeleton");
+                        $form->addButton("§l§2Zombie");
+			$form->addButton("§a§lCreeper");
+	                $form->addButton("§6§lPiglin");
+			$form->addButton("§5§lWither Skeleton");
+			$form->addButton("§3§lSteve");
+			$form->addButton("§c§lDragon");
 	                $form->sendToPlayer($sender);
 	}
 	

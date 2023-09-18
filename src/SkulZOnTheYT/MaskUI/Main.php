@@ -5,24 +5,21 @@ declare(strict_types=1);
 namespace SkulZOnTheYT\MaskUI;
 
 use pocketmine\Server;
+use pocketmine\item\Item;
 use pocketmine\utils\Config;
 use pocketmine\player\Player;
-use pocketmine\plugin\PluginBase;
+use pocketmine\scheduler\Task;
 use pocketmine\event\Listener;
+use pocketmine\plugin\PluginBase;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
 use pocketmine\command\ConsoleCommandSender;
-use pocketmine\item\Item;
-use pocketmine\block\MobHead;
-use pocketmine\block\BlockTypeIds;
-use pocketmine\block\BlockTypeInfo;
-use pocketmine\block\BlockBreakInfo;
-use pocketmine\block\BlockIdentifier;
 use pocketmine\block\utils\MobHeadType;
-use pocketmine\inventory\ArmorInventory;
+use pocketmine\block\VanillaBlocks;
 use pocketmine\world\sound\AnvilFallSound;
 use pocketmine\world\sound\EndermanTeleportSound;
+use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\entity\Effect;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
@@ -45,7 +42,8 @@ class Main extends PluginBase implements Listener {
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
-    }
+      $this->getScheduler()->scheduleRepeatingTask(new EffectTask(), 20);
+}
 	
 	public static function getInstance() : self{
 	    return self::$instance;
@@ -92,19 +90,11 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-				    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		                    $breakInfo = new BlockBreakInfo(0);
-		                    $typeInfo = new BlockTypeInfo($breakInfo);
-		                    $name1 = ("Skeleton Skull");
-                                    $sk = new MobHead($idInfo, $name1, $typeInfo);
-		                    $sk->setMobHeadType(MobHeadType::SKELETON());
-                                    $mobHeadType = $sk->getMobHeadType();
-	                            $item1 = $sk->asItem();
+	                            $item1 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE())->asItem();
 		                    $item1->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                                     $sender->getInventory()->addItem($item1);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));
 				    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-				    $this->applySkeletonEffects($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -136,19 +126,11 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-                                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		                    $breakInfo = new BlockBreakInfo(0);
-		                    $typeInfo = new BlockTypeInfo($breakInfo);
-		                    $name2 = ("Zombie Head");
-                                    $zo = new MobHead($idInfo, $name2, $typeInfo);
-		                    $zo->setMobHeadType(MobHeadType::ZOMBIE());
-                                    $mobHeadType = $zo->getMobHeadType();
-	                            $item2 = $zo->asItem();
+	                            $item2 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE())->asItem();
 		                    $item2->setCustomName("§2Zombie §eMask \n§bOwner: §c$name");
                                     $sender->getInventory()->addItem($item2);
 		                    $sender->sendMessage($this->getConfig()->get("msg.shop.zombie"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-				    $this->applyZombieEffects($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -180,19 +162,11 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-                                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		                    $breakInfo = new BlockBreakInfo(0);
-		                    $typeInfo = new BlockTypeInfo($breakInfo);
-		                    $name3 = ("Creeper Head");
-                                    $cr = new MobHead($idInfo, $name3, $typeInfo);
-		                    $cr->setMobHeadType(MobHeadType::CREEPER());
-                                    $mobHeadType = $cr->getMobHeadType();
-	                            $item3 = $cr->asItem();
+	                            $item3 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::CREEPER())->asItem();
 		                    $item3->setCustomName("§aCreeper §eMask \n§bOwner: §c$name");
                                     $sender->getInventory()->addItem($item3);
 		                    $sender->sendMessage($this->getConfig()->get("msg.shop.creeper"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-				    $this->applyCreeperEffects($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -209,10 +183,10 @@ class Main extends PluginBase implements Listener {
 		   );
 		  }
                   return true;
-                case 5:
+		case 5:
 		  if ($sender instanceof Player) {
                    $name = $sender->getName();
-		   $amountToSubtract = $this->getConfig()->get("wither.price");
+		   $amountToSubtract = $this->getConfig()->get("piglin.price");
                    BedrockEconomyAPI::legacy()->getPlayerBalance(
                      $name,
                        ClosureContext::create(
@@ -224,19 +198,11 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-                                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		                    $breakInfo = new BlockBreakInfo(0);
-		                    $typeInfo = new BlockTypeInfo($breakInfo);
-		                    $name4 = ("Wither Skeleton Skull");
-                                    $wi = new MobHead($idInfo, $name4, $typeInfo);
-		                    $wi->setMobHeadType(MobHeadType::WITHER_SKELETON());
-                                    $mobHeadType = $wi->getMobHeadType();
-	                            $item4 = $wi->asItem();
-		                    $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
-                                    $sender->getInventory()->addItem($item4);
-                                    $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
-		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-				    $this->applyWitherEffects($sender);
+				 $item4 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PIGLIN())->asItem();
+				 $item4->setCustomName("§6Piglin §eMask \n§bOwner: §c$name");
+                                 $sender->getInventory()->addItem($item4);
+                                 $sender->sendMessage($this->getConfig()->get("msg.shop.piglin"));
+		                 $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -255,6 +221,42 @@ class Main extends PluginBase implements Listener {
                   return true;
                 case 6:
 		  if ($sender instanceof Player) {
+                   $name = $sender->getName();
+		   $amountToSubtract = $this->getConfig()->get("wither.price");
+                   BedrockEconomyAPI::legacy()->getPlayerBalance(
+                     $name,
+                       ClosureContext::create(
+                       function (?int $balance) use ($sender, $name, $amountToSubtract): void {
+                         if ($balance !== null && $balance >= $amountToSubtract) {
+                           BedrockEconomyAPI::legacy()->subtractFromPlayerBalance(
+                             $name,
+                              $amountToSubtract,
+                               ClosureContext::create(
+                               function (bool $wasUpdated) use ($sender, $name): void {
+                                if ($wasUpdated) {
+	                            $item4 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::WITHER_SKELETON())->asItem();
+		                    $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
+                                    $sender->getInventory()->addItem($item4);
+                                    $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
+		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+			     } else {
+				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
+		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+			    }
+			   }
+	                  ) 
+			 );
+			} else {
+			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
+		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+		       }
+		      }
+		    )
+		   );
+	          }
+                  return true;
+                case 7:
+		  if ($sender instanceof Player) {
 	           $name = $sender->getName();
 		   $amountToSubtract = $this->getConfig()->get("steve.price");
                    BedrockEconomyAPI::legacy()->getPlayerBalance(
@@ -268,19 +270,11 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-                                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		                    $breakInfo = new BlockBreakInfo(0);
-		                    $typeInfo = new BlockTypeInfo($breakInfo);
-		                    $name5 = ("Player Head");
-                                    $st = new MobHead($idInfo, $name5, $typeInfo);
-		                    $st->setMobHeadType(MobHeadType::PLAYER());
-                                    $mobHeadType = $st->getMobHeadType();
-	                            $item5 = $st->asItem();
+	                            $item5 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PLAYER())->asItem();
 		                    $item5->setCustomName("§3Steve §eMask \n§bOwner: §c$name");
                                     $sender->getInventory()->addItem($item5);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.steve"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-				    $this->applySteveEffects($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -297,7 +291,7 @@ class Main extends PluginBase implements Listener {
 		   );
 		  }
                   return true;
-                case 7:
+                case 8:
 		  if ($sender instanceof Player) {
                    $name = $sender->getName();
 		   $amountToSubtract = $this->getConfig()->get("dragon.price");
@@ -312,19 +306,11 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-                                    $idInfo = new BlockIdentifier(BlockTypeIds::MOB_HEAD);
-		                    $breakInfo = new BlockBreakInfo(0);
-		                    $typeInfo = new BlockTypeInfo($breakInfo);
-		                    $name6 = ("Dragon Head");
-                                    $dr = new MobHead($idInfo, $name6, $typeInfo);
-		                    $dr->setMobHeadType(MobHeadType::DRAGON());
-                                    $mobHeadType = $dr->getMobHeadType();
-	                            $item6 = $dr->asItem();
+	                            $item6 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::DRAGON())->asItem();
 		                    $item6->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
                                     $sender->getInventory()->addItem($item6);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-				    $this->applyDragonEffects($sender);
 			     } else {
 				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
 		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
@@ -346,13 +332,14 @@ class Main extends PluginBase implements Listener {
 			$form->setTitle($this->getConfig()->get("title.ui.main"));
 			$form->setContent(str_replace(["{name}"], [$sender->getName()], "§fHello §b{name}\n§fFor know the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"));
 			$form->addButton("§cExit", 0, "textures/ui/cancel");
-			$form->addButton("§l§eMask §dFeatures", 0, "textures/items/nether_stars");
-			$form->addButton("§f§lSkeleton" , 0, "textures/items/skeleton_skull");
-                        $form->addButton("§l§2Zombie" , 0, "textures/items/zombie_head");
-			$form->addButton("§a§lCreeper" , 0, "textures/items/creeper_head");
-			$form->addButton("§7§lWither Skeleton" , 0, "textures/items/wither_skeleton_skull");
-			$form->addButton("§3§lSteve" , 0, "textures/items/player_head");
-			$form->addButton("§c§lDragon" , 0, "textures/items/dragon_head");
+			$form->addButton("§l§eMask §dFeatures");
+			$form->addButton("§f§lSkeleton");
+                        $form->addButton("§l§2Zombie");
+			$form->addButton("§a§lCreeper");
+	                $form->addButton("§6§lPiglin");
+			$form->addButton("§5§lWither Skeleton");
+			$form->addButton("§3§lSteve");
+			$form->addButton("§c§lDragon");
 	                $form->sendToPlayer($sender);
 	}
 	
@@ -379,72 +366,4 @@ class Main extends PluginBase implements Listener {
       $form->addButton("§l§cEXIT", 2);
       $form->sendToPlayer($sender);
     	}
-
-     
-              
-	 private function applySkeletonEffects($sender){
-	   if ($sender instanceof Player){
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 1000, 100, false));
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 1000, 100, false));
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 1000, 100, false));
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 1000, 100, false));
-            $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 1000, 100, false));
-	   }
-        }
-          private function applyZombieEffects($sender){
-	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 9999, 130, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 9999, 130, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 9999, 130, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 9999, 130, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 9999, 130, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 9999, 130, false));
-           } 
-	  }
-	 private function applyCreeperEffects($sender){
-	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 10000, 150, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 10000, 150, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 10000, 150, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 10000, 150, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 10000, 150, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 10000, 150, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 10000, 150, false));
-           }
-	 }
-	 private function applyWitherEffects($sender){
-	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 99999, 180, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 99999, 180, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 99999, 180, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 99999, 180, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 99999, 180, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 99999, 180, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 99999, 180, false));
-           } 
-	 }
-	 private function applySteveEffects($sender){
-	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 100000, 200, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 100000, 200, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 100000, 200, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 100000, 200, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 100000, 200, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 100000, 200, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 100000, 200, false));
-           } 
-	 }
-	 private function applyDragonEffects($sender){
-	   if ($sender instanceof Player){
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::HEALTH_BOOST(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::SATURATION(), 999999, 255, false));
-           $sender->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 999999, 255, false));
-           } 
-	 }
 }

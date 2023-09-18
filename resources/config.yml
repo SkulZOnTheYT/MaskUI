@@ -1,10 +1,11 @@
 # Heads costs
 zombie.price: 10000
-wither.price: 20000
+wither.price: 30000
 dragon.price: 35000
 creeper.price: 15000
 steve.price: 25000
 skeleton.price: 5000
+piglin.price: 20000
 
 # Messages when successfully given a mask
 msg.shop.zombie: "§7[§eMask§bUI§7] §dyou successfully given a §2zombie §dmask!"
@@ -13,6 +14,8 @@ msg.shop.dragon: "§7[§eMask§bUI§7] §dyou successfully given a §cdragon§d 
 msg.shop.creeper: "§7[§eMask§bUI§7] §dyou successfully given a §acreeper§d mask!"
 msg.shop.skeleton: "§7[§eMask§bUI§7] §dyou successfully given a §fskeleton §dmask!"
 msg.shop.steve: "§7[§eMask§bUI§7] §dyou successfully given a §3steve §dmask!"
+msg.shop.piglin: "§7[§eMask§bUI§7] §dyou successfully given a §5piglin §dmask!"
+
 
 # message when no money
 msg.no-money: "§7[§eMask§bUI§7] §cYou do not have enough money"

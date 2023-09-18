@@ -1,5 +1,5 @@
 name: MaskUI
-version: 1.1
+version: 1.2
 main: SkulZOnTheYT\MaskUI\Main
 api: 5.0.0
 depend: BedrockEconomy

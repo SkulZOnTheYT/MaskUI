@@ -61,10 +61,11 @@ class Main extends PluginBase implements Listener {
                 default:
                     $sender->sendMessage("Invalid option");
                     break;
-            }
-        } else {
-            $this->MaskShopForm($sender);
-        }
+             }
+           } else {
+             $this->MaskShopForm($sender);
+          } 
+	 }
         } else {
           $sender->sendMessage("This command can only be used in-game.");
         }

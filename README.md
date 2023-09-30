@@ -1,15 +1,34 @@
-# Description
-MaskUI is a pocketmine api 5 plugin to give players mob head items with an attractive ui. If you are have a question, please make a [issues](https://github.com/SkulZOnTheYT/MaskUI/issues/new)
+<p align="center">
+  <img width="200px" src="https://github.com/SkulZOnTheYT/MaskUI/blob/1.3-patch/icon.png" align="center"/>
+</p>
+<p align="center">
+  <a href="https://poggit.pmmp.io/p/MaskUI"><img src="https://poggit.pmmp.io/shield.state/MaskUI"></a>
+  <a href="https://poggit.pmmp.io/p/MaskUI"><img src="https://poggit.pmmp.io/shield.dl.total/MaskUI"></a>
+  <a href="https://poggit.pmmp.io/p/MaskUI"><img src="https://poggit.pmmp.io/shield.dl/MaskUI"></a>
+</p>
 
-# Features
->- Custom message
->- Custom name
->- Custom sound effect
->- With permission
->- With economy (Costumeable cost)
->- With effect (Very OverPower 😅)
+# MaskUI
+Mask UI is a revision plugin of MaskShop based on pocketmine api 3.0.0, the author of this plugin has converted and updated to pocketmine based on api 5.0.0 (the latest version of pocketmine), if you want to see the original version of this plugin please [click here](https://github.com/misael38/MaskShop).
 
-# Installation
-1. Download the **plugin**
-2. Put plugin to **plugins** file
+## Features
+>- Custom Price (if you want to edit in config.yml)
+>- Custom message after buys (if you want to edit in config.yml)
+>- Custom name according to the user who buys
+>- Custom sound effects
+>- With different effects for each mask
+>- Need wiki? [click here](https://github.com/SkulZOnTheYT/MaskUI/wiki)
+
+## Installation
+1. Download this **plugin**
+2. Put plugin and plugin [BedrockEconomy](https://poggit.pmmp.io/p/BedrockEconomy/2.1.2) to **plugins** directory
 3. Restart the server
+4. if you want to edit price and message after buy, please edit in config.yml
+
+## Commands
+| Command | Permission | Description |
+|---|---|---|
+|/mask|true|Open Mask Shop UI|
+|/mask wiki|true|Open Mask Wiki|
+
+## Video Review
+coming soon

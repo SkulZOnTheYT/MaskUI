@@ -52,8 +52,19 @@ class Main extends PluginBase implements Listener {
   public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         if($sender instanceof Player){
           if($cmd->getName() == "mask"){
-              $this->MaskShopForm($sender);
-          }
+	    if(isset($args[0])) {
+            $arg = strtolower($args[0]);
+            switch($arg) {
+                case "wiki":
+                    $this->FeatureMenu($sender);
+                    break;
+                default:
+                    $sender->sendMessage("Invalid option");
+                    break;
+            }
+        } else {
+            $this->MaskShopForm($sender);
+        }
         } else {
           $sender->sendMessage("This command can only be used in-game.");
         }
@@ -90,7 +101,7 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-	                            $item1 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE())->asItem();
+	                            $item1 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::SKELETON())->asItem();
 		                    $item1->setCustomName("§fSkeleton §eMask \n§bOwner: §c$name");
                                     $sender->getInventory()->addItem($item1);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.skeleton"));

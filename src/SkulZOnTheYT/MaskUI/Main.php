@@ -341,17 +341,26 @@ class Main extends PluginBase implements Listener {
                   return true;
             }
         });
+
+	                $zombie = $this->getConfig()->get("zombie.price");
+			$wither = $this->getConfig()->get("wither.price");
+			$dragon = $this->getConfig()->get("dragon.price");
+			$skeleton = $this->getConfig()->get("skeleton.price");
+			$creeper = $this->getConfig()->get("creeper.price");
+			$steve = $this->getConfig()->get("steve.price");
+	                $piglin = $this->getConfig()->get("piglin.price");
+	  
 			$form->setTitle($this->getConfig()->get("title.ui.main"));
 			$form->setContent(str_replace(["{name}"], [$sender->getName()], "§fHello §b{name}\n§fFor know the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"));
-			$form->addButton("§cExit", 0, "textures/ui/cancel");
-			$form->addButton("§l§eMask §dFeatures");
-			$form->addButton("§f§lSkeleton");
-                        $form->addButton("§l§2Zombie");
-			$form->addButton("§a§lCreeper");
-	                $form->addButton("§6§lPiglin");
-			$form->addButton("§5§lWither Skeleton");
-			$form->addButton("§3§lSteve");
-			$form->addButton("§c§lDragon");
+			$form->addButton("§l§eMask §dFeatures"); 
+			$form->addButton("§f§lSkeleton \n§fPrice: §6$skeleton");
+                        $form->addButton("§l§2Zombie \n§fPrice: §6$zombie");
+			$form->addButton("§a§lCreeper \n§fPrice: §6$creeper");
+	                $form->addButton("§6§lPiglin \n§fPrice: §6$piglin");
+			$form->addButton("§5§lWither Skeleton \n§fPrice: §6$wither");
+			$form->addButton("§3§lSteve \n§fPrice: §6$steve");
+			$form->addButton("§c§lDragon \n§fPrice: §6$dragon");
+	                $form->addButton("§cExit", 0, "textures/ui/cancel");
 	                $form->sendToPlayer($sender);
 	}
 	

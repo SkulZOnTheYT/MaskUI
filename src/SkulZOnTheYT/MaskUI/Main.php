@@ -55,19 +55,25 @@ class Main extends PluginBase implements Listener {
 	    if(isset($args[0])) {
             $arg = strtolower($args[0]);
             switch($arg) {
+		case "open":
+		    $this->MaskShopForm($sender);
                 case "wiki":
                     $this->FeatureMenu($sender);
                     break;
+		case "help":
+		    $sender->sendMessage($this->getConfig()->get("msg.help"));
+		case "wiki github":
+		    $sender->sendMessage("You can see in https://github.com/SkulZOnTheYT/MaskUI/wiki");
                 default:
-                    $sender->sendMessage("Invalid option");
+                    $sender->sendMessage("please enter the correct options!!");
                     break;
              }
            } else {
-             $this->MaskShopForm($sender);
+             $sender->sendMessage("use /mask help for information commands!!");
           } 
 	 }
         } else {
-          $sender->sendMessage("This command can only be used in-game.");
+          $sender->sendMessage("This command can only be used in-game...");
         }
         return true;
     }
@@ -80,14 +86,6 @@ class Main extends PluginBase implements Listener {
             }
             switch ($result) {
                 case 0:
-		  $sender->sendMessage($this->getConfig()->get("quit.message"));
-		  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
-		    break;
-		case 1:
-		  $this->FeatureMenu($sender);
-		  $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-  		    break;
-                case 2:
 		  if ($sender instanceof Player) { 
                    $name = $sender->getName();
 		   $amountToSubtract = $this->getConfig()->get("skeleton.price");
@@ -123,7 +121,7 @@ class Main extends PluginBase implements Listener {
 		     );
 		    }
                   return true;
-                case 3:
+                case 1:
 		  if ($sender instanceof Player) {
                    $name = $sender->getName();
 		   $amountToSubtract = $this->getConfig()->get("zombie.price");
@@ -159,7 +157,7 @@ class Main extends PluginBase implements Listener {
 		   );
 		  }
                   return true;
-                case 4:
+                case 2:
 		  if ($sender instanceof Player) {
                    $name = $sender->getName();
 		   $amountToSubtract = $this->getConfig()->get("creeper.price");
@@ -195,7 +193,7 @@ class Main extends PluginBase implements Listener {
 		   );
 		  }
                   return true;
-		case 5:
+		case 3:
 		  if ($sender instanceof Player) {
                    $name = $sender->getName();
 		   $amountToSubtract = $this->getConfig()->get("piglin.price");
@@ -231,43 +229,7 @@ class Main extends PluginBase implements Listener {
 		   );
 	          }
                   return true;
-                case 6:
-		  if ($sender instanceof Player) {
-                   $name = $sender->getName();
-		   $amountToSubtract = $this->getConfig()->get("wither.price");
-                   BedrockEconomyAPI::legacy()->getPlayerBalance(
-                     $name,
-                       ClosureContext::create(
-                       function (?int $balance) use ($sender, $name, $amountToSubtract): void {
-                         if ($balance !== null && $balance >= $amountToSubtract) {
-                           BedrockEconomyAPI::legacy()->subtractFromPlayerBalance(
-                             $name,
-                              $amountToSubtract,
-                               ClosureContext::create(
-                               function (bool $wasUpdated) use ($sender, $name): void {
-                                if ($wasUpdated) {
-	                            $item4 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::WITHER_SKELETON())->asItem();
-		                    $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
-                                    $sender->getInventory()->addItem($item4);
-                                    $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
-		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-			     } else {
-				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
-		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
-			    }
-			   }
-	                  ) 
-			 );
-			} else {
-			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
-		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
-		       }
-		      }
-		    )
-		   );
-	          }
-                  return true;
-                case 7:
+		case 4:
 		  if ($sender instanceof Player) {
 	           $name = $sender->getName();
 		   $amountToSubtract = $this->getConfig()->get("steve.price");
@@ -303,7 +265,43 @@ class Main extends PluginBase implements Listener {
 		   );
 		  }
                   return true;
-                case 8:
+                case 5:
+		  if ($sender instanceof Player) {
+                   $name = $sender->getName();
+		   $amountToSubtract = $this->getConfig()->get("wither.price");
+                   BedrockEconomyAPI::legacy()->getPlayerBalance(
+                     $name,
+                       ClosureContext::create(
+                       function (?int $balance) use ($sender, $name, $amountToSubtract): void {
+                         if ($balance !== null && $balance >= $amountToSubtract) {
+                           BedrockEconomyAPI::legacy()->subtractFromPlayerBalance(
+                             $name,
+                              $amountToSubtract,
+                               ClosureContext::create(
+                               function (bool $wasUpdated) use ($sender, $name): void {
+                                if ($wasUpdated) {
+	                            $item4 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::WITHER_SKELETON())->asItem();
+		                    $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
+                                    $sender->getInventory()->addItem($item4);
+                                    $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
+		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
+			     } else {
+				  $sender->sendMessage($this->getConfig()->get("msg.transactions-failed"));
+		                  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+			    }
+			   }
+	                  ) 
+			 );
+			} else {
+			     $sender->sendMessage($this->getConfig()->get("msg.no-money"));
+		             $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+		       }
+		      }
+		    )
+		   );
+	          }
+                  return true;
+                case 6:
 		  if ($sender instanceof Player) {
                    $name = $sender->getName();
 		   $amountToSubtract = $this->getConfig()->get("dragon.price");
@@ -339,6 +337,10 @@ class Main extends PluginBase implements Listener {
 		   );
 		  }
                   return true;
+		case 7:
+		  $sender->sendMessage($this->getConfig()->get("quit.message"));
+		  $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+		    break;
             }
         });
 
@@ -357,8 +359,8 @@ class Main extends PluginBase implements Listener {
                         $form->addButton("§l§2Zombie \n§fPrice: §6$zombie");
 			$form->addButton("§a§lCreeper \n§fPrice: §6$creeper");
 	                $form->addButton("§6§lPiglin \n§fPrice: §6$piglin");
+	                $form->addButton("§3§lSteve \n§fPrice: §6$steve");
 			$form->addButton("§5§lWither Skeleton \n§fPrice: §6$wither");
-			$form->addButton("§3§lSteve \n§fPrice: §6$steve");
 			$form->addButton("§c§lDragon \n§fPrice: §6$dragon");
 	                $form->addButton("§cExit", 0, "textures/ui/cancel");
 	                $form->sendToPlayer($sender);
@@ -372,10 +374,6 @@ class Main extends PluginBase implements Listener {
 			}
 			switch($result){
 				case 0:
-				   $this->MaskShopForm($sender);
-				   $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
-					break;
-				case 1:
 				   $sender->sendMessage($this->getConfig()->get("quit.message"));
 				   $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
 				  break;
@@ -383,7 +381,6 @@ class Main extends PluginBase implements Listener {
 		      });
       $form->setTitle($this->getConfig()->get("title.ui.feature"));
       $form->setContent("§6This plugin made by §fSkulZOnTheYT and Kylan1940\n\n§fSkeleton §eMask \n§dEffects: \n§e-§dHaste §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dNight Vision §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dSpeed §7(§bI§7) §c*Only For 18 Minutes \n§e-§dJump Boost §7(§bII§7) §c*Only For 18 Minutes \n\n§2Zombie §eMask \n§dEffects: \n§e-§dStrength §7(§bI§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dJump Boost  §7(§bI§7) \n§e-§dRegeneration §7(§bI§7) \n§e-§dFire Resistance §7(§bI§7) \n\n§aCreeper §eMask \n§dEffects: \n§e-§dJump Boost §7(§bII§7) \n§e-§dStrength §7(§bII§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dRegeneration §7(§bII§7) \n§e-§dFire Resistance §7(§bI§7) \n§e-§dSpeed §7(§bI§7) \n\n§7Wither Skeleton §eMask \n§dEffects: \n§e-§dSpeed §7(§bI§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dRegeneration \n§7(§bI§7) \n§e-§dHealth Boost §7(§bI§7) \n§e-§dFire Resistance §7(§bII§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n\n§3Steve §eMask \n§dEffects: \n§e-§dStrength §7(§bIII§7) \n§e-§dSpeed §7(§bII§7) \n§e-§dRegeneration §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n\n§cDragon §eMask \n§dEffects: \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dSpeed §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dAbsorption §7(§bIII§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dSaturation §7(§bIII§7) \n§e-§dRegeneration §7(§bIII§7)"); 
-      $form->addButton("§l§aBACK", 1);
       $form->addButton("§l§cEXIT", 2);
       $form->sendToPlayer($sender);
     	}

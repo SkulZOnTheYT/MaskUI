@@ -62,10 +62,10 @@ class Main extends PluginBase implements Listener {
                     $this->FeatureMenu($sender);
                     break;
 		case "help":
-		    $sender->sendMessage("/mask open - open mask shop ui \n/mask wiki - open wiki ui \n/mask help - list command \n/mask wiki github - open mask wiki in github");
+		    $sender->sendMessage("§ashowing list command MaskUI \n------------------------ \n§f/mask open - open mask shop ui \n/mask wiki - open wiki ui \n/mask help - list command \n/mask github - send message source code in github");
 		    break;
-		case "wiki github":
-		    $sender->sendMessage("You can see in https://github.com/SkulZOnTheYT/MaskUI/wiki");
+		case "github":
+		    $sender->sendMessage("You can see in https://github.com/SkulZOnTheYT/MaskUI");
 		    break;
                 default:
                     $sender->sendMessage("please enter the correct options!!");
@@ -357,7 +357,6 @@ class Main extends PluginBase implements Listener {
 	  
 			$form->setTitle($this->getConfig()->get("title.ui.main"));
 			$form->setContent(str_replace(["{name}"], [$sender->getName()], "§fHello §b{name}\n§fFor know the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"));
-			$form->addButton("§l§eMask §dFeatures"); 
 			$form->addButton("§f§lSkeleton \n§fPrice: §6$skeleton");
                         $form->addButton("§l§2Zombie \n§fPrice: §6$zombie");
 			$form->addButton("§a§lCreeper \n§fPrice: §6$creeper");

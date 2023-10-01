@@ -57,13 +57,16 @@ class Main extends PluginBase implements Listener {
             switch($arg) {
 		case "open":
 		    $this->MaskShopForm($sender);
+		    break;
                 case "wiki":
                     $this->FeatureMenu($sender);
                     break;
 		case "help":
 		    $sender->sendMessage("/mask open - open mask shop ui \n/mask wiki - open wiki ui \n/mask help - list command \n/mask wiki github - open mask wiki in github");
+		    break;
 		case "wiki github":
 		    $sender->sendMessage("You can see in https://github.com/SkulZOnTheYT/MaskUI/wiki");
+		    break;
                 default:
                     $sender->sendMessage("please enter the correct options!!");
                     break;

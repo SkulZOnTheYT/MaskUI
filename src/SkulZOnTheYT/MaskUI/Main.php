@@ -61,7 +61,7 @@ class Main extends PluginBase implements Listener {
                     $this->FeatureMenu($sender);
                     break;
 		case "help":
-		    $sender->sendMessage($this->getConfig()->get("msg.help"));
+		    $sender->sendMessage("/mask open - open mask shop ui \n/mask wiki - open wiki ui \n/mask help - list command \n/mask wiki github - open mask wiki in github");
 		case "wiki github":
 		    $sender->sendMessage("You can see in https://github.com/SkulZOnTheYT/MaskUI/wiki");
                 default:

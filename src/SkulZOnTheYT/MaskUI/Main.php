@@ -357,13 +357,13 @@ class Main extends PluginBase implements Listener {
 	  
 			$form->setTitle($this->getConfig()->get("title.ui.main"));
 			$form->setContent(str_replace(["{name}"], [$sender->getName()], "§fHello §b{name}\n§fFor know the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"));
-			$form->addButton("§f§lSkeleton \n§fPrice: §6$skeleton");
-                        $form->addButton("§l§2Zombie \n§fPrice: §6$zombie");
-			$form->addButton("§a§lCreeper \n§fPrice: §6$creeper");
-	                $form->addButton("§6§lPiglin \n§fPrice: §6$piglin");
-	                $form->addButton("§3§lSteve \n§fPrice: §6$steve");
-			$form->addButton("§5§lWither Skeleton \n§fPrice: §6$wither");
-			$form->addButton("§c§lDragon \n§fPrice: §6$dragon");
+			$form->addButton("§f§lSkeleton \n§fPrice: §6$skeleton", 0, "textures/entity/skulls/skeleton");
+                        $form->addButton("§l§2Zombie \n§fPrice: §6$zombie", 0, "textures/entity/skulls/zombie");
+			$form->addButton("§a§lCreeper \n§fPrice: §6$creeper", 0, "textures/ui/barely_visible_creeper");
+	                $form->addButton("§6§lPiglin \n§fPrice: §6$piglin", 0, "textures/entity/piglin/piglin");
+	                $form->addButton("§3§lSteve \n§fPrice: §6$steve", 0, "textures/ui/icon_steve");
+			$form->addButton("§5§lWither Skeleton \n§fPrice: §6$wither", 0, "textures/entity/skulls/wither_skeleton");
+			$form->addButton("§c§lDragon \n§fPrice: §6$dragon", 0, "textures/entity/dragon/dragon");
 	                $form->addButton("§cExit", 0, "textures/ui/cancel");
 	                $form->sendToPlayer($sender);
 	}
@@ -383,7 +383,7 @@ class Main extends PluginBase implements Listener {
 		      });
       $form->setTitle($this->getConfig()->get("title.ui.feature"));
       $form->setContent("§6This plugin made by §fSkulZOnTheYT and Kylan1940\n\n§fSkeleton §eMask \n§dEffects: \n§e-§dHaste §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dNight Vision §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dSpeed §7(§bI§7) §c*Only For 18 Minutes \n§e-§dJump Boost §7(§bII§7) §c*Only For 18 Minutes \n\n§2Zombie §eMask \n§dEffects: \n§e-§dStrength §7(§bI§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dJump Boost  §7(§bI§7) \n§e-§dRegeneration §7(§bI§7) \n§e-§dFire Resistance §7(§bI§7) \n\n§aCreeper §eMask \n§dEffects: \n§e-§dJump Boost §7(§bII§7) \n§e-§dStrength §7(§bII§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dRegeneration §7(§bII§7) \n§e-§dFire Resistance §7(§bI§7) \n§e-§dSpeed §7(§bI§7) \n\n§7Wither Skeleton §eMask \n§dEffects: \n§e-§dSpeed §7(§bI§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dRegeneration \n§7(§bI§7) \n§e-§dHealth Boost §7(§bI§7) \n§e-§dFire Resistance §7(§bII§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n\n§3Steve §eMask \n§dEffects: \n§e-§dStrength §7(§bIII§7) \n§e-§dSpeed §7(§bII§7) \n§e-§dRegeneration §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n\n§cDragon §eMask \n§dEffects: \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dSpeed §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dAbsorption §7(§bIII§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dSaturation §7(§bIII§7) \n§e-§dRegeneration §7(§bIII§7)"); 
-      $form->addButton("§l§cEXIT", 2);
+      $form->addButton("§l§cEXIT", 0, "textures/ui/cancel");
       $form->sendToPlayer($sender);
     	}
 }

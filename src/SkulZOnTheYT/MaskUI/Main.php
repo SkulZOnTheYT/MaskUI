@@ -8,17 +8,24 @@ use pocketmine\Server;
 use pocketmine\item\Item;
 use pocketmine\utils\Config;
 use pocketmine\player\Player;
-use pocketmine\scheduler\Task;
-use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
+use pocketmine\scheduler\Task;
+use pocketmine\scheduler\ClosureTask;
+use pocketmine\scheduler\CancelTaskException;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\block\utils\MobHeadType;
+use pocketmine\event\Listener;
+use pocketmine\event\server\DataPacketSendEvent;
 use pocketmine\world\sound\AnvilFallSound;
 use pocketmine\world\sound\EndermanTeleportSound;
+use pocketmine\network\mcpe\protocol\ModalFormRequestPacket;
+use pocketmine\network\mcpe\protocol\NetworkStackLatencyPacket;
+use pocketmine\network\mcpe\protocol\types\entity\Attribute as NetworkAttribute;
+use pocketmine\network\mcpe\protocol\UpdateAttributesPacket;
 use cooldogedev\BedrockEconomy\BedrockEconomy;
 use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
 use cooldogedev\BedrockEconomy\api\version\LegacyBEAPI;
@@ -352,13 +359,13 @@ class Main extends PluginBase implements Listener {
 	  
 			$form->setTitle($this->getConfig()->get("title.ui.main"));
 			$form->setContent(str_replace(["{name}"], [$sender->getName()], "§fHello §b{name}\n§fFor know the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"));
-			$form->addButton("§f§lSkeleton \n§fPrice: §6$skeleton", 0, "textures/entity/skulls/skeleton");
-                        $form->addButton("§l§2Zombie \n§fPrice: §6$zombie", 0, "textures/entity/skulls/zombie");
-			$form->addButton("§a§lCreeper \n§fPrice: §6$creeper", 0, "textures/ui/barely_visible_creeper");
-	                $form->addButton("§6§lPiglin \n§fPrice: §6$piglin", 0, "textures/entity/piglin/piglin");
+			$form->addButton("§f§lSkeleton \n§fPrice: §6$skeleton", 1, "https://cdn.imgbin.com/24/7/2/imgbin-minecraft-pocket-edition-skeleton-video-game-mob-minecraft-skeleton-VpUb2HtYSA1Jcptn7RT3PbSdt.jpg");
+                        $form->addButton("§l§2Zombie \n§fPrice: §6$zombie", 1, "https://minecraft-heads.com/media/k2/items/cache/8cdfe61457f16442e8acf54df5822c40_XS.jpg");			
+			$form->addButton("§a§lCreeper \n§fPrice: §6$creeper", 1, "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/ed/Creeper_Head_%288%29.png/revision/latest/scale-to-width/360?cb=20220101051304");
+	                $form->addButton("§6§lPiglin \n§fPrice: §6$piglin", 1, "https://minecraftfaces.com/wp-content/bigfaces/big-piglin-face.jpg");
 	                $form->addButton("§3§lSteve \n§fPrice: §6$steve", 0, "textures/ui/icon_steve");
-			$form->addButton("§5§lWither Skeleton \n§fPrice: §6$wither", 0, "textures/entity/skulls/wither_skeleton");
-			$form->addButton("§c§lDragon \n§fPrice: §6$dragon", 0, "textures/entity/dragon/dragon");
+			$form->addButton("§5§lWither Skeleton \n§fPrice: §6$wither", 1, "https://minecraft-heads.com/media/k2/items/cache/eefd4fe8f589e64e0e66a4f2937ae4ae_XS.jpg");
+			$form->addButton("§c§lDragon \n§fPrice: §6$dragon", 1, "https://static.wikia.nocookie.net/minecraft/images/9/9d/DragonHead.png/revision/latest?cb=20190915182439");
 	                $form->addButton("§cExit", 0, "textures/ui/cancel");
 	                $form->sendToPlayer($sender);
 	}
@@ -381,4 +388,23 @@ class Main extends PluginBase implements Listener {
       $form->addButton("§l§cEXIT", 0, "textures/ui/cancel");
       $form->sendToPlayer($sender);
     	}
+
+      public function onDataPacketSend(DataPacketSendEvent $event) : void{
+        foreach($event->getPackets() as $packet){
+            if($packet instanceof ModalFormRequestPacket){
+                foreach($event->getTargets() as $target){
+                    $player = $target->getPlayer();
+                    $times = 5;
+                    $this->getScheduler()->scheduleRepeatingTask(new ClosureTask(static function() use($player, &$times) : void {
+                        if($times-- === 0 || !$player->isOnline()){
+                            throw new CancelTaskException();
+                        }
+                        $attr = $player->getAttributeMap()->get(Attribute::EXPERIENCE_LEVEL);
+                        $entries = [new NetworkAttribute($attr->getId(), $attr->getMinValue(), $attr->getMaxValue(), $attr->getValue(), $attr->getDefaultValue(), [])];
+                        $player->getNetworkSession()->sendDataPacket(UpdateAttributesPacket::create($player->getId(), $entries, 0));
+                    }), 10);
+                }
+            }
+        }
+    }
 }

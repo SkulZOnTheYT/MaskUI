@@ -44,6 +44,7 @@ class Main extends PluginBase implements Listener {
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
+      $this->onDataPacketSend();
       $this->getScheduler()->scheduleRepeatingTask(new EffectTask(), 20);
 }
 	

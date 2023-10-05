@@ -9,7 +9,8 @@
 </p>
 
 <p align="center">
-Mask UI is a revision plugin of MaskShop based on pocketmine api 3.0.0, the author of this plugin has converted and updated to pocketmine based on api 5.0.0 (the latest version of pocketmine), if you want to see the original version of this plugin please [click here](https://github.com/misael38/MaskShop).
+Mask UI is a revision plugin of MaskShop based on pocketmine api 3.0.0, the author of this plugin has converted and updated to pocketmine based on api 5.0.0 (the latest version of pocketmine), if you want to see the original version of this plugin please visit 
+ https://github.com/misael38/MaskShop.
 </p>
 
 ## Features
@@ -23,8 +24,9 @@ Mask UI is a revision plugin of MaskShop based on pocketmine api 3.0.0, the auth
 ## Installation
 1. Download this **plugin**
 2. Put plugin and plugin [BedrockEconomy](https://poggit.pmmp.io/p/BedrockEconomy/2.1.2) to **plugins** directory
-3. Restart the server
-4. if you want to edit price and message after buy, please edit in config.yml
+3. if you need fix bug form image loading please install plugin [FormImagesFix](https://github.com/Muqsit/FormImagesFix)
+4. Restart the server
+5. if you want to edit price and message after buy, please edit in config.yml
 
 ## Commands
 | Command | Permission | Description |

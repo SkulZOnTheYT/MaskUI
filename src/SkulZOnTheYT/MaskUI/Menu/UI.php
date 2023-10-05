@@ -339,5 +339,4 @@ class UI
       $form->addButton("§l§cEXIT", 2);
       $form->sendToPlayer($sender);
     	}
-   }
- }
+}

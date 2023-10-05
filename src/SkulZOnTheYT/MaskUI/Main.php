@@ -25,7 +25,6 @@ use pocketmine\entity\Effect;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\EffectManager;
 use pocketmine\entity\effect\VanillaEffects;
-use SkulZOnTheYT\MaskUI\Form\{Form, SimpleForm};
 
 class Main extends PluginBase implements Listener {
     
@@ -41,10 +40,10 @@ class Main extends PluginBase implements Listener {
       $this->getResource("config.yml");
       $this->getScheduler()->scheduleRepeatingTask(new EffectTask(), 20);
 }
-	
-	public static function getInstance() : Self
-   {
-	    return self::$instance;
+
+    public static function getInstance() : Main
+     {
+      return self::$instance;
 	}
 
     public function getUI(): UI

@@ -1,5 +1,6 @@
+
 <p align="center">
-  <img width="200px" src="https://github.com/SkulZOnTheYT/MaskUI/blob/1.3-patch/icon.png" align="center"/>
+  <img width="200px" src="https://github.com/SkulZOnTheYT/MaskUI/blob/1.3-patch/icon.gif" align="center"/>
 </p>
 <p align="center">
   <a href="https://poggit.pmmp.io/p/MaskUI"><img src="https://poggit.pmmp.io/shield.state/MaskUI"></a>
@@ -7,8 +8,9 @@
   <a href="https://poggit.pmmp.io/p/MaskUI"><img src="https://poggit.pmmp.io/shield.dl/MaskUI"></a>
 </p>
 
-# MaskUI
+<p align="center">
 Mask UI is a revision plugin of MaskShop based on pocketmine api 3.0.0, the author of this plugin has converted and updated to pocketmine based on api 5.0.0 (the latest version of pocketmine), if you want to see the original version of this plugin please [click here](https://github.com/misael38/MaskShop).
+</p>
 
 ## Features
 >- Custom Price (if you want to edit in config.yml)
@@ -29,6 +31,8 @@ Mask UI is a revision plugin of MaskShop based on pocketmine api 3.0.0, the auth
 |---|---|---|
 |/mask|true|Open Mask Shop UI|
 |/mask wiki|true|Open Mask Wiki|
+|/mask github|true|send link to repostory plugin|
+|/mask help|true|send list command|
 
 ## Video Review
 coming soon

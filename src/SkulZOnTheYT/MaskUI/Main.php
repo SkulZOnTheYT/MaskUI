@@ -388,26 +388,26 @@ class Main extends PluginBase implements Listener {
 
 	public function removeMobHead(Player $player): void {
 	  $creativeInventory = $player->getCreativeInventory();
-	    if($item1 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::SKELETON())) {
+	    $item1 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::SKELETON());
 		$creativeInventory->remove($item1);
-	    }
-	    if($item2 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE())) {
+		
+	    $item2 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE());
 		$creativeInventory->remove($item2);
-	    }
-	    if($item3 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::CREEPER())) {
+	    
+	    $item3 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::CREEPER());
 		$creativeInventory->remove($item3);
-	    }
-	    if($item4 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PIGLIN())) {
+	    
+	    $item4 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PIGLIN());
 		$creativeInventory->remove($item4);  
-	    }
-	    if($item5 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PLAYER())) {
+	    
+	    $item5 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PLAYER());
 		$creativeInventory->remove($item5);
-	    }
-	    if($item6 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::WITHER_SKELETON())) {
+	    
+	    $item6 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::WITHER_SKELETON());
 		$creativeInventory->remove($item6); 
-	    }
-	    if($item7 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::DRAGON())) {
+	    
+	    $item7 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::DRAGON());
 		$creativeInventory->remove($item7);
-	    }
+	
 	}
 }

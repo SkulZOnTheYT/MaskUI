@@ -17,6 +17,7 @@ use pocketmine\command\CommandExecutor;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\block\utils\MobHeadType;
+use pocketmine\inventory\CreativeInventory;
 use pocketmine\world\sound\AnvilFallSound;
 use pocketmine\world\sound\EndermanTeleportSound;
 use cooldogedev\BedrockEconomy\BedrockEconomy;
@@ -38,6 +39,9 @@ class Main extends PluginBase implements Listener {
       $this->saveDefaultConfig();
       $this->getResource("config.yml");
       $this->getScheduler()->scheduleRepeatingTask(new EffectTask(), 20);
+      foreach ($this->getServer()->getOnlinePlayers() as $player) {
+        $this->removeMobHead($player);
+    }
 }
 	
 	public static function getInstance() : self{
@@ -278,9 +282,9 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-	                            $item4 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::WITHER_SKELETON())->asItem();
-		                    $item4->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
-                                    $sender->getInventory()->addItem($item4);
+	                            $item6 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::WITHER_SKELETON())->asItem();
+		                    $item6->setCustomName("§7Wither §eMask \n§bOwner: §c$name");
+                                    $sender->getInventory()->addItem($item6);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.wither"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
 			     } else {
@@ -314,9 +318,9 @@ class Main extends PluginBase implements Listener {
                                ClosureContext::create(
                                function (bool $wasUpdated) use ($sender, $name): void {
                                 if ($wasUpdated) {
-	                            $item6 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::DRAGON())->asItem();
-		                    $item6->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
-                                    $sender->getInventory()->addItem($item6);
+	                            $item7 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::DRAGON())->asItem();
+		                    $item7->setCustomName("§cDragon §eMask \n§bOwner: §c$name");
+                                    $sender->getInventory()->addItem($item7);
                                     $sender->sendMessage($this->getConfig()->get("msg.shop.dragon"));
 		                    $sender->getWorld()->addSound($sender->getPosition(), new EndermanTeleportSound());
 			     } else {
@@ -376,9 +380,34 @@ class Main extends PluginBase implements Listener {
 				  break;
 			      }
 		      });
-      $form->setTitle($this->getConfig()->get("title.ui.feature"));
-      $form->setContent("§6This plugin made by §fSkulZOnTheYT and Kylan1940\n\n§fSkeleton §eMask \n§dEffects: \n§e-§dHaste §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dNight Vision §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dSpeed §7(§bI§7) §c*Only For 18 Minutes \n§e-§dJump Boost §7(§bII§7) §c*Only For 18 Minutes \n\n§2Zombie §eMask \n§dEffects: \n§e-§dStrength §7(§bI§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dJump Boost  §7(§bI§7) \n§e-§dRegeneration §7(§bI§7) \n§e-§dFire Resistance §7(§bI§7) \n\n§aCreeper §eMask \n§dEffects: \n§e-§dJump Boost §7(§bII§7) \n§e-§dStrength §7(§bII§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dRegeneration §7(§bII§7) \n§e-§dFire Resistance §7(§bI§7) \n§e-§dSpeed §7(§bI§7) \n\n§7Wither Skeleton §eMask \n§dEffects: \n§e-§dSpeed §7(§bI§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dRegeneration \n§7(§bI§7) \n§e-§dHealth Boost §7(§bI§7) \n§e-§dFire Resistance §7(§bII§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n\n§3Steve §eMask \n§dEffects: \n§e-§dStrength §7(§bIII§7) \n§e-§dSpeed §7(§bII§7) \n§e-§dRegeneration §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n\n§cDragon §eMask \n§dEffects: \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dSpeed §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dAbsorption §7(§bIII§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dSaturation §7(§bIII§7) \n§e-§dRegeneration §7(§bIII§7)"); 
-      $form->addButton("§l§cEXIT", 0, "textures/ui/cancel");
-      $form->sendToPlayer($sender);
+          $form->setTitle($this->getConfig()->get("title.ui.feature"));
+          $form->setContent("§6This plugin made by §fSkulZOnTheYT and Kylan1940\n\n§fSkeleton §eMask \n§dEffects: \n§e-§dHaste §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dNight Vision §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dSpeed §7(§bI§7) §c*Only For 18 Minutes \n§e-§dJump Boost §7(§bII§7) §c*Only For 18 Minutes \n\n§2Zombie §eMask \n§dEffects: \n§e-§dStrength §7(§bI§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dJump Boost  §7(§bI§7) \n§e-§dRegeneration §7(§bI§7) \n§e-§dFire Resistance §7(§bI§7) \n\n§aCreeper §eMask \n§dEffects: \n§e-§dJump Boost §7(§bII§7) \n§e-§dStrength §7(§bII§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dRegeneration §7(§bII§7) \n§e-§dFire Resistance §7(§bI§7) \n§e-§dSpeed §7(§bI§7) \n\n§7Wither Skeleton §eMask \n§dEffects: \n§e-§dSpeed §7(§bI§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dRegeneration \n§7(§bI§7) \n§e-§dHealth Boost §7(§bI§7) \n§e-§dFire Resistance §7(§bII§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n\n§3Steve §eMask \n§dEffects: \n§e-§dStrength §7(§bIII§7) \n§e-§dSpeed §7(§bII§7) \n§e-§dRegeneration §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n\n§cDragon §eMask \n§dEffects: \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dSpeed §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dAbsorption §7(§bIII§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dSaturation §7(§bIII§7) \n§e-§dRegeneration §7(§bIII§7)"); 
+          $form->addButton("§l§cEXIT", 0, "textures/ui/cancel");
+          $form->sendToPlayer($sender);
+	}
+
+	public function removeMobHead(Player $player): void {
+	  $creativeInventory = $player->getCreativeInventory();
+	    if($item1 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::SKELETON())) {
+		$creativeInventory->remove($item1);
+	    }
+	    if($item2 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE())) {
+		$creativeInventory->remove($item2);
+	    }
+	    if($item3 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::CREEPER())) {
+		$creativeInventory->remove($item3);
+	    }
+	    if($item4 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PIGLIN())) {
+		$creativeInventory->remove($item4);  
+	    }
+	    if($item5 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PLAYER())) {
+		$creativeInventory->remove($item5);
+	    }
+	    if($item6 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::WITHER_SKELETON())) {
+		$creativeInventory->remove($item6); 
+	    }
+	    if($item7 = VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::DRAGON())) {
+		$creativeInventory->remove($item7);
+	    }
 	}
 }

@@ -17,7 +17,6 @@ use pocketmine\command\CommandExecutor;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\block\utils\MobHeadType;
-use pocketmine\inventory\CreativeInventory;
 use pocketmine\world\sound\AnvilFallSound;
 use pocketmine\world\sound\EndermanTeleportSound;
 use cooldogedev\BedrockEconomy\BedrockEconomy;

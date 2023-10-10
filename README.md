@@ -31,7 +31,7 @@ Mask UI is a revision plugin of MaskShop based on pocketmine api 3.0.0, the auth
 ## Commands
 | Command | Permission | Description |
 |---|---|---|
-|/mask|true|Open Mask Shop UI|
+|/mask open|true|Open Mask Shop UI|
 |/mask wiki|true|Open Mask Wiki|
 |/mask github|true|send link to repostory plugin|
 |/mask help|true|send list command|

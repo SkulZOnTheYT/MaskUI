@@ -21,8 +21,7 @@ use pocketmine\world\sound\AnvilFallSound;
 use pocketmine\world\sound\EndermanTeleportSound;
 use cooldogedev\BedrockEconomy\BedrockEconomy;
 use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
-use cooldogedev\BedrockEconomy\api\version\LegacyBEAPI;
-use cooldogedev\BedrockEconomy\api\legacy\ClosureContext;
+use cooldogedev\BedrockEconomy\api\type\LegacyBEAPI;
 use SkulZOnTheYT\MaskUI\Form\{Form, SimpleForm};
 
 class Main extends PluginBase implements Listener {

@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img width="200px" src="https://github.com/SkulZOnTheYT/MaskUI/blob/1.3-patch/icon.gif" align="center"/>
+  <img width="200px" src="https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/icon.gif" align="center"/>
 </p>
 <p align="center">
   <a href="https://poggit.pmmp.io/p/MaskUI"><img src="https://poggit.pmmp.io/shield.state/MaskUI"></a>

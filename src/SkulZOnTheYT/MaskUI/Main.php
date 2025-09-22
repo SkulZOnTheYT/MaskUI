@@ -157,12 +157,12 @@ class Main extends PluginBase implements Listener {
 			"§fHello §b{name}\n§fFor know the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"
 		));
 
-		$form->addButton("§f§lSkeleton \n§fPrice: §6$skeleton", 1, "https://cdn.imgbin.com/24/7/2/imgbin-minecraft-pocket-edition-skeleton-video-game-mob-minecraft-skeleton-VpUb2HtYSA1Jcptn7RT3PbSdt.jpg");
-		$form->addButton("§l§2Zombie \n§fPrice: §6$zombie", 1, "https://minecraft-heads.com/media/k2/items/cache/8cdfe61457f16442e8acf54df5822c40_XS.jpg");			
-		$form->addButton("§a§lCreeper \n§fPrice: §6$creeper", 1, "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/ed/Creeper_Head_%288%29.png/revision/latest/scale-to-width/360?cb=20220101051304");
-		$form->addButton("§6§lPiglin \n§fPrice: §6$piglin", 1, "https://minecraftfaces.com/wp-content/bigfaces/big-piglin-face.jpg");
-		$form->addButton("§3§lSteve \n§fPrice: §6$steve", 0, "textures/ui/icon_steve");
-		$form->addButton("§5§lWither Skeleton \n§fPrice: §6$wither", 1, "https://minecraft-heads.com/media/k2/items/cache/eefd4fe8f589e64e0e66a4f2937ae4ae_XS.jpg");
+		$form->addButton("§f§lSkeleton \n§fPrice: §6$skeleton", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/Skeleton.jpg");
+		$form->addButton("§l§2Zombie \n§fPrice: §6$zombie", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/Zombie.png");			
+		$form->addButton("§a§lCreeper \n§fPrice: §6$creeper", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/creeper.jpg");
+		$form->addButton("§6§lPiglin \n§fPrice: §6$piglin", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/piglin.jpg");
+		$form->addButton("§3§lSteve \n§fPrice: §6$steve", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/steve.png");
+		$form->addButton("§5§lWither Skeleton \n§fPrice: §6$wither", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/wither.png");
 		$form->addButton("§c§lDragon \n§fPrice: §6$dragon", 1, "https://static.wikia.nocookie.net/minecraft/images/9/9d/DragonHead.png/revision/latest?cb=20190915182439");
 		$form->addButton("§cExit", 0, "textures/ui/cancel");
 

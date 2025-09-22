@@ -170,21 +170,74 @@ class Main extends PluginBase implements Listener {
 	}
 	
 	public function FeatureMenu($sender){
-        $form = new SimpleForm(function (Player $sender, int $data = null){
+		$form = new SimpleForm(function (Player $sender, int $data = null){
 			$result = $data;
 			if($result === null){
-			  return true;
+				return true;
 			}
 			switch($result){
 				case 0:
-				   $sender->sendMessage($this->getConfig()->get("quit.message"));
-				   $sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
-				  break;
-			      }
-		      });
-          $form->setTitle($this->getConfig()->get("title.ui.feature"));
-          $form->setContent("§6This plugin made by §fSkulZOnTheYT and Kylan1940\n\n§fSkeleton §eMask \n§dEffects: \n§e-§dHaste §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dNight Vision §7(§bIII§7) §c*Only For 18 Minutes \n§e-§dSpeed §7(§bI§7) §c*Only For 18 Minutes \n§e-§dJump Boost §7(§bII§7) §c*Only For 18 Minutes \n\n§2Zombie §eMask \n§dEffects: \n§e-§dStrength §7(§bI§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dJump Boost  §7(§bI§7) \n§e-§dRegeneration §7(§bI§7) \n§e-§dFire Resistance §7(§bI§7) \n\n§aCreeper §eMask \n§dEffects: \n§e-§dJump Boost §7(§bII§7) \n§e-§dStrength §7(§bII§7) \n§e-§dNight Vision §7(§bII§7) \n§e-§dRegeneration §7(§bII§7) \n§e-§dFire Resistance §7(§bI§7) \n§e-§dSpeed §7(§bI§7) \n\n§7Wither Skeleton §eMask \n§dEffects: \n§e-§dSpeed §7(§bI§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dRegeneration \n§7(§bI§7) \n§e-§dHealth Boost §7(§bI§7) \n§e-§dFire Resistance §7(§bII§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n\n§3Steve §eMask \n§dEffects: \n§e-§dStrength §7(§bIII§7) \n§e-§dSpeed §7(§bII§7) \n§e-§dRegeneration §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n\n§cDragon §eMask \n§dEffects: \n§e-§dFire Resistance §7(§bIV§7) \n§e-§dJump Boost §7(§bIII§7) \n§e-§dHealth Boost §7(§bV§7) \n§e-§dSpeed §7(§bIII§7) \n§e-§dNight Vision §7(§bIII§7) \n§e-§dAbsorption §7(§bIII§7) \n§e-§dStrength §7(§bIII§7) \n§e-§dSaturation §7(§bIII§7) \n§e-§dRegeneration §7(§bIII§7)"); 
-          $form->addButton("§l§cEXIT", 0, "textures/ui/cancel");
-          $form->sendToPlayer($sender);
+					$sender->sendMessage($this->getConfig()->get("quit.message"));
+					$sender->getWorld()->addSound($sender->getPosition(), new AnvilFallSound());
+					break;
+			}
+		});
+
+		$form->setTitle($this->getConfig()->get("title.ui.feature"));
+		$form->setContent(
+			"§6This plugin made by §fSkulZOnTheYT and Kylan1940\n\n".
+			
+			"§fSkeleton §eMask\n".
+			"§dEffects:\n".
+			"§e-§dNight Vision §7(§bI§7)\n".
+			"§e-§dSpeed §7(§bI§7)\n\n".
+
+			"§2Zombie §eMask\n".
+			"§dEffects:\n".
+			"§e-§dNight Vision §7(§bI§7)\n".
+			"§e-§dStrength §7(§bI§7)\n".
+			"§e-§dSlowness §7(§bI§7)\n\n".
+
+			"§aCreeper §eMask\n".
+			"§dEffects:\n".
+			"§e-§dNight Vision §7(§bI§7)\n".
+			"§e-§dJump Boost §7(§bII§7)\n".
+			"§e-§dResistance §7(§bII§7)\n".
+			"§e-§dSpeed §7(§bI§7)\n\n".
+
+			"§7Piglin §eMask\n".
+			"§dEffects:\n".
+			"§e-§dNight Vision §7(§bI§7)\n".
+			"§e-§dStrength §7(§bII§7)\n".
+			"§e-§dFire Resistance §7(§bI§7)\n".
+			"§e-§dResistance §7(§bI§7)\n\n".
+
+			"§3Steve §eMask\n".
+			"§dEffects:\n".
+			"§e-§dNight Vision §7(§bI§7)\n".
+			"§e-§dSpeed §7(§bII§7)\n".
+			"§e-§dHaste §7(§bII§7)\n".
+			"§e-§dResistance §7(§bI§7)\n\n".
+
+			"§7Wither Skeleton §eMask\n".
+			"§dEffects:\n".
+			"§e-§dNight Vision §7(§bI§7)\n".
+			"§e-§dResistance §7(§bII§7)\n".
+			"§e-§dStrength §7(§bII§7)\n".
+			"§e-§dAbsorption §7(§bII§7)\n".
+			"§e-§dRegeneration §7(§bI§7)\n\n".
+
+			"§cDragon §eMask\n".
+			"§dEffects:\n".
+			"§e-§dNight Vision §7(§bI§7)\n".
+			"§e-§dResistance §7(§bIII§7)\n".
+			"§e-§dStrength §7(§bIII§7)\n".
+			"§e-§dRegeneration §7(§bII§7)\n".
+			"§e-§dAbsorption §7(§bII§7)\n".
+			"§e-§dHaste §7(§bII§7)"
+		);
+
+		$form->addButton("§l§cEXIT", 0, "textures/ui/cancel");
+		$form->sendToPlayer($sender);
 	}
 }

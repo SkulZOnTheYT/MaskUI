@@ -20,52 +20,52 @@ class EffectTask extends Task {
             if ($helmet instanceof Item) {
 
                 if ($helmet->getStateId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::SKELETON())->asItem()->getStateId()) {
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 0));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 300, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 300, 0));
                 }
 
                 if ($helmet->getStateId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::ZOMBIE())->asItem()->getStateId()) {
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 0));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 0));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::SLOWNESS(), 220, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 300, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 300, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::SLOWNESS(), 300, 0));
                 }
 
                 if ($helmet->getStateId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::CREEPER())->asItem()->getStateId()) {
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 0));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 220, 1));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::RESISTANCE(), 220, 1));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 300, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::JUMP_BOOST(), 300, 1));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::RESISTANCE(), 300, 1));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 300, 0));
                 }
 
                 if ($helmet->getStateId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PIGLIN())->asItem()->getStateId()) {
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 0));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 220, 0));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::RESISTANCE(), 220, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 300, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 300, 1));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::FIRE_RESISTANCE(), 300, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::RESISTANCE(), 300, 0));
                 }
 
                 if ($helmet->getStateId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::PLAYER())->asItem()->getStateId()) {
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 0));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 220, 1));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::HASTE(), 220, 1));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::RESISTANCE(), 220, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 300, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::SPEED(), 300, 1));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::HASTE(), 300, 1));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::RESISTANCE(), 300, 0));
                 }
 
                 if ($helmet->getStateId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::WITHER_SKELETON())->asItem()->getStateId()) {
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 0));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::RESISTANCE(), 220, 1));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 1));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::ABSORPTION(), 220, 1));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 300, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::RESISTANCE(), 300, 1));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 300, 1));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::ABSORPTION(), 300, 1));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 300, 0));
                 }
 
                 if ($helmet->getStateId() === VanillaBlocks::MOB_HEAD()->setMobHeadType(MobHeadType::DRAGON())->asItem()->getStateId()) {
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 220, 0));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::RESISTANCE(), 220, 2));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 220, 2));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 220, 1));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::ABSORPTION(), 220, 1));
-                    $player->getEffects()->add(new EffectInstance(VanillaEffects::HASTE(), 220, 1));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::NIGHT_VISION(), 300, 0));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::RESISTANCE(), 300, 2));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::STRENGTH(), 300, 2));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::REGENERATION(), 300, 1));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::ABSORPTION(), 300, 1));
+                    $player->getEffects()->add(new EffectInstance(VanillaEffects::HASTE(), 300, 1));
                 }
             }
         }

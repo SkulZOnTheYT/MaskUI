@@ -157,10 +157,10 @@ class Main extends PluginBase implements Listener {
 			"§fHello §b{name}\n§fFor know the effect you will get when use the mask, you can open the §eMask §dFeatures §fmenu first"
 		));
 
-		$form->addButton("§f§lSkeleton \n§fPrice: §6$skeleton", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/Skeleton.jpg");
+		$form->addButton("§f§lSkeleton \n§fPrice: §6$skeleton", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/skeleton.png");
 		$form->addButton("§l§2Zombie \n§fPrice: §6$zombie", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/Zombie.png");			
-		$form->addButton("§a§lCreeper \n§fPrice: §6$creeper", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/creeper.jpg");
-		$form->addButton("§6§lPiglin \n§fPrice: §6$piglin", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/piglin.jpg");
+		$form->addButton("§a§lCreeper \n§fPrice: §6$creeper", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/creeper.png");
+		$form->addButton("§6§lPiglin \n§fPrice: §6$piglin", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/piglin.png");
 		$form->addButton("§3§lSteve \n§fPrice: §6$steve", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/steve.png");
 		$form->addButton("§5§lWither Skeleton \n§fPrice: §6$wither", 1, "https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/resources/wither.png");
 		$form->addButton("§c§lDragon \n§fPrice: §6$dragon", 1, "https://static.wikia.nocookie.net/minecraft/images/9/9d/DragonHead.png/revision/latest?cb=20190915182439");

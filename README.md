@@ -8,14 +8,12 @@
   <a href="https://poggit.pmmp.io/p/MaskUI"><img src="https://poggit.pmmp.io/shield.dl/MaskUI"></a>
 </p>
 
----
-## 📖 About  
+<div align="center"> 
+  
 **MaskUI** is a modern revision of the original [MaskShop](https://github.com/misael38/MaskShop) plugin.  
-The plugin has been fully **updated to PocketMine-MP API 5.0.0**, bringing back the classic mask system with new improvements, effects, and customization.  
+The plugin has been fully **updated to PocketMine-MP API 5.0.0**, bringing back the classic mask system with new improvements, effects, and customization. With MaskUI, players can **buy masks with in-game currency (BedrockEconomy)** and gain **unique buffs** when wearing them! Perfect for **Survival, RPG, and Faction** servers.  
+</div>
 
-With MaskUI, players can **buy masks with in-game currency (BedrockEconomy)** and gain **unique buffs** when wearing them! Perfect for **Survival, RPG, and Faction** servers.  
-
----
 
 ## ✨ Features
 - 🛒 **Customizable Prices** → edit easily in `config.yml`  

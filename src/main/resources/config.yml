@@ -1,0 +1,28 @@
+masks:
+  skeleton:
+    price: 5000
+  zombie:
+    price: 10000
+  creeper:
+    price: 15000
+  piglin:
+    price: 20000
+  steve:
+    price: 25000
+  wither:
+    price: 30000
+  dragon:
+    price: 35000
+
+messages:
+  prefix: "&7[&eMask&bUI&7] "
+  purchased: "&dYou bought the {mask}&d mask for &6{price}&d!"
+  no-money: "&cYou do not have enough money."
+  transaction-failed: "&cThe transaction failed."
+  inventory-full: "&cYour inventory is full."
+  players-only: "&cThis command can only be used in-game."
+  economy-unavailable: "&cNo Vault economy provider is available."
+
+gui:
+  shop-title: "&eMask Shop"
+  wiki-title: "&d&lMask Effects"

@@ -1,0 +1,18 @@
+name: MaskUI
+version: '2.0.0'
+main: com.github.skulzontheyt.maskui.MaskUIPlugin
+api-version: '1.21'
+authors: [SkulZOnTheYT, Kylan1940]
+description: Buy wearable mob masks that grant configurable effects.
+depend: [Vault]
+
+commands:
+  mask:
+    description: Open the MaskUI shop or wiki
+    usage: /mask <open|wiki|help|github>
+    permission: maskui.command
+
+permissions:
+  maskui.command:
+    description: Allows use of the MaskUI command
+    default: true

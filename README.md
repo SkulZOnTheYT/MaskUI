@@ -1,56 +1,88 @@
-<p align="center">
-  <img width="200px" src="https://raw.githubusercontent.com/SkulZOnTheYT/MaskUI/main/icon.gif" align="center"/>
-</p>
+# MaskUI for Paper
 
-<p align="center">
-  <a href="https://poggit.pmmp.io/p/MaskUI"><img src="https://poggit.pmmp.io/shield.state/MaskUI"></a>
-  <a href="https://poggit.pmmp.io/p/MaskUI"><img src="https://poggit.pmmp.io/shield.dl.total/MaskUI"></a>
-  <a href="https://poggit.pmmp.io/p/MaskUI"><img src="https://poggit.pmmp.io/shield.dl/MaskUI"></a>
-</p>
+MaskUI is a Paper plugin that lets players buy wearable mob-head masks from an
+inventory GUI. Each mask grants a different set of potion effects while it is
+worn. This branch is a complete Java/Paper port of the original PocketMine-MP
+plugin.
 
-<div align="center"> 
-  
-**MaskUI** is a modern revision of the original [MaskShop](https://github.com/misael38/MaskShop) plugin.  
-The plugin has been fully **updated to PocketMine-MP API 5.0.0**, bringing back the classic mask system with new improvements, effects, and customization. With MaskUI, players can **buy masks with in-game currency (BedrockEconomy)** and gain **unique buffs** when wearing them! Perfect for **Survival, RPG, and Faction** servers.  
-</div>
+## Features
 
+- Inventory-based mask shop and effect wiki
+- Seven masks: Skeleton, Zombie, Creeper, Piglin, Steve, Wither Skeleton, and Dragon
+- Vault-compatible economy support
+- Configurable prices and messages
+- Persistent item tags, so ordinary mob heads do not grant mask effects
+- Safe purchases that check the player's balance and inventory space first
+- Tab completion for all `/mask` subcommands
 
-## ✨ Features
-- 🛒 **Customizable Prices** → edit easily in `config.yml`  
-- 💬 **Custom Messages** → personalized purchase messages  
-- 🎭 **Dynamic Names** → masks display the buyer’s username  
-- 🔊 **Custom Sounds** → play sound effects when buying or failing  
-- ⚡ **Unique Effects** → each mask grants different abilities  
-- 📖 **Full Wiki** → [View here](https://github.com/SkulZOnTheYT/MaskUI/wiki)  
+## Requirements
 
----
+- Paper 1.21.4 or newer 1.21.x release
+- Java 21
+- [Vault](https://github.com/MilkBowl/VaultAPI)
+- A Vault-compatible economy plugin, such as EssentialsX Economy
 
-## 📥 Installation
-1. Download the **MaskUI** plugin.  
-2. Place it in your server’s `plugins` folder.  
-3. Install [BedrockEconomy](https://poggit.pmmp.io/p/BedrockEconomy/2.1.2) (required).  
-4. (Optional) Install [FormImagesFix](https://github.com/Muqsit/FormImagesFix) if image loading fails.  
-5. Restart your server.  
-6. Edit **`config.yml`** to customize prices & messages.  
+Mask purchases are disabled if Vault cannot find an economy provider. The other
+commands and menus remain available.
 
----
+## Installation
 
-## 🛠 Commands
-| Command        | Permission | Description               |
-|----------------|------------|---------------------------|
-| `/mask open`   | true       | Open the Mask Shop UI     |
-| `/mask wiki`   | true       | Open the Mask Wiki        |
-| `/mask github` | true       | Show GitHub repository    |
-| `/mask help`   | true       | Display all commands      |
+1. Download `MaskUI-2.0.0.jar` from the release artifacts, or build it locally.
+2. Install Vault and a Vault-compatible economy provider.
+3. Put all plugin JARs in the Paper server's `plugins` directory.
+4. Start or restart the server.
+5. Edit `plugins/MaskUI/config.yml` to customize prices and messages, then restart
+   the server to apply the changes.
 
----
+## Commands
 
-## 📺 Video Review
-🎥 Coming soon...  
+| Command | Description | Permission |
+| --- | --- | --- |
+| `/mask` or `/mask open` | Open the mask shop | `maskui.command` |
+| `/mask wiki` | Open the mask effect wiki | `maskui.command` |
+| `/mask help` | Show the command list | `maskui.command` |
+| `/mask github` | Show the source repository | `maskui.command` |
 
----
+The `maskui.command` permission is granted to all players by default.
 
-## 🔗 Links
-- 📦 [Download on Poggit](https://poggit.pmmp.io/p/MaskUI)  
-- 📖 [Wiki & Effect List](https://github.com/SkulZOnTheYT/MaskUI/wiki)  
-- 🛠 [Original MaskShop by misael38](https://github.com/misael38/MaskShop)  
+## Configuration
+
+Prices are configured per mask:
+
+```yaml
+masks:
+  skeleton:
+    price: 5000
+  dragon:
+    price: 35000
+```
+
+Messages support legacy `&` color codes and the purchase message supports the
+`{mask}` and `{price}` placeholders. The full default configuration is available
+in [`src/main/resources/config.yml`](src/main/resources/config.yml).
+
+## Building
+
+Clone the repository and run:
+
+```bash
+mvn clean package
+```
+
+The compiled plugin is written to `target/MaskUI-2.0.0.jar`. Maven declares the
+Paper API and Vault API as provided dependencies, so they are not bundled into
+the plugin JAR.
+
+## Notes for Users of the PocketMine Version
+
+- Bedrock SimpleForms have been replaced by standard Java Edition inventory GUIs.
+- BedrockEconomy has been replaced by Vault.
+- Existing PocketMine mask items and configuration files cannot be imported
+  directly because Paper and PocketMine use different item and plugin formats.
+- New Paper masks carry a namespaced persistent tag. Renaming an ordinary mob
+  head does not turn it into a functional mask.
+
+## Credits
+
+- Original MaskUI authors: SkulZOnTheYT and Kylan1940
+- Based on the original [MaskShop](https://github.com/misael38/MaskShop) concept

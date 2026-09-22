@@ -1,0 +1,37 @@
+name: Build MaskUI
+
+on:
+  push:
+    branches:
+      - paper
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots clean verify
+
+      - name: Upload plugin JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: MaskUI-${{ github.sha }}
+          path: target/MaskUI-*.jar
+          if-no-files-found: error
+          retention-days: 14

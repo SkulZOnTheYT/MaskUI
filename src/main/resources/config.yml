@@ -26,3 +26,12 @@ messages:
 gui:
   shop-title: "&eMask Shop"
   wiki-title: "&d&lMask Effects"
+  confirm-title: "&aConfirm Mask Purchase"
+  sell-title: "&6Sell Your Masks"
+  sell-confirm-title: "&6Confirm Mask Sale"
+
+selling:
+  enabled: true
+  # Percentage of the actual purchase price, not today's shop price.
+  # Valid range: greater than 0 up to 100. Invalid values disable refunds.
+  refund-percent: 50
